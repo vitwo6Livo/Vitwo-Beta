@@ -139,10 +139,9 @@ class _sd_PGIState extends State<sd_PGI> {
                                 ),
                                 Container(
                                   height: 42,
-                                  width:
-                                      items[index]['Status'] == 'Invoice'
-                                          ? 90
-                                          : 80,
+                                  width: items[index]['Status'] == 'Invoice'
+                                      ? 90
+                                      : 80,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: GlobalColor.OptionsColor,
@@ -157,9 +156,9 @@ class _sd_PGIState extends State<sd_PGI> {
                                               items[index]['Status'] == 'Open'
                                                   ? Colors.blueAccent
                                                   : items[index]['Status'] ==
-                                                      'Invoice'
-                                                  ? Colors.green
-                                                  : null,
+                                                          'Invoice'
+                                                      ? Colors.green
+                                                      : null,
                                         ),
                                         SizedBox(width: 10),
                                         Text(

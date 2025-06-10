@@ -19,21 +19,47 @@ class menuScreen extends StatefulWidget {
 }
 
 class _menuScreenState extends State<menuScreen> {
-
   List<Map<String, dynamic>> subMenu = [
-    {'img': 'assets/pictures/menu/PM.png', 'name': GlobalText.PM_Title},
-    {'img': 'assets/pictures/menu/SD.png', 'name': GlobalText.SD_Title},
-    {'img': 'assets/pictures/menu/MM.png', 'name': GlobalText.MM_Title},
-    {'img': 'assets/pictures/menu/WM.png', 'name': GlobalText.WM_Title},
-    {'img': 'assets/pictures/menu/PP.png', 'name': GlobalText.PP_Title},
-    {'img': 'assets/pictures/menu/PR_P.png', 'name': GlobalText.PR_P_Title},
-    {'img': 'assets/pictures/menu/MA.png', 'name': GlobalText.MA_Title},
-    {'img': 'assets/pictures/menu/QA.png', 'name': GlobalText.QA_Title},
+    {
+      'img': 'assets/pictures/menu/PM.png',
+      'name': GlobalText.PM_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/SD.png',
+      'name': GlobalText.SD_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/MM.png',
+      'name': GlobalText.MM_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/WM.png',
+      'name': GlobalText.WM_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/PP.png',
+      'name': GlobalText.PP_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/PR_P.png',
+      'name': GlobalText.PR_P_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/MA.png',
+      'name': GlobalText.MA_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/QA.png',
+      'name': GlobalText.QA_Title,
+    },
     {
       'img': 'assets/pictures/menu/Settings.png',
       'name': GlobalText.Setting_Title,
     },
-    {'img': 'assets/pictures/menu/Settings.png', 'name': 'Settings'},
+    {
+      'img': 'assets/pictures/menu/Settings.png',
+      'name': 'Settings',
+    },
   ];
 
   int? expandedIndex;
@@ -134,14 +160,13 @@ class _menuScreenState extends State<menuScreen> {
                             ),
                           ],
                         ),
-
                         const SizedBox(height: 10),
                         _buildCardOption([
                           {
                             'icon': Icons.request_page,
                             'title': GlobalText.SD_RFQ_PI,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_RFQ_PI(),
@@ -151,8 +176,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.description,
                             'title': GlobalText.SD_Quotation,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_Quotation(),
@@ -162,8 +187,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.receipt_long,
                             'title': GlobalText.SD_PI,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_PI(),
@@ -173,8 +198,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.shopping_cart_checkout,
                             'title': GlobalText.SD_SO,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_SO(),
@@ -184,8 +209,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.local_shipping,
                             'title': GlobalText.SD_MD,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_MD(),
@@ -195,8 +220,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.inventory_2,
                             'title': GlobalText.SD_PGI,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_PGI(),
@@ -206,8 +231,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.receipt,
                             'title': GlobalText.SD_IV,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_IV(),
@@ -217,8 +242,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.warehouse,
                             'title': GlobalText.SD_InventoryView,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_InventoryView(),
@@ -228,8 +253,8 @@ class _menuScreenState extends State<menuScreen> {
                           {
                             'icon': Icons.point_of_sale_outlined,
                             'title': GlobalText.SD_POS,
-                            'navigator':
-                                (BuildContext context) => Navigator.push(
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_POS(),

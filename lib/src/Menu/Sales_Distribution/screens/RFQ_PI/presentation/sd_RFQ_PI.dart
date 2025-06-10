@@ -129,28 +129,26 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,
-        actions:
-            isSelectionMode
-                ? [
-                  IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      _delete(selectedIndices.toList());
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.verified),
-                    onPressed:
-                        selectedIndices.length == items.length
-                            ? _unSelectAll
-                            : _SelectAll,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: _exitSelectionMode,
-                  ),
-                ]
-                : null,
+        actions: isSelectionMode
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    _delete(selectedIndices.toList());
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.verified),
+                  onPressed: selectedIndices.length == items.length
+                      ? _unSelectAll
+                      : _SelectAll,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: _exitSelectionMode,
+                ),
+              ]
+            : null,
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Column(
@@ -209,7 +207,7 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
                                   width: items[index]['Status'] ? 80 : 100,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
+                                    color: Color.fromARGB(255, 0, 48, 96),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(9.0),
@@ -217,10 +215,10 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
                                       children: [
                                         CircleAvatar(
                                           radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status']
-                                                  ? Colors.green
-                                                  : Colors.red,
+                                          backgroundColor: items[index]
+                                                  ['Status']
+                                              ? Colors.green
+                                              : Colors.red,
                                         ),
                                         SizedBox(width: 10),
                                         Text(
