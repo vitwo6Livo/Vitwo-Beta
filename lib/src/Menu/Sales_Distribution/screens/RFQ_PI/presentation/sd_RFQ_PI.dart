@@ -207,7 +207,7 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
                                   width: items[index]['Status'] ? 80 : 100,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Color.fromARGB(255, 0, 48, 96),
+                                    color: GlobalColor.primaryColor,
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(9.0),

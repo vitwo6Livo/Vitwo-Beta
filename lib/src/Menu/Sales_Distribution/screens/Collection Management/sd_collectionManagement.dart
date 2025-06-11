@@ -1,71 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:vitwo_beta/src/constants/colors.dart';
-import 'package:vitwo_beta/src/constants/text.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
+import 'package:vitwo_beta/src/constants/colors.dart';
+import 'package:vitwo_beta/src/constants/text.dart';
 
-class sd_MD extends StatefulWidget {
-  const sd_MD({super.key});
+class sd_Collection_Management extends StatefulWidget {
+  const sd_Collection_Management({super.key});
 
   @override
-  State<sd_MD> createState() => _sd_MDState();
+  State<sd_Collection_Management> createState() =>
+      _sd_Collection_ManagementState();
 }
 
-class _sd_MDState extends State<sd_MD> {
+class _sd_Collection_ManagementState extends State<sd_Collection_Management> {
   List<Map<String, dynamic>> items = [
     {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Open',
+      'Transaction_Id': 'TNX12345',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '5,000.00000',
+      'Created_By': 'S MOSES KAR',
+      'Status': 'Reverse',
     },
     {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Reversed',
+      'Transaction_Id': 'TXN0588',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '5,400.00000',
+      'Created_By': 'Joy Shil',
+      'Status': 'Collect',
     },
     {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Reversed',
+      'Transaction_Id': 'S82103420',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '5,900.00000',
+      'Created_By': 'Debika',
+      'Status': 'Collect',
     },
     {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Open',
-    },
-    {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Open',
+      'Transaction_Id': 'TRANSS050601',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '10000.00000',
+      'Created_By': 'Debika',
+      'Status': 'Reverse',
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          GlobalText.SD_MD,
+          GlobalText.SD_CollectionM,
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,
@@ -98,7 +95,6 @@ class _sd_MDState extends State<sd_MD> {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,26 +103,22 @@ class _sd_MDState extends State<sd_MD> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      items[index]['Delivery_Number'],
+                                      items[index]['Transaction_Id'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 19,
                                       ),
                                     ),
                                     Text(
-                                      items[index]['Delivery_Date'],
-                                      maxLines: 2,
-                                    ),
+                                        'Posting Date : ${items[index]['Posting_Date']}'),
                                   ],
                                 ),
                                 Container(
                                   height: 42,
-                                  width: items[index]['Status'] == 'Reversed'
-                                      ? 100
-                                      : 80,
+                                  width: 100,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
+                                    color: GlobalColor.primaryColor,
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(9.0),
@@ -134,13 +126,11 @@ class _sd_MDState extends State<sd_MD> {
                                       children: [
                                         CircleAvatar(
                                           radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status'] == 'Open'
-                                                  ? Colors.blueAccent
-                                                  : items[index]['Status'] ==
-                                                          'Reversed'
-                                                      ? Colors.red
-                                                      : null,
+                                          backgroundColor: items[index]
+                                                      ['Status'] ==
+                                                  'Collect'
+                                              ? Colors.blueAccent
+                                              : Colors.orange,
                                         ),
                                         SizedBox(width: 10),
                                         Text(
@@ -158,56 +148,67 @@ class _sd_MDState extends State<sd_MD> {
                             ),
                             SizedBox(height: 15),
                             Row(
-                              children: [
-                                Text(
-                                  'Customer Name : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(
-                                  items[index]['Customer_Name'].length > 20
-                                      ? '${items[index]['Customer_Name'].substring(0, 24)}...'
-                                      : items[index]['Customer_Name'],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Text(
-                                  'SO Number : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['SO_Number']),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Total Items',
+                                      'Party Name',
                                       style: TextStyle(
                                         color: Colors.grey.shade600,
                                       ),
                                     ),
-                                    Text(items[index]['Total_Items']),
+                                    Text(items[index]['Party_Name'].length > 20
+                                        ? '${items[index]['Party_Name'].substring(0, 24)}...'
+                                        : items[index]['Party_Name']),
                                   ],
                                 ),
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Total Amount',
+                                      'Party Code',
                                       style: TextStyle(
                                         color: Colors.grey.shade600,
                                       ),
                                     ),
-                                    Text(items[index]['Total_Amount']),
+                                    Text(items[index]['Party_Code']),
                                   ],
                                 ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Payment Type : ',
+                                  style: TextStyle(color: Colors.grey.shade600),
+                                ),
+                                Text(items[index]['Payment_Type']),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Collected Amount : ',
+                                  style: TextStyle(color: Colors.grey.shade600),
+                                ),
+                                Text(items[index]['Collected_Amount']),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Created By : ',
+                                  style: TextStyle(color: Colors.grey.shade600),
+                                ),
+                                Text(items[index]['Created_By']),
                               ],
                             ),
                           ],

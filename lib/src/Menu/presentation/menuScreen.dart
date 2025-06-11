@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Collection%20Management/sd_collectionManagement.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Invoicing/presentation/sd_IV.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Settlement/settlementScreen.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_InventoryView.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Manage%20Delivery/presentation/sd_MD.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Post%20Goods%20Issuance/presentation/sd_PGI.dart';
@@ -108,7 +110,7 @@ class _menuScreenState extends State<menuScreen> {
                                 subMenu[index]['name'],
                                 maxLines: 2,
                                 style: TextStyle(
-                                  color: GlobalColor.menuOptionColor,
+                                  color: GlobalColor.primaryColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
@@ -148,7 +150,7 @@ class _menuScreenState extends State<menuScreen> {
                               GlobalText.SD_Title,
                               style: TextStyle(
                                 fontSize: 20,
-                                color: GlobalColor.menuOptionColor,
+                                color: GlobalColor.primaryColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -251,6 +253,29 @@ class _menuScreenState extends State<menuScreen> {
                                 ),
                           },
                           {
+                            'icon': Icons.attach_money_outlined,
+                            'title': GlobalText.SD_CollectionM,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        sd_Collection_Management(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.handshake_outlined,
+                            'title': GlobalText.SD_Settlement,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => sd_SettlementScreen(),
+                                  ),
+                                ),
+                          },
+                          {
                             'icon': Icons.point_of_sale_outlined,
                             'title': GlobalText.SD_POS,
                             'navigator': (BuildContext context) =>
@@ -301,7 +326,7 @@ class _menuScreenState extends State<menuScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
-            backgroundColor: GlobalColor.menuOptionColor,
+            backgroundColor: GlobalColor.primaryColor,
             radius: 22,
             child: Icon(icon, size: 20, color: Colors.white),
           ),

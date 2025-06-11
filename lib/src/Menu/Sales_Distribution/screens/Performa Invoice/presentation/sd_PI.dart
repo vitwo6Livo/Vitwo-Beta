@@ -151,28 +151,26 @@ class _sd_PIState extends State<sd_PI> {
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,
-        actions:
-            isSelectionMode
-                ? [
-                  IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      _delete(selectedIndices.toList());
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.verified),
-                    onPressed:
-                        selectedIndices.length == items.length
-                            ? _unSelectAll
-                            : _SelectAll,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: _exitSelectionMode,
-                  ),
-                ]
-                : null,
+        actions: isSelectionMode
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    _delete(selectedIndices.toList());
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.verified),
+                  onPressed: selectedIndices.length == items.length
+                      ? _unSelectAll
+                      : _SelectAll,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: _exitSelectionMode,
+                ),
+              ]
+            : null,
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Column(

@@ -8,17 +8,17 @@ class GlobalColor {
     96,
   ); // App Bar Globally /
   static Color appBarTextColor = Colors.white; // App Bar Text Globally /
-  static Color menuOptionColor = const Color.fromARGB(
+  static Color primaryColor = const Color.fromARGB(
     255,
     0,
     48,
     96,
-  ); // menu Option Text / menu SubOption Icon Color /
+  ); // menu Option Text / menu SubOption Icon Color / CollectionSettlement Screen
 
   static Color OptionsColor = const Color.fromARGB(
     255,
     0,
     48,
     96,
-  ); // Search Box border Color /
+  ); // Search Box border Color / Status Color
 }

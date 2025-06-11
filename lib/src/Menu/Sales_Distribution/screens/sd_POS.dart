@@ -15,7 +15,7 @@ class _sd_POSState extends State<sd_POS> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          GlobalText.SD_RFQ_PI,
+          GlobalText.SD_POS,
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,

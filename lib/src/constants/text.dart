@@ -3,7 +3,7 @@ class GlobalText {
   static String dashboardTitle = 'DashBoard';
   static String accountTitle = 'Accounts';
   static String scanTitle = 'Scan';
-  static String settlementTitle = 'Settlement';
+  static String settlementTitle = 'Collection & Settlement';
   static String menuTitle = 'Menu';
 
   //////////////////// PM ////////////////////
@@ -22,6 +22,8 @@ class GlobalText {
   static String SD_IV = 'Invoicing'; // SD-> Extended Menu Tab /
   static String SD_InventoryView = 'Inventory View'; // SD-> Extended Menu Tab /
   static String SD_POS = 'Point of Sales'; // SD-> Extended Menu Tab /
+  static String SD_CollectionM = 'Collection Management'; // SD-> Extended Menu Tab /
+  static String SD_Settlement = 'Settlement'; // SD-> Extended Menu Tab /
 
   //////////////////// MM ////////////////////
   static String MM_Title = 'Material Management';
