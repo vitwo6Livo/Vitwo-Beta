@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -118,17 +119,17 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
                                       children: [
                                         CircleAvatar(
                                           radius: 5,
-                                          backgroundColor:
-                                              items[index]['JO_Status'] ==
-                                                      'Open'
-                                                  ? Colors.blueAccent
-                                                  : items[index]['JO_Status'] ==
+                                          backgroundColor: items[index]
+                                                      ['JO_Status'] ==
+                                                  'Open'
+                                              ? Colors.blueAccent
+                                              : items[index]['JO_Status'] ==
                                                       'Pending'
                                                   ? Colors.yellow
                                                   : items[index]['JO_Status'] ==
-                                                      'Closed'
-                                                  ? Colors.red
-                                                  : null,
+                                                          'Closed'
+                                                      ? Colors.red
+                                                      : null,
                                         ),
                                         SizedBox(width: 10),
                                         Text(
@@ -240,7 +241,6 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
                                 ),
                               ],
                             ),
-
                             SizedBox(height: 4),
                             Row(
                               children: [
@@ -251,10 +251,9 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
                                 Text(
                                   items[index]['Type'],
                                   style: TextStyle(
-                                    color:
-                                        items[index]['Type'] == 'PROJECT'
-                                            ? Colors.orange
-                                            : items[index]['Type'] == 'GOODS'
+                                    color: items[index]['Type'] == 'PROJECT'
+                                        ? Colors.orange
+                                        : items[index]['Type'] == 'GOODS'
                                             ? Colors.blueAccent
                                             : Colors.green,
                                   ),
@@ -301,6 +300,17 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }

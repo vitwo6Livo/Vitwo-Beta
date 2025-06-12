@@ -12,6 +12,9 @@ class sd_SettlementScreen extends StatefulWidget {
 
 class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
   String dropdownValue = 'Select';
+  int dueAmt = 1500;
+  final TextEditingController _dueAmountController = TextEditingController();
+
   final List<String> items = [
     'Select',
     'Customer 1',
@@ -20,6 +23,7 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
     'Customer 4',
     'Customer 5'
   ];
+
   List<Map<String, dynamic>> transactionList = [
     {
       'InvoiceNo': 'INV-0000000162',
@@ -101,6 +105,7 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
   Widget build(BuildContext context) {
     final selectedIndex = items.indexOf(dropdownValue);
     final selectedTotals = totals[selectedIndex];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -452,7 +457,7 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
                         )),
                         Center(
                             child: Text(
-                          '₹ 1500.00',
+                          '₹ ${dueAmt.toString()}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.red.shade900,
@@ -498,6 +503,8 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
                                                 SizedBox(
                                                   width: 160,
                                                   child: TextField(
+                                                      controller:
+                                                          _dueAmountController,
                                                       cursorColor: GlobalColor
                                                           .OptionsColor,
                                                       style: const TextStyle(

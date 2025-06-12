@@ -22,7 +22,8 @@ class GlobalText {
   static String SD_IV = 'Invoicing'; // SD-> Extended Menu Tab /
   static String SD_InventoryView = 'Inventory View'; // SD-> Extended Menu Tab /
   static String SD_POS = 'Point of Sales'; // SD-> Extended Menu Tab /
-  static String SD_CollectionM = 'Collection Management'; // SD-> Extended Menu Tab /
+  static String SD_CollectionM =
+      'Collection Management'; // SD-> Extended Menu Tab /
   static String SD_Settlement = 'Settlement'; // SD-> Extended Menu Tab /
 
   //////////////////// MM ////////////////////

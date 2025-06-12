@@ -1,5 +1,6 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/widget/sd_Quotation_Accepted.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/widget/sd_Quotation_All.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/widget/sd_Quotation_Approved.dart';
@@ -37,7 +38,6 @@ class _sd_QuotationState extends State<sd_Quotation> {
               unselectedBackgroundColor: Colors.grey.shade300,
               unselectedLabelStyle: TextStyle(color: Colors.grey),
               labelSpacing: 10,
-
               contentPadding: EdgeInsets.only(right: 12, left: 15),
               borderWidth: 0,
               labelStyle: TextStyle(

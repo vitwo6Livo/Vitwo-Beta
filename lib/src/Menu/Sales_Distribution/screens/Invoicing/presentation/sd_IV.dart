@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 import 'package:vitwo_beta/src/constants/text.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
@@ -19,59 +20,32 @@ class _sd_IVState extends State<sd_IV> {
       'Invoice_Date': '09-06-2025',
       'Status': 'Approved',
       'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
+      'Invoice_Amount': '54500.00',
       'Due_in_Days': '40',
       'Created_By': 'Anjali Rana',
     },
     {
-      'Invoice_No': 'INV-0000000855',
+      'Invoice_No': 'INV-0000000856',
       'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
+      'Invoice_Amount': '54500.00',
       'Invoice_Date': '09-06-2025',
       'Due_in_Days': 'Received',
       'Created_By': 'Anjali Rana',
       'Status': 'Approved',
     },
     {
-      'Invoice_No': 'INV-0000000855',
+      'Invoice_No': 'INV-0000000857',
       'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
+      'Invoice_Amount': '54500.00',
       'Invoice_Date': '09-06-2025',
       'Due_in_Days': '10',
       'Created_By': 'Anjali Rana',
       'Status': 'Approved',
     },
     {
-      'Invoice_No': 'INV-0000000855',
+      'Invoice_No': 'INV-0000000858',
       'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
-      'Invoice_Date': '09-06-2025',
-      'Due_in_Days': '',
-      'Created_By': 'Anjali Rana',
-      'Status': 'Reversed',
-    },
-    {
-      'Invoice_No': 'INV-0000000855',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
-      'Invoice_Date': '09-06-2025',
-      'Due_in_Days': '',
-      'Created_By': 'Anjali Rana',
-      'Status': 'Reversed',
-    },
-    {
-      'Invoice_No': 'INV-0000000855',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
-      'Invoice_Date': '09-06-2025',
-      'Due_in_Days': '5',
-      'Created_By': 'Anjali Rana',
-      'Status': 'Approved',
-    },
-    {
-      'Invoice_No': 'INV-0000000855',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.000000000000',
+      'Invoice_Amount': '54500.00',
       'Invoice_Date': '09-06-2025',
       'Due_in_Days': '',
       'Created_By': 'Anjali Rana',
@@ -80,185 +54,198 @@ class _sd_IVState extends State<sd_IV> {
   ];
 
   Color _getDueInDaysColor(String? due) {
-    if (due == 'Received') {
-      return Colors.green;
-    }
-
+    if (due == 'Received') return Colors.green;
     final parsed = int.tryParse(due ?? '');
-    if (parsed != null && parsed > 10) {
-      return Colors.green;
-    } else if (parsed != null && parsed > 0 && parsed <= 10) {
-      return Colors.red;
+    if (parsed != null) {
+      if (parsed > 10) return Colors.green;
+      if (parsed > 0 && parsed <= 10) return Colors.red;
     }
+    return Colors.white;
+  }
 
-    return Colors.transparent;
+  String _getDueText(String? due) {
+    if (due == 'Received') return 'Payment Received';
+    final parsed = int.tryParse(due ?? '');
+    if (parsed != null) {
+      return parsed > 10
+          ? 'Due in $parsed days'
+          : parsed <= 10 && parsed > 0
+              ? 'Overdue by $parsed days'
+              : '';
+    }
+    return '';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          GlobalText.SD_IV,
-          style: TextStyle(color: GlobalColor.appBarTextColor),
-        ),
+        title: Text(GlobalText.SD_IV,
+            style: TextStyle(color: GlobalColor.appBarTextColor)),
         backgroundColor: GlobalColor.appBarColor,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
+            child: Row(
+              children: [
+                Expanded(child: SearchBarWidget()),
+                const SizedBox(width: 8),
+                exportButton(),
+                const SizedBox(width: 8),
+                filterButton(),
+              ],
+            ),
           ),
-          SizedBox(height: 10),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  final dueText =
-                      items[index]['Due_in_Days'].toString().isNotEmpty
-                          ? items[index]['Due_in_Days']
-                          : '';
+            child: ListView.builder(
+              itemCount: items.length,
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                final item = items[index];
+                final dueText = item['Due_in_Days'];
+                final dueColor = _getDueInDaysColor(dueText);
+                final dueLabel = _getDueText(dueText);
 
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Card(
-                      elevation: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                return Card(
+                  elevation: 3,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        /// Header Row
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            /// Invoice Details + Due Info
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      items[index]['Invoice_No'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index]['Invoice_Date'],
-                                      maxLines: 2,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 5),
-                                CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: _getDueInDaysColor(
-                                    items[index]['Due_in_Days'],
-                                  ),
-                                  child: Center(
-                                    child:
-                                        items[index]['Due_in_Days'] ==
-                                                'Received'
-                                            ? Icon(
-                                              Icons.verified,
-                                              color: Colors.white,
-                                            )
-                                            : Text(
-                                              dueText,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
+                                Text(
+                                  item['Invoice_No'] ?? '',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
                                   ),
                                 ),
-                                Container(
-                                  height: 42,
-                                  width: 110,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(9.0),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status'] ==
-                                                      'Approved'
-                                                  ? Colors.green
-                                                  : items[index]['Status'] ==
-                                                      'Reversed'
-                                                  ? Colors.red
-                                                  : null,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          items[index]['Status'],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                const SizedBox(height: 6),
+                                Text(item['Invoice_Date']),
                               ],
                             ),
-                            SizedBox(height: 15),
-                            Row(
-                              children: [
-                                Text(
-                                  'Customer Name : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(
-                                  items[index]['Customer_Name'].length > 24
-                                      ? '${items[index]['Customer_Name'].substring(0, 24)}...'
-                                      : items[index]['Customer_Name'],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Text(
-                                  'Invoice Amount : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Invoice_Amount']),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Text(
-                                  'Created By : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Created_By']),
-                              ],
+
+                            /// Status Badge
+                            Container(
+                              height: 40,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 6),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: GlobalColor.OptionsColor,
+                              ),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 5,
+                                    backgroundColor:
+                                        item['Status'] == 'Approved'
+                                            ? Colors.green
+                                            : item['Status'] == 'Reversed'
+                                                ? Colors.red
+                                                : Colors.grey,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    item['Status'] ?? '',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                        const SizedBox(height: 15),
+
+                        /// Customer Name
+                        _buildInfoRow(
+                            'Customer Name : ', item['Customer_Name'] ?? '',
+                            maxLength: 24),
+
+                        const SizedBox(height: 10),
+
+                        /// Invoice Amount
+                        _buildInfoRow(
+                            'Invoice Amount : ', item['Invoice_Amount'] ?? ''),
+
+                        const SizedBox(height: 10),
+
+                        /// Created By
+                        _buildInfoRow(
+                            'Created By : ', item['Created_By'] ?? ''),
+
+                        items[index]['Due_in_Days'] == ''
+                            ? SizedBox()
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 4,
+                                      horizontal: 8,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: dueColor.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      dueLabel,
+                                      style: TextStyle(
+                                        color: dueColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      ],
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
         ],
       ),
+     floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value, {int? maxLength}) {
+    final displayValue = maxLength != null && value.length > maxLength
+        ? '${value.substring(0, maxLength)}...'
+        : value;
+
+    return Row(
+      children: [
+        Text(label, style: TextStyle(color: Colors.grey.shade600)),
+        Expanded(child: Text(displayValue)),
+      ],
     );
   }
 }

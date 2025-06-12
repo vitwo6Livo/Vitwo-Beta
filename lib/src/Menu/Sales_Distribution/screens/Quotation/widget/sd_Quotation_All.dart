@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -127,13 +128,13 @@ class _sd_Quotation_AllState extends State<sd_Quotation_All> {
                                       children: [
                                         CircleAvatar(
                                           radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status'] ==
-                                                          'Approved' ||
-                                                      items[index]['Status'] ==
-                                                          'Accepted'
-                                                  ? Colors.green
-                                                  : items[index]['Status'] ==
+                                          backgroundColor: items[index]
+                                                          ['Status'] ==
+                                                      'Approved' ||
+                                                  items[index]['Status'] ==
+                                                      'Accepted'
+                                              ? Colors.green
+                                              : items[index]['Status'] ==
                                                       'Pending'
                                                   ? Colors.yellow
                                                   : Colors.red,
@@ -141,7 +142,6 @@ class _sd_Quotation_AllState extends State<sd_Quotation_All> {
                                         SizedBox(width: 10),
                                         Text(
                                           items[index]['Status'],
-
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 13,
@@ -207,6 +207,17 @@ class _sd_Quotation_AllState extends State<sd_Quotation_All> {
             ),
           ),
         ],
+      ),
+       floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }
