@@ -1,6 +1,5 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/widget/sd_Quotation_Accepted.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/widget/sd_Quotation_All.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/widget/sd_Quotation_Approved.dart';
