@@ -165,28 +165,28 @@ class _sd_SO_AllState extends State<sd_SO_All> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Row(
                                   children: [
+                                    Icon(Icons.person,
+                                        color: GlobalColor.primaryColor),
+                                    SizedBox(width: 5),
                                     Text(
-                                      'Customer Name',
+                                      items[index]['Customer_Name'],
                                       style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    Text(items[index]['Customer_Name']),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                Row(
                                   children: [
+                                    Icon(Icons.code,
+                                        color: GlobalColor.primaryColor),
+                                    SizedBox(width: 5),
                                     Text(
-                                      'Customer Code',
+                                      items[index]['Customer_Code'],
                                       style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    Text(items[index]['Customer_Code']),
                                   ],
                                 ),
                               ],
@@ -195,63 +195,41 @@ class _sd_SO_AllState extends State<sd_SO_All> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Row(
                                   children: [
+                                    Icon(Icons.local_shipping,
+                                        color: GlobalColor.primaryColor),
+                                    SizedBox(width: 5),
                                     Text(
-                                      'SO Date',
+                                      items[index]['Delivery_Date'],
                                       style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    Text(items[index]['SO_Date']),
                                   ],
                                 ),
-                                Column(
+                                SizedBox(height: 5),
+                                Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
+                                    Icon(Icons.extension,
+                                        color: GlobalColor.primaryColor),
+                                    SizedBox(width: 5),
                                     Text(
-                                      'Delivery Date',
+                                      items[index]['Type'],
+                                      maxLines: 2,
                                       style: TextStyle(
-                                        color: Colors.grey.shade600,
+                                        color: items[index]['Type'] == 'SERVICE'
+                                            ? Colors.green
+                                            : items[index]['Type'] == 'GOODS'
+                                                ? Colors.blueAccent
+                                                : items[index]['Type'] ==
+                                                        'PROJECT'
+                                                    ? Colors.orange
+                                                    : Colors.red,
                                       ),
                                     ),
-                                    Text(items[index]['Delivery_Date']),
                                   ],
                                 ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Type : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(
-                                  items[index]['Type'],
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: items[index]['Type'] == 'SERVICE'
-                                        ? Colors.green
-                                        : items[index]['Type'] == 'GOODS'
-                                            ? Colors.blueAccent
-                                            : items[index]['Type'] == 'PROJECT'
-                                                ? Colors.orange
-                                                : Colors.red,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 4),
-                            Row(
-                              children: [
-                                Text(
-                                  'Total Amount : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Total_Amount']),
                               ],
                             ),
                           ],
@@ -263,6 +241,7 @@ class _sd_SO_AllState extends State<sd_SO_All> {
               ),
             ),
           ),
+          SizedBox(height: 50),
         ],
       ),
       floatingActionButton: RippleAnimation(

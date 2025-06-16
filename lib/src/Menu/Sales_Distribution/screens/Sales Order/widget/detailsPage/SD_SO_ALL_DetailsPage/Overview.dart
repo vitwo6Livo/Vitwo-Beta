@@ -10,7 +10,7 @@ class Overview extends StatefulWidget {
 }
 
 class _OverviewState extends State<Overview> {
-   List<Map<String, dynamic>> customerDetails = [
+  List<Map<String, dynamic>> customerDetails = [
     {
       'CustomerName': 'Mindtree Limited',
       'CustomerCode': '52300001',
@@ -60,7 +60,7 @@ class _OverviewState extends State<Overview> {
     },
   ];
 
-bool isExpanded = false;
+  bool isExpanded = false;
   List<String> option = [
     'None',
     'Create Invoice',
@@ -72,54 +72,37 @@ bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Customer info
-              _buildHeader('Customer Details'),
-              SizedBox(height: 10),
-              _buildCustomerDetails(customerDetails[0]),
-              SizedBox(height: 20),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListView(
+          children: [
+            // Item Details
+            _buildHeader('Items'),
+            SizedBox(height: 10),
+            ...itemDetails.map((item) => _buildItemDetails(item)).toList(),
+            SizedBox(height: 20),
 
-              // Contact info
-              _buildHeader('Contact Info'),
-              SizedBox(height: 10),
-              _buildContactInfo(contactDetails[0]),
-              SizedBox(height: 20),
+            // Customer info
+            _buildHeader('Customer Details'),
+            SizedBox(height: 10),
+            _buildCustomerDetails(customerDetails[0]),
+            SizedBox(height: 20),
 
-              // Other Details
-              _buildHeader('Other Details'),
-              SizedBox(height: 10),
-              _buildOtherDetails(otherDetails[0]),
-              SizedBox(height: 20),
+            // Contact info
+            _buildHeader('Contact Info'),
+            SizedBox(height: 10),
+            _buildContactInfo(contactDetails[0]),
+            SizedBox(height: 20),
 
-              _buildHeader('Item Details'),
-              SizedBox(height: 10),
-              _buildItemDetails(itemDetails[0]),
-              SizedBox(height: 20),
+            // Other Details
+            _buildHeader('Other Details'),
+            SizedBox(height: 10),
+            _buildOtherDetails(otherDetails[0]),
+            SizedBox(height: 20),
 
-              Column(
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _buildHeader('Create '),
-                        _buildDropDownOption(),
-                      ]),
-                  SizedBox(height: 15),
-                  _buildSlideToAct(dropdownvalue),
-                ],
-              ),
-
-              SizedBox(height: 20),
-
-              // Spacing from floating button
-              SizedBox(height: 60),
-            ],
-          ),
+            // Bottom spacing for floating action button
+            SizedBox(height: 60),
+          ],
         ),
       ),
     );
@@ -189,18 +172,24 @@ bool isExpanded = false;
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+            // Customer Name and Code Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  customer['CustomerName'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                Row(
                   children: [
-                    Text('Customer Code'),
-                    SizedBox(height: 5),
+                    Icon(Icons.person, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
+                    Text(
+                      customer['CustomerName'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.code, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
                     Text(
                       customer['CustomerCode'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -210,74 +199,77 @@ bool isExpanded = false;
               ],
             ),
             SizedBox(height: 15),
+
+            // GSTIN and PAN Row
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('GSTIN'),
-                    SizedBox(height: 5),
-                    Text(
-                      customer['GSTIN'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('PAN'),
-                    SizedBox(height: 5),
-                    Text(
-                      customer['PAN'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Billing Address'),
-                SizedBox(height: 5),
+                Icon(Icons.account_balance, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
                 Text(
-                  customer['BillingAddress'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Shipping Address'),
-                SizedBox(height: 5),
-                Text(
-                  customer['ShippingAddress'],
+                  customer['GSTIN'],
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             SizedBox(height: 15),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Place of Supply'),
-                    SizedBox(height: 5),
-                    Text(
-                      customer['PlaceOfSupply'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                Icon(Icons.credit_card, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(
+                  customer['PAN'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
-            )
+            ),
+
+            SizedBox(height: 15),
+
+            // Billing Address
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.home, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Expanded(
+                  child: Text(
+                    customer['BillingAddress'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+
+            // Shipping Address
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.local_shipping, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Expanded(
+                  child: Text(
+                    customer['ShippingAddress'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+
+            // Place of Supply
+            Row(
+              children: [
+                Icon(Icons.location_on, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Expanded(
+                  child: Text(
+                    customer['PlaceOfSupply'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -293,21 +285,21 @@ bool isExpanded = false;
           children: [
             Row(
               children: [
-                Icon(Icons.mail),
-                SizedBox(width: 5),
-                Text('Email : '),
-                SizedBox(width: 5),
-                Text(contact['email'])
+                Icon(Icons.mail, color: GlobalColor.primaryColor),
+                SizedBox(width: 10),
+                Text(contact['email'],
+                    style: TextStyle(fontWeight: FontWeight.w500))
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 10),
             Row(
               children: [
-                Icon(Icons.phone),
-                SizedBox(width: 5),
-                Text('Phone : '),
-                SizedBox(width: 5),
-                Text(contact['phone']),
+                Icon(Icons.phone, color: GlobalColor.primaryColor),
+                SizedBox(width: 10),
+                Text(
+                  contact['phone'],
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
               ],
             ),
           ],
@@ -323,14 +315,18 @@ bool isExpanded = false;
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+            // Row 1
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Customer Order No.'),
-                    SizedBox(height: 5),
+                    // Icon(Icons.receipt_long, color: GlobalColor.primaryColor),
+                    Text(
+                      'Customer Order No',
+                    ),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['customerOrderNo'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -340,8 +336,9 @@ bool isExpanded = false;
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    // Icon(Icons.calendar_today, color: GlobalColor.primaryColor),
                     Text('Posting Date'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['postingDate'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -351,14 +348,17 @@ bool isExpanded = false;
               ],
             ),
             SizedBox(height: 15),
+
+            // Row 2
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Icon(Icons.access_time, color: GlobalColor.primaryColor),
                     Text('Posting Time'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['postingTime'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -368,8 +368,9 @@ bool isExpanded = false;
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    // Icon(Icons.local_shipping, color: GlobalColor.primaryColor),
                     Text('Delivery Date'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['deliveryDate'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -379,14 +380,17 @@ bool isExpanded = false;
               ],
             ),
             SizedBox(height: 15),
+
+            // Row 3
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Icon(Icons.timer, color: GlobalColor.primaryColor),
                     Text('Valid Till'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['validTill'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -396,8 +400,9 @@ bool isExpanded = false;
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    // Icon(Icons.date_range, color: GlobalColor.primaryColor),
                     Text('Credit Period'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['creditPeriod'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -407,14 +412,17 @@ bool isExpanded = false;
               ],
             ),
             SizedBox(height: 15),
+
+            // Row 4
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Icon(Icons.person, color: GlobalColor.primaryColor),
                     Text('Sales Person'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['salesPerson'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -424,8 +432,10 @@ bool isExpanded = false;
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    // Icon(Icons.business_center,
+                    //     color: GlobalColor.primaryColor),
                     Text('Functional Area'),
-                    SizedBox(height: 5),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['functionalArea'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -435,14 +445,17 @@ bool isExpanded = false;
               ],
             ),
             SizedBox(height: 15),
+
+            // Row 5
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Compliance Invoice Type'),
-                    SizedBox(height: 5),
+                    // Icon(Icons.receipt, color: GlobalColor.primaryColor),
+                    Text('Compliance Invoice \nType'),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['complianceInvoiceType'],
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -452,11 +465,13 @@ bool isExpanded = false;
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('Reference Document Link'),
-                    SizedBox(height: 5),
+                    // Icon(Icons.link, color: GlobalColor.primaryColor),
+                    Text('Reference Document \nLink'),
+                    SizedBox(width: 5),
                     Text(
                       otherDetails['referenceDocumentLink'],
                       style: TextStyle(fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
@@ -473,76 +488,70 @@ bool isExpanded = false;
       children: [
         GestureDetector(
           onTap: () {
-            setState(() {
-              isExpanded = !isExpanded;
-            });
+            _buildBottomSheetView(item);
           },
-          child: AnimatedContainer(
-            duration: Duration(milliseconds: 600),
-            // height: isExpanded ? 330 : 110,
-            margin: EdgeInsets.all(5),
-            curve: Curves.easeInOut,
-            alignment: Alignment.topCenter,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Card(
-              elevation: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Text('Item Code : '),
-                            Text(
-                              item['itemCode'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text('HSN : '),
-                            Text(
-                              item['HSN'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
+          child: Card(
+            elevation: 3,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  /// Top Row: Item Code & HSN
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.qr_code, color: GlobalColor.primaryColor),
+                          SizedBox(width: 6),
+                          Text(
+                            item['itemCode'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.numbers, color: GlobalColor.primaryColor),
+                          SizedBox(width: 6),
+                          Text(
+                            item['HSN'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+
+                  /// Middle Row: Item Name & Quantity
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
                           item['itemName'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        Row(
-                          children: [
-                            Text('QTY : '),
-                            Text(
-                              item['QTY'],
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    isExpanded ? _buildExpandView(item) : SizedBox(),
-                  ],
-                ),
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.shopping_cart,
+                              color: GlobalColor.primaryColor),
+                          SizedBox(width: 6),
+                          Text(
+                            item['QTY'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
@@ -551,100 +560,145 @@ bool isExpanded = false;
     );
   }
 
-  _buildExpandView(Map<String, dynamic> itemDetails) {
-    return Column(
-      children: [
-        Divider(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Currency'),
-            Text(
-              itemDetails['Currency'],
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
+  _buildBottomSheetView(Map<String, dynamic> itemDetails) {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.only(
+            topEnd: Radius.circular(25),
+            topStart: Radius.circular(25),
+          ),
         ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Unit Price'),
-            Text(
-              'INR ${itemDetails['unitPrice']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
+        context: context,
+        builder: (context) => Container(
+            padding: EdgeInsetsDirectional.only(
+              start: 20,
+              end: 20,
+              bottom: 30,
+              top: 8,
             ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Base Amount'),
-            Text(
-              'INR ${itemDetails['baseAmount']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Discount'),
-            Text(
-              'INR ${itemDetails['Discount']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Taxable Amount'),
-            Text(
-              'INR ${itemDetails['taxableAmount']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('GST %'),
-            Text(
-              'INR ${itemDetails['gst_%']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('GST Amount(INR)'),
-            Text(
-              'INR ${itemDetails['gstAmount']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
-        Divider(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Total Amount'),
-            Text(
-              'INR ${itemDetails['totalAmount']}',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
-      ],
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Container(
+                height: 500,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 25),
+                      Row(
+                        children: [
+                          Text(
+                            'Item Details',
+                            style: TextStyle(
+                                color: GlobalColor.primaryColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.qr_code,
+                                  color: GlobalColor.primaryColor),
+                              SizedBox(width: 6),
+                              Text(
+                                itemDetails['itemCode'],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.numbers,
+                                  color: GlobalColor.primaryColor),
+                              SizedBox(width: 6),
+                              Text(
+                                itemDetails['HSN'],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+
+                      /// Middle Row: Item Name & Quantity
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              itemDetails['itemName'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.shopping_cart,
+                                  color: GlobalColor.primaryColor),
+                              SizedBox(width: 6),
+                              Text(
+                                itemDetails['QTY'],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Divider(),
+                      SizedBox(height: 10),
+                      _buildIconRow(Icons.currency_exchange, 'Currency',
+                          itemDetails['Currency']),
+                      _buildIconRow(Icons.price_change, 'Unit Price',
+                          'INR ${itemDetails['unitPrice']}'),
+                      _buildIconRow(Icons.calculate, 'Base Amount',
+                          'INR ${itemDetails['baseAmount']}'),
+                      _buildIconRow(Icons.discount, 'Discount',
+                          'INR ${itemDetails['Discount']}'),
+                      _buildIconRow(Icons.receipt_long, 'Taxable Amount',
+                          'INR ${itemDetails['taxableAmount']}'),
+                      _buildIconRow(
+                          Icons.percent, 'GST %', '${itemDetails['gst_%']} %'),
+                      _buildIconRow(Icons.request_quote, 'GST Amount',
+                          'INR ${itemDetails['gstAmount']}'),
+                      Divider(),
+                      _buildIconRow(Icons.attach_money, 'Total Amount',
+                          'INR ${itemDetails['totalAmount']}'),
+                      SizedBox(height: 5),
+                    ],
+                  ),
+                ),
+              )
+            ])));
+  }
+
+  Widget _buildIconRow(IconData icon, String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: GlobalColor.primaryColor, size: 20),
+              SizedBox(width: 6),
+              Text(label),
+            ],
+          ),
+          Text(
+            value,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
     );
   }
 }
