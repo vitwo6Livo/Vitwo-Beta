@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/detailsPage/SD_SO_ALL_DetailsPage/Overview.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class SD_SO_ALL_DetailsPage extends StatefulWidget {
-  const SD_SO_ALL_DetailsPage({super.key});
+class SD_SO_ExceptionalSO_DetailsPage extends StatefulWidget {
+  const SD_SO_ExceptionalSO_DetailsPage({super.key});
 
   @override
-  State<SD_SO_ALL_DetailsPage> createState() => _SD_SO_ALL_DetailsPageState();
+  State<SD_SO_ExceptionalSO_DetailsPage> createState() => _SD_SO_ExceptionalSO_DetailsPageState();
 }
 
-class _SD_SO_ALL_DetailsPageState extends State<SD_SO_ALL_DetailsPage> {
+class _SD_SO_ExceptionalSO_DetailsPageState extends State<SD_SO_ExceptionalSO_DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

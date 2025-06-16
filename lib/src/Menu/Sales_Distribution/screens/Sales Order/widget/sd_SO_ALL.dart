@@ -97,7 +97,7 @@ class _sd_SO_AllState extends State<sd_SO_All> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Detailspage()));
+                              builder: (context) => SD_SO_ALL_DetailsPage()));
                     },
                     child: Card(
                       elevation: 3,

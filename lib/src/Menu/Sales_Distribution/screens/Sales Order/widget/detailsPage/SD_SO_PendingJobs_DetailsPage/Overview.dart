@@ -10,57 +10,58 @@ class Overview extends StatefulWidget {
 }
 
 class _OverviewState extends State<Overview> {
-   List<Map<String, dynamic>> customerDetails = [
+  List<Map<String, dynamic>> customerDetails = [
     {
-      'CustomerName': 'Mindtree Limited',
-      'CustomerCode': '52300001',
-      'GSTIN': '33AABCM8839K1Z4',
-      'PAN': 'AABCM8839K',
+      'CustomerName': 'MY JIO MART',
+      'CustomerCode': '52500010',
+      'GSTIN': '08ABKFM6420H1Z6',
+      'PAN': 'ABKFM6420H',
       'BillingAddress':
-          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+          'HOUSE NO.45, SURYA NAGARI, SADBHAWANA NAGAR ROAD, 335001, GANGANAGAR, GANGANAGAR, Sri Ganganagar, Rajasthan',
       'ShippingAddress':
-          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
-      'PlaceOfSupply': '--',
+          'HOUSE NO.45, SURYA NAGARI, SADBHAWANA NAGAR ROAD, 335001, GANGANAGAR, GANGANAGAR, Sri Ganganagar, Rajasthan',
+      'PlaceOfSupply': 'II',
     },
   ];
   List<Map<String, dynamic>> contactDetails = [
     {
-      'email': 'salim.lab3@gmail.com',
-      'phone': '9836813031',
+      'email': 'subhasis@vitwo.in',
+      'phone': '7001451025',
     },
   ];
   List<Map<String, dynamic>> otherDetails = [
     {
-      'customerOrderNo': 'CN0068',
-      'postingDate': '07-03-2025',
-      'postingTime': '16:46',
-      'deliveryDate': '07-03-2025',
-      'validTill': '23-05-2025',
-      'creditPeriod': '45',
-      'salesPerson': 'Salim',
+      'customerOrderNo': 'CUSSS2802',
+      'postingDate': '28-05-2025',
+      'postingTime': '12:05',
+      'deliveryDate': '28-05-2025',
+      'validTill': '29-05-2025',
+      'creditPeriod': '40',
+      'salesPerson': 'Joy',
       'functionalArea': 'IT',
       'complianceInvoiceType': 'null',
-      'referenceDocumentLink': 'No Attached File',
+      'referenceDocumentLink': 'Doc',
     },
   ];
   List<Map<String, dynamic>> itemDetails = [
     {
-      'itemCode': '33000015',
-      'itemName': 'Repairing Service',
-      'HSN': '995419',
-      'QTY': '2.000',
+      'itemCode': '21000184',
+      'itemName': 'Artificial Rose Tree',
+      'HSN': '67021090',
+      'Stock': '1000.000000000000',
+      'QTY': '3.000',
       'Currency': 'INR',
-      'unitPrice': '1200.00000',
-      'baseAmount': '2400.00000',
+      'unitPrice': '100.00000',
+      'baseAmount': '300.00000',
       'Discount': '0.00000',
-      'taxableAmount': '2400.00000',
-      'gst_%': '0.000',
-      'gstAmount': '0.00000',
-      'totalAmount': '2400.00000',
+      'taxableAmount': '300.00000',
+      'gst_%': '18.000',
+      'gstAmount': '54.00000',
+      'totalAmount': '354.00000',
     },
   ];
 
-bool isExpanded = false;
+  bool isExpanded = false;
   List<String> option = [
     'None',
     'Create Invoice',
@@ -101,20 +102,20 @@ bool isExpanded = false;
               _buildItemDetails(itemDetails[0]),
               SizedBox(height: 20),
 
-              Column(
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _buildHeader('Create '),
-                        _buildDropDownOption(),
-                      ]),
-                  SizedBox(height: 15),
-                  _buildSlideToAct(dropdownvalue),
-                ],
-              ),
+              // Column(
+              //   children: [
+              //     Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           _buildHeader('Create '),
+              //           _buildDropDownOption(),
+              //         ]),
+              //     SizedBox(height: 15),
+              //     _buildSlideToAct(dropdownvalue),
+              //   ],
+              // ),
 
-              SizedBox(height: 20),
+              // SizedBox(height: 20),
 
               // Spacing from floating button
               SizedBox(height: 60),

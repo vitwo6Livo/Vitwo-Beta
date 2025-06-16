@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/detailsPage/SD_SO_ExceptionalSO_DetailsPage/sd_SO_ExceptionalSO_DetailsPage.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -92,7 +93,13 @@ class _sd_SO_ExceptionalSOState extends State<sd_SO_ExceptionalSO> {
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SD_SO_ExceptionalSO_DetailsPage()));
+                    },
                     child: Card(
                       elevation: 3,
                       child: Padding(
@@ -221,14 +228,13 @@ class _sd_SO_ExceptionalSOState extends State<sd_SO_ExceptionalSO> {
                                   items[index]['Type'],
                                   maxLines: 2,
                                   style: TextStyle(
-                                    color:
-                                        items[index]['Type'] == 'SERVICE'
-                                            ? Colors.green
-                                            : items[index]['Type'] == 'GOODS'
+                                    color: items[index]['Type'] == 'SERVICE'
+                                        ? Colors.green
+                                        : items[index]['Type'] == 'GOODS'
                                             ? Colors.blueAccent
                                             : items[index]['Type'] == 'PROJECT'
-                                            ? Colors.orange
-                                            : Colors.red,
+                                                ? Colors.orange
+                                                : Colors.red,
                                   ),
                                 ),
                               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/detailsPage/SD_SO_PendingJobs_DetailsPage/sd_SO_PendingJobs_DetailsPage.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -15,14 +16,14 @@ class sd_SO_PendingJobs extends StatefulWidget {
 class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
   List<Map<String, dynamic>> items = [
     {
-      'SO_Number': 'SO2506021',
+      'SO_Number': 'SO2505115',
       'Customer_PO': 'CUSSS2802',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Code': '52500041',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
+      'Delivery_Date': '28-05-2025',
+      'Customer_Code': '52500010',
+      'Customer_Name': 'MY JIO MART',
       'Type': 'PROJECT',
-      'Total_Amount': '4,047.40000',
-      'Total_Item': '1.000',
+      'Total_Amount': '23,718.00000',
+      'Total_Item': '3.000',
       'JO_Status': 'Pending',
       'Status': 'Open',
     },
@@ -88,7 +89,13 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SD_SO_PendingJobs_DetailsPage()));
+                    },
                     child: Card(
                       elevation: 3,
                       child: Padding(
@@ -144,7 +151,6 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
                                     ),
                                   ),
                                 ),
-                               
                               ],
                             ),
                             SizedBox(height: 15),

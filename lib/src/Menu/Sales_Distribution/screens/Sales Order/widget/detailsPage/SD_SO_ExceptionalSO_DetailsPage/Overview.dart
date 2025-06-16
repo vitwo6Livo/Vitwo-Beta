@@ -10,7 +10,7 @@ class Overview extends StatefulWidget {
 }
 
 class _OverviewState extends State<Overview> {
-   List<Map<String, dynamic>> customerDetails = [
+  List<Map<String, dynamic>> customerDetails = [
     {
       'CustomerName': 'Mindtree Limited',
       'CustomerCode': '52300001',
@@ -59,8 +59,7 @@ class _OverviewState extends State<Overview> {
       'totalAmount': '2400.00000',
     },
   ];
-
-bool isExpanded = false;
+  bool isExpanded = false;
   List<String> option = [
     'None',
     'Create Invoice',
