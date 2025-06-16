@@ -117,11 +117,9 @@ class _sd_IVState extends State<sd_IV> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        /// Header Row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            /// Invoice Details + Due Info
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -136,8 +134,6 @@ class _sd_IVState extends State<sd_IV> {
                                 Text(item['Invoice_Date']),
                               ],
                             ),
-
-                            /// Status Badge
                             Container(
                               height: 40,
                               padding: const EdgeInsets.symmetric(
@@ -171,24 +167,15 @@ class _sd_IVState extends State<sd_IV> {
                           ],
                         ),
                         const SizedBox(height: 15),
-
-                        /// Customer Name
                         _buildInfoRow(
                             'Customer Name : ', item['Customer_Name'] ?? '',
                             maxLength: 24),
-
                         const SizedBox(height: 10),
-
-                        /// Invoice Amount
                         _buildInfoRow(
                             'Invoice Amount : ', item['Invoice_Amount'] ?? ''),
-
                         const SizedBox(height: 10),
-
-                        /// Created By
                         _buildInfoRow(
                             'Created By : ', item['Created_By'] ?? ''),
-
                         items[index]['Due_in_Days'] == ''
                             ? SizedBox()
                             : Row(
@@ -222,7 +209,7 @@ class _sd_IVState extends State<sd_IV> {
           ),
         ],
       ),
-     floatingActionButton: RippleAnimation(
+      floatingActionButton: RippleAnimation(
         color: Colors.blue.shade200,
         ripplesCount: 2,
         duration: Duration(seconds: 3),

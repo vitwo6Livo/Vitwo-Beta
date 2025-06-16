@@ -80,9 +80,7 @@ class _sd_InventoryViewState extends State<sd_InventoryView> {
               filterButton(),
             ],
           ),
-
           SizedBox(height: 10),
-
           // List View
           Expanded(
             child: Padding(

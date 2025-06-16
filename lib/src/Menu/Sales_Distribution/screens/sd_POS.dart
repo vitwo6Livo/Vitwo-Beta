@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class sd_POS extends StatelessWidget {
+class sd_POS extends StatefulWidget {
+  @override
+  State<sd_POS> createState() => _sd_POSState();
+}
+
+class _sd_POSState extends State<sd_POS> {
   final List<String> categories = [
     "All",
     "FG Mini",
     "Speaker FM",
     "Portable Speaker"
   ];
-
+  bool walkInCust = false;
   final List<Map<String, dynamic>> products = List.generate(10, (index) {
     return {
       "name": "Product ${index + 1}",
@@ -16,7 +21,6 @@ class sd_POS extends StatelessWidget {
       "stock": index % 3 == 0 ? "Out of stock" : "In stock",
     };
   });
-
   final List<Map<String, dynamic>> items = [
     {"product": "iPhone X", "quantity": 1, "total": 64000},
     {"product": "Apple", "quantity": 2, "total": 10000},
@@ -36,16 +40,26 @@ class sd_POS extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text("Customer Info",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: GlobalColor.primaryColor)),
+            const SizedBox(height: 10),
             _buildCustomerInfo(),
             const SizedBox(height: 20),
-            Text("Items Info", style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Items Info",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: GlobalColor.primaryColor)),
             const SizedBox(height: 10),
             _buildItemList(),
             const SizedBox(height: 20),
             _buildFilterTabs(),
             const SizedBox(height: 10),
             _buildProductGrid(),
-            const SizedBox(height: 30), // Space for buttons at bottom
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -135,7 +149,13 @@ class sd_POS extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                Checkbox(value: false, onChanged: (_) {}),
+                Checkbox(
+                    value: walkInCust,
+                    onChanged: (value) {
+                      setState(() {
+                        walkInCust = value!;
+                      });
+                    }),
                 Text("Walk In Customer"),
               ],
             ),

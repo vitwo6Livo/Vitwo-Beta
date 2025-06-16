@@ -144,37 +144,7 @@ class _sd_SO_PendingJobsState extends State<sd_SO_PendingJobs> {
                                     ),
                                   ),
                                 ),
-                                // Container(
-                                //   height: 42,
-                                //   width: 100,
-                                //   decoration: BoxDecoration(
-                                //     borderRadius: BorderRadius.circular(10),
-                                //     color: GlobalColor.OptionsColor,
-                                //   ),
-                                //   child: Padding(
-                                //     padding: const EdgeInsets.all(9.0),
-                                //     child: Row(
-                                //       children: [
-                                //         CircleAvatar(
-                                //           radius: 5,
-                                //           backgroundColor:
-                                //               items[index]['Status'] == 'Open'
-                                //                   ? Colors.blueAccent
-                                //                   : null,
-                                //         ),
-                                //         SizedBox(width: 10),
-                                //         Text(
-                                //           items[index]['Status'],
-                                //           style: TextStyle(
-                                //             color: Colors.white,
-                                //             fontSize: 13,
-                                //             fontWeight: FontWeight.bold,
-                                //           ),
-                                //         ),
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
+                               
                               ],
                             ),
                             SizedBox(height: 15),

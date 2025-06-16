@@ -14,7 +14,6 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
   String dropdownValue = 'Select';
   int dueAmt = 1500;
   final TextEditingController _dueAmountController = TextEditingController();
-
   final List<String> items = [
     'Select',
     'Customer 1',
@@ -23,7 +22,6 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
     'Customer 4',
     'Customer 5'
   ];
-
   List<Map<String, dynamic>> transactionList = [
     {
       'InvoiceNo': 'INV-0000000162',
