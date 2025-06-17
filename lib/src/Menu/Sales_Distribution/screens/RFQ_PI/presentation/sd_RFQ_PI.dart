@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/RFQ_PI/detailsPage/rfq_DetailsPage.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -15,48 +16,20 @@ class sd_RFQ_PI extends StatefulWidget {
 class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
   List<Map<String, dynamic>> items = [
     {
-      'RFQ_Number': 'ORDER1749030632',
-      'Customer_Code': '52500068',
-      'Customer_Name': 'Tata Consultancy Services Limited',
-      'Request_Type': 'Placeorder',
-      'Created_At': '04-06-2025 15:20:32',
-      'Created_By': 'Tata Consultancy Services Limited',
-      'Status': true,
-    },
-    {
-      'RFQ_Number': 'ORDER1749030632',
-      'Customer_Code': '52500068',
-      'Customer_Name': 'Tata Consultancy Services Limited',
-      'Request_Type': 'Placeorder',
-      'Created_At': '04-06-2025 15:20:32',
-      'Created_By': 'Tata Consultancy Services Limited',
-      'Status': true,
-    },
-    {
-      'RFQ_Number': 'ORDER1749030632',
-      'Customer_Code': '52500068',
-      'Customer_Name': 'Tata Consultancy Services Limited',
-      'Request_Type': 'Placeorder',
-      'Created_At': '04-06-2025 15:20:32',
-      'Created_By': 'Tata Consultancy Services Limited',
-      'Status': false,
-    },
-    {
-      'RFQ_Number': 'ORDER1749030632',
-      'Customer_Code': '52500068',
-      'Customer_Name': 'Tata Consultancy Services Limited',
-      'Request_Type': 'Placeorder',
-      'Created_At': '04-06-2025 15:20:32',
-      'Created_By': 'Tata Consultancy Services Limited',
-      'Status': true,
-    },
-    {
-      'RFQ_Number': 'ORDER1749030632',
-      'Customer_Code': '52500068',
-      'Customer_Name': 'Tata Consultancy Services Limited',
-      'Request_Type': 'Placeorder',
-      'Created_At': '04-06-2025 15:20:32',
-      'Created_By': 'Tata Consultancy Services Limited',
+      'RFQNumber': 'ORDER1749030632',
+      'CustomerCode': '52500068',
+      'CustomerName': 'Tata Consultancy Services Limited',
+      'GSTIN': '29AAACR4849R2ZG',
+      'PAN': 'AAACR4849R',
+      'email': 'subhasis@vitwo.in',
+      'phone': '7001451025',
+      'ItemCode': '33000019',
+      'ItemName': 'Freight',
+      'HSN': '996519',
+      'QTY': '2.000',
+      'RequestType': 'Placeorder',
+      'CreatedAt': '04-06-2025 15:20:32',
+      'CreatedBy': 'Tata Consultancy Services Limited',
       'Status': true,
     },
   ];
@@ -129,28 +102,26 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,
-        actions:
-            isSelectionMode
-                ? [
-                  IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      _delete(selectedIndices.toList());
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.verified),
-                    onPressed:
-                        selectedIndices.length == items.length
-                            ? _unSelectAll
-                            : _SelectAll,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: _exitSelectionMode,
-                  ),
-                ]
-                : null,
+        actions: isSelectionMode
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    _delete(selectedIndices.toList());
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.verified),
+                  onPressed: selectedIndices.length == items.length
+                      ? _unSelectAll
+                      : _SelectAll,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: _exitSelectionMode,
+                ),
+              ]
+            : null,
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Column(
@@ -176,123 +147,17 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
                   final isSelected = selectedIndices.contains(index);
                   return GestureDetector(
                     onLongPress: () => _onLongPress(index),
-                    onTap: () => _onTap(index),
+                    onTap: () {
+                      _onTap(index);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RFQ_detailsScreen(items)));
+                    },
                     child: Card(
                       elevation: 3,
                       color: isSelected ? Colors.blueGrey.shade100 : null,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      items[index]['RFQ_Number'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index]['Created_At'],
-                                      maxLines: 2,
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 42,
-                                  width: items[index]['Status'] ? 80 : 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(9.0),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status']
-                                                  ? Colors.green
-                                                  : Colors.red,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          items[index]['Status']
-                                              ? 'Active'
-                                              : 'In Active',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Customer Name',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Customer_Name']),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Customer Code',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Customer_Code']),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Created By : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Created_By'], maxLines: 2),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Request Type : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Request_Type'], maxLines: 2),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: _buildCardData(items[index]),
                     ),
                   );
                 },
@@ -303,4 +168,103 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
       ),
     );
   }
+}
+
+_buildCardData(Map<String, dynamic> items) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  items['RFQNumber'].toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.event, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
+                    Text(
+                      items['CreatedAt'].toString(),
+                      maxLines: 2,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              height: 42,
+              width: items['Status'] ? 80 : 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: GlobalColor.primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(9.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 5,
+                      backgroundColor:
+                          items['Status'] ? Colors.green : Colors.red,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      items['Status'] ? 'Active' : 'In Active',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.person, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(items['CustomerName'].toString().length > 20
+                    ? '${items['CustomerName'].toString().substring(0, 20)}...'
+                    : items['CustomerName'].toString()),
+              ],
+            ),
+            Row(
+              children: [
+                Icon(Icons.abc, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(items['CustomerCode'].toString()),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              Icons.shopping_cart_checkout,
+              color: GlobalColor.primaryColor,
+            ),
+            Text(items['RequestType'].toString(), maxLines: 2),
+          ],
+        ),
+      ],
+    ),
+  );
 }

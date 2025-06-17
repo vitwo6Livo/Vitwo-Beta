@@ -286,7 +286,7 @@ class _NewMenuScreenState extends State<NewMenuScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
-            backgroundColor: GlobalColor.menuOptionColor,
+            backgroundColor: GlobalColor.OptionsColor,
             radius: 22,
             child: Icon(icon, size: 20, color: Colors.white),
           ),

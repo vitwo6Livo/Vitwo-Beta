@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -197,6 +198,17 @@ class _sd_Quotation_ClosedState extends State<sd_Quotation_Closed> {
             ),
           ),
         ],
+      ),
+       floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }

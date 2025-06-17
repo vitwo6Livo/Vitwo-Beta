@@ -32,11 +32,14 @@ dependencies:
     sdk: flutter
   go_router:  # for Routing
   mobile_scanner: ^3.5.0 # for scanning qr code
+  simple_ripple_animation: ^0.1.0
+  slide_to_act: 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   buttons_tabbar:
+  dropdown_button2:
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +65,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/pictures/
     - assets/pictures/menu/
+    - assets/pictures/collectionSettlement/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

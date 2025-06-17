@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Collection%20Management/sd_collectionManagement.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Invoicing/presentation/sd_IV.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Settlement/settlementScreen.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_InventoryView.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Manage%20Delivery/presentation/sd_MD.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Post%20Goods%20Issuance/presentation/sd_PGI.dart';
@@ -31,19 +33,46 @@ class menuScreen extends StatefulWidget {
 
 class _menuScreenState extends State<menuScreen> {
   List<Map<String, dynamic>> subMenu = [
-    {'img': 'assets/pictures/menu/PM.png', 'name': GlobalText.PM_Title},
-    {'img': 'assets/pictures/menu/SD.png', 'name': GlobalText.SD_Title},
-    {'img': 'assets/pictures/menu/MM.png', 'name': GlobalText.MM_Title},
-    {'img': 'assets/pictures/menu/WM.png', 'name': GlobalText.WM_Title},
-    {'img': 'assets/pictures/menu/PP.png', 'name': GlobalText.PP_Title},
-    {'img': 'assets/pictures/menu/PR_P.png', 'name': GlobalText.PR_P_Title},
-    {'img': 'assets/pictures/menu/MA.png', 'name': GlobalText.MA_Title},
-    {'img': 'assets/pictures/menu/QA.png', 'name': GlobalText.QA_Title},
+    {
+      'img': 'assets/pictures/menu/PM.png',
+      'name': GlobalText.PM_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/SD.png',
+      'name': GlobalText.SD_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/MM.png',
+      'name': GlobalText.MM_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/WM.png',
+      'name': GlobalText.WM_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/PP.png',
+      'name': GlobalText.PP_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/PR_P.png',
+      'name': GlobalText.PR_P_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/MA.png',
+      'name': GlobalText.MA_Title,
+    },
+    {
+      'img': 'assets/pictures/menu/QA.png',
+      'name': GlobalText.QA_Title,
+    },
     {
       'img': 'assets/pictures/menu/Settings.png',
       'name': GlobalText.Setting_Title,
     },
-    {'img': 'assets/pictures/menu/Settings.png', 'name': 'Settings'},
+    {
+      'img': 'assets/pictures/menu/Settings.png',
+      'name': 'Settings',
+    },
   ];
 
   int? expandedIndex;
@@ -92,7 +121,7 @@ class _menuScreenState extends State<menuScreen> {
                                 subMenu[index]['name'],
                                 maxLines: 2,
                                 style: TextStyle(
-                                  color: GlobalColor.menuOptionColor,
+                                  color: GlobalColor.primaryColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
@@ -132,7 +161,7 @@ class _menuScreenState extends State<menuScreen> {
                               GlobalText.SD_Title,
                               style: TextStyle(
                                 fontSize: 20,
-                                color: GlobalColor.menuOptionColor,
+                                color: GlobalColor.primaryColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -235,6 +264,29 @@ class _menuScreenState extends State<menuScreen> {
                                 ),
                           },
                           {
+                            'icon': Icons.attach_money_outlined,
+                            'title': GlobalText.SD_CollectionM,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        sd_Collection_Management(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.handshake_outlined,
+                            'title': GlobalText.SD_Settlement,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => sd_SettlementScreen(),
+                                  ),
+                                ),
+                          },
+                          {
                             'icon': Icons.point_of_sale_outlined,
                             'title': GlobalText.SD_POS,
                             'navigator': (BuildContext context) =>
@@ -275,7 +327,7 @@ class _menuScreenState extends State<menuScreen> {
                               GlobalText.MM_Title,
                               style: TextStyle(
                                 fontSize: 20,
-                                color: GlobalColor.menuOptionColor,
+                                color: GlobalColor.OptionsColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -451,7 +503,7 @@ class _menuScreenState extends State<menuScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
-            backgroundColor: GlobalColor.menuOptionColor,
+            backgroundColor: GlobalColor.primaryColor,
             radius: 22,
             child: Icon(icon, size: 20, color: Colors.white),
           ),

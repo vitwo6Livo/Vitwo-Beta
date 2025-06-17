@@ -121,10 +121,9 @@ class _sd_MDState extends State<sd_MD> {
                                 ),
                                 Container(
                                   height: 42,
-                                  width:
-                                      items[index]['Status'] == 'Reversed'
-                                          ? 100
-                                          : 80,
+                                  width: items[index]['Status'] == 'Reversed'
+                                      ? 100
+                                      : 80,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: GlobalColor.OptionsColor,
@@ -139,9 +138,9 @@ class _sd_MDState extends State<sd_MD> {
                                               items[index]['Status'] == 'Open'
                                                   ? Colors.blueAccent
                                                   : items[index]['Status'] ==
-                                                      'Reversed'
-                                                  ? Colors.red
-                                                  : null,
+                                                          'Reversed'
+                                                      ? Colors.red
+                                                      : null,
                                         ),
                                         SizedBox(width: 10),
                                         Text(

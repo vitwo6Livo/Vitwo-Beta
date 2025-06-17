@@ -1,31 +1,5 @@
-// import 'package:flutter/material.dart';
-// import 'package:vitwo_beta/src/constants/colors.dart';
-// import 'package:vitwo_beta/src/constants/text.dart';
-
-// class sd_PI extends StatefulWidget {
-//   const sd_PI({super.key});
-
-//   @override
-//   State<sd_PI> createState() => _sd_PIState();
-// }
-
-// class _sd_PIState extends State<sd_PI> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(
-//           GlobalText.SD_PI,
-//           style: TextStyle(color: GlobalColor.appBarTextColor),
-//         ),
-//         backgroundColor: GlobalColor.appBarColor,
-//         iconTheme: IconThemeData(color: Colors.white),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -151,28 +125,26 @@ class _sd_PIState extends State<sd_PI> {
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,
-        actions:
-            isSelectionMode
-                ? [
-                  IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      _delete(selectedIndices.toList());
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.verified),
-                    onPressed:
-                        selectedIndices.length == items.length
-                            ? _unSelectAll
-                            : _SelectAll,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: _exitSelectionMode,
-                  ),
-                ]
-                : null,
+        actions: isSelectionMode
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    _delete(selectedIndices.toList());
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.verified),
+                  onPressed: selectedIndices.length == items.length
+                      ? _unSelectAll
+                      : _SelectAll,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: _exitSelectionMode,
+                ),
+              ]
+            : null,
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Column(
@@ -304,6 +276,17 @@ class _sd_PIState extends State<sd_PI> {
             ),
           ),
         ],
+      ),
+       floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }

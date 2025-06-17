@@ -3,7 +3,7 @@ import 'package:vitwo_beta/src/Accounting/presentation/accountScreen.dart';
 import 'package:vitwo_beta/src/Dashboard/presentation/dashBoard.dart';
 import 'package:vitwo_beta/src/Menu/presentation/menuScreen.dart';
 import 'package:vitwo_beta/src/Scanner/presentation/scanScreen.dart';
-import 'package:vitwo_beta/src/Settlement/presentation/settlementScreen.dart';
+import 'package:vitwo_beta/src/Collection&Settlement/presentation/collectionSettlementScreen.dart';
 
 class bottomNavBar extends StatefulWidget {
   const bottomNavBar({super.key});
@@ -22,7 +22,7 @@ class _bottomNavBarState extends State<bottomNavBar> {
     } else if (index == 2) {
       return scanScreen();
     } else if (index == 3) {
-      return settlementScreen();
+      return collectionSettlementScreen();
     } else if (index == 4) {
       return menuScreen();
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -14,53 +15,16 @@ class sd_Quotation_All extends StatefulWidget {
 class _sd_Quotation_AllState extends State<sd_Quotation_All> {
   List<Map<String, dynamic>> items = [
     {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Mamoon',
+      'QuotationNo': 'QUOT050620256886',
+      'CustomerName': 'MY JIO MART',
+      'QuotationValue': '4,248.00000',
+      'PostingDate': '05-06-2025',
+      'CreatedBy': 'Mamoon',
       'Status': 'Approved',
+
+
     },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Sayan Das',
-      'Status': 'Rejected',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Manav Kothari',
-      'Status': 'Pending',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Joy Shil',
-      'Status': 'Accepted',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Chayan Sharma',
-      'Status': 'Closed',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Expired',
-    },
+
   ];
 
   @override
@@ -127,13 +91,13 @@ class _sd_Quotation_AllState extends State<sd_Quotation_All> {
                                       children: [
                                         CircleAvatar(
                                           radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status'] ==
-                                                          'Approved' ||
-                                                      items[index]['Status'] ==
-                                                          'Accepted'
-                                                  ? Colors.green
-                                                  : items[index]['Status'] ==
+                                          backgroundColor: items[index]
+                                                          ['Status'] ==
+                                                      'Approved' ||
+                                                  items[index]['Status'] ==
+                                                      'Accepted'
+                                              ? Colors.green
+                                              : items[index]['Status'] ==
                                                       'Pending'
                                                   ? Colors.yellow
                                                   : Colors.red,
@@ -141,7 +105,6 @@ class _sd_Quotation_AllState extends State<sd_Quotation_All> {
                                         SizedBox(width: 10),
                                         Text(
                                           items[index]['Status'],
-
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 13,
@@ -207,6 +170,17 @@ class _sd_Quotation_AllState extends State<sd_Quotation_All> {
             ),
           ),
         ],
+      ),
+       floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }

@@ -4,69 +4,71 @@ import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
+import 'package:vitwo_beta/src/constants/text.dart';
 
-class sd_Quotation_Pending extends StatefulWidget {
-  const sd_Quotation_Pending({super.key});
+class sd_Collection_Management extends StatefulWidget {
+  const sd_Collection_Management({super.key});
 
   @override
-  State<sd_Quotation_Pending> createState() => _sd_Quotation_PendingState();
+  State<sd_Collection_Management> createState() =>
+      _sd_Collection_ManagementState();
 }
 
-class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
+class _sd_Collection_ManagementState extends State<sd_Collection_Management> {
   List<Map<String, dynamic>> items = [
     {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Mamoon',
-      'Status': 'Pending',
+      'Transaction_Id': 'TNX12345',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '5,000.00000',
+      'Created_By': 'S MOSES KAR',
+      'Status': 'Reverse',
     },
     {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Sayan Das',
-      'Status': 'Pending',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Manav Kothari',
-      'Status': 'Pending',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
+      'Transaction_Id': 'TXN0588',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '5,400.00000',
       'Created_By': 'Joy Shil',
-      'Status': 'Pending',
+      'Status': 'Collect',
     },
     {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Chayan Sharma',
-      'Status': 'Pending',
+      'Transaction_Id': 'S82103420',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '5,900.00000',
+      'Created_By': 'Debika',
+      'Status': 'Collect',
     },
     {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Pending',
+      'Transaction_Id': 'TRANSS050601',
+      'Party_Code': '52500074',
+      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'Posting_Date': '10-06-2025',
+      'Payment_Type': 'Collect',
+      'Collected_Amount': '10000.00000',
+      'Created_By': 'Debika',
+      'Status': 'Reverse',
     },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          GlobalText.SD_CollectionM,
+          style: TextStyle(color: GlobalColor.appBarTextColor),
+        ),
+        backgroundColor: GlobalColor.appBarColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: Column(
         children: [
           Row(
@@ -94,7 +96,6 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,16 +104,14 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      items[index]['Quotation_No'],
+                                      items[index]['Transaction_Id'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 19,
                                       ),
                                     ),
                                     Text(
-                                      items[index]['Posting_Date'],
-                                      maxLines: 2,
-                                    ),
+                                        'Posting Date : ${items[index]['Posting_Date']}'),
                                   ],
                                 ),
                                 Container(
@@ -120,7 +119,7 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
                                   width: 100,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
+                                    color: GlobalColor.primaryColor,
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(9.0),
@@ -128,14 +127,17 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
                                       children: [
                                         CircleAvatar(
                                           radius: 5,
-                                          backgroundColor: Colors.yellow,
+                                          backgroundColor: items[index]
+                                                      ['Status'] ==
+                                                  'Collect'
+                                              ? Colors.blueAccent
+                                              : Colors.orange,
                                         ),
                                         SizedBox(width: 10),
                                         Text(
                                           items[index]['Status'],
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -149,18 +151,54 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Customer Name : ',
+                                      'Party Name',
                                       style: TextStyle(
                                         color: Colors.grey.shade600,
                                       ),
                                     ),
-                                    Text(items[index]['Customer_Name']),
+                                    Text(items[index]['Party_Name'].length > 20
+                                        ? '${items[index]['Party_Name'].substring(0, 24)}...'
+                                        : items[index]['Party_Name']),
                                   ],
                                 ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Party Code',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                      ),
+                                    ),
+                                    Text(items[index]['Party_Code']),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Payment Type : ',
+                                  style: TextStyle(color: Colors.grey.shade600),
+                                ),
+                                Text(items[index]['Payment_Type']),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Collected Amount : ',
+                                  style: TextStyle(color: Colors.grey.shade600),
+                                ),
+                                Text(items[index]['Collected_Amount']),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -171,21 +209,7 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
                                   'Created By : ',
                                   style: TextStyle(color: Colors.grey.shade600),
                                 ),
-                                Text(items[index]['Created_By'], maxLines: 2),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Quotation Value: ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(
-                                  items[index]['Quotation_Value'],
-                                  maxLines: 2,
-                                ),
+                                Text(items[index]['Created_By']),
                               ],
                             ),
                           ],
@@ -199,7 +223,7 @@ class _sd_Quotation_PendingState extends State<sd_Quotation_Pending> {
           ),
         ],
       ),
-       floatingActionButton: RippleAnimation(
+      floatingActionButton: RippleAnimation(
         color: Colors.blue.shade200,
         ripplesCount: 2,
         duration: Duration(seconds: 3),

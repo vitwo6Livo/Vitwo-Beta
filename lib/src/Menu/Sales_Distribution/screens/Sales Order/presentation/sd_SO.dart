@@ -1,30 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:vitwo_beta/src/constants/colors.dart';
-// import 'package:vitwo_beta/src/constants/text.dart';
-
-// class sd_SO extends StatefulWidget {
-//   const sd_SO({super.key});
-
-//   @override
-//   State<sd_SO> createState() => _sd_SOState();
-// }
-
-// class _sd_SOState extends State<sd_SO> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(
-//           GlobalText.SD_SO,
-//           style: TextStyle(color: GlobalColor.appBarTextColor),
-//         ),
-//         backgroundColor: GlobalColor.appBarColor,
-//         iconTheme: IconThemeData(color: Colors.white),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/sd_SO_DoneJobs.dart';
@@ -62,7 +35,7 @@ class _sd_SOState extends State<sd_SO> {
         child: Column(
           children: [
             ButtonsTabBar(
-              backgroundColor: GlobalColor.menuOptionColor,
+              backgroundColor: GlobalColor.primaryColor,
               unselectedBackgroundColor: Colors.grey.shade300,
               unselectedLabelStyle: TextStyle(color: Colors.grey),
               labelSpacing: 10,

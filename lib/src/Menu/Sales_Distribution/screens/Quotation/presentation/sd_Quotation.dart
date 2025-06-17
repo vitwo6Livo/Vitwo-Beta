@@ -33,11 +33,10 @@ class _sd_QuotationState extends State<sd_Quotation> {
         child: Column(
           children: [
             ButtonsTabBar(
-              backgroundColor: GlobalColor.menuOptionColor,
+              backgroundColor: GlobalColor.primaryColor,
               unselectedBackgroundColor: Colors.grey.shade300,
               unselectedLabelStyle: TextStyle(color: Colors.grey),
               labelSpacing: 10,
-
               contentPadding: EdgeInsets.only(right: 12, left: 15),
               borderWidth: 0,
               labelStyle: TextStyle(

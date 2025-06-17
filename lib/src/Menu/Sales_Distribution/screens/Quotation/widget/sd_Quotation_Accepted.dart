@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -19,7 +20,7 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
       'Quotation_Value': '4,248.00000',
       'Posting_Date': '05-06-2025',
       'Created_By': 'Mamoon',
-      'Status': 'Accpeted',
+      'Status': 'Accepted',
     },
     {
       'Quotation_No': 'QUOT050620256886',
@@ -27,7 +28,7 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
       'Quotation_Value': '4,248.00000',
       'Posting_Date': '05-06-2025',
       'Created_By': 'Sayan Das',
-      'Status': 'Accpeted',
+      'Status': 'Accepted',
     },
     {
       'Quotation_No': 'QUOT050620256886',
@@ -35,7 +36,7 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
       'Quotation_Value': '4,248.00000',
       'Posting_Date': '05-06-2025',
       'Created_By': 'Manav Kothari',
-      'Status': 'Accpeted',
+      'Status': 'Accepted',
     },
     {
       'Quotation_No': 'QUOT050620256886',
@@ -43,7 +44,7 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
       'Quotation_Value': '4,248.00000',
       'Posting_Date': '05-06-2025',
       'Created_By': 'Joy Shil',
-      'Status': 'Accpeted',
+      'Status': 'Accepted',
     },
     {
       'Quotation_No': 'QUOT050620256886',
@@ -51,7 +52,7 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
       'Quotation_Value': '4,248.00000',
       'Posting_Date': '05-06-2025',
       'Created_By': 'Chayan Sharma',
-      'Status': 'Accpeted',
+      'Status': 'Accepted',
     },
     {
       'Quotation_No': 'QUOT050620256886',
@@ -59,7 +60,7 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
       'Quotation_Value': '4,248.00000',
       'Posting_Date': '05-06-2025',
       'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Accpeted',
+      'Status': 'Accepted',
     },
   ];
 
@@ -197,6 +198,17 @@ class _sd_Quotation_AcceptedState extends State<sd_Quotation_Accepted> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: RippleAnimation(
+        color: Colors.blue.shade200,
+        ripplesCount: 2,
+        duration: Duration(seconds: 3),
+        maxRadius: 50,
+        child: FloatingActionButton(
+          backgroundColor: GlobalColor.primaryColor,
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }
