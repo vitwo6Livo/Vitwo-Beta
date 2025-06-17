@@ -1,20 +1,21 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/detailsPage/SD_SO_ALL_DetailsPage/Overview.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/RFQ_PI/detailsPage/rfq_Overview.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class SD_SO_Pending_DetailsPage extends StatefulWidget {
-  const SD_SO_Pending_DetailsPage({super.key});
+class RFQ_detailsScreen extends StatefulWidget {
+  final List<Map<String, dynamic>> items;
+  const RFQ_detailsScreen(this.items, {super.key});
 
   @override
-  State<SD_SO_Pending_DetailsPage> createState() => _SD_SO_Pending_DetailsPageState();
+  State<RFQ_detailsScreen> createState() => _RFQ_detailsScreenState();
 }
 
-class _SD_SO_Pending_DetailsPageState extends State<SD_SO_Pending_DetailsPage> {
+class _RFQ_detailsScreenState extends State<RFQ_detailsScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -29,9 +30,10 @@ class _SD_SO_Pending_DetailsPageState extends State<SD_SO_Pending_DetailsPage> {
             // Tab Views on top part of screen
             Expanded(
               child: TabBarView(
-                children: const [
-                  Overview(),
-                  Center(child: Text('Print')),
+                children: [
+                  RFQ_Overview(
+                    itemDetails: widget.items,
+                  ),
                   Center(child: Text('Trail')),
                 ],
               ),
@@ -66,7 +68,6 @@ class _SD_SO_Pending_DetailsPageState extends State<SD_SO_Pending_DetailsPage> {
                 ),
                 tabs: const [
                   Tab(icon: Icon(Icons.all_inbox)),
-                  Tab(icon: Icon(Icons.print)),
                   Tab(icon: Icon(Icons.track_changes)),
                 ],
               ),

@@ -1,16 +1,17 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/detailsPage/SD_SO_ALL_DetailsPage/Overview.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/detailsPage/so_Overview.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class SD_SO_ALL_DetailsPage extends StatefulWidget {
-  const SD_SO_ALL_DetailsPage({super.key});
+class SO_detailsScreen extends StatefulWidget {
+  final List<Map<String, dynamic>> items;
+  const SO_detailsScreen(this.items, {super.key});
 
   @override
-  State<SD_SO_ALL_DetailsPage> createState() => _SD_SO_ALL_DetailsPageState();
+  State<SO_detailsScreen> createState() => _SO_detailsScreenState();
 }
 
-class _SD_SO_ALL_DetailsPageState extends State<SD_SO_ALL_DetailsPage> {
+class _SO_detailsScreenState extends State<SO_detailsScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,8 +30,10 @@ class _SD_SO_ALL_DetailsPageState extends State<SD_SO_ALL_DetailsPage> {
             // Tab Views on top part of screen
             Expanded(
               child: TabBarView(
-                children: const [
-                  Overview(),
+                children: [
+                  SO_Overview(
+                    itemDetails: widget.items,
+                  ),
                   Center(child: Text('Print')),
                   Center(child: Text('Trail')),
                 ],

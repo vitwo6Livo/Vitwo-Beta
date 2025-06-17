@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/widget/detailsPage/SD_SO_Pending_DetailsPage/sd_SO_Pending_DetailsPage.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/detailsPage/so_DetailsPage.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -16,56 +16,130 @@ class sd_SO_Pending extends StatefulWidget {
 class _sd_SO_PendingState extends State<sd_SO_Pending> {
   List<Map<String, dynamic>> items = [
     {
-      'SO_Number': 'SO2505027',
-      'Customer_PO': 'CN0068',
-      'Customer_Name': 'Mindtree Limited',
-      'Customer_Code': '52300001',
-      'Delivery_Date': '07-03-2025',
-      'SO_Date': '07-03-2025',
-      'Created_Date': '09-05-2025 16:47:19',
-      'Total_Amount': '2,400.00000',
-      'Created_By': 'Debika',
-      'Type': 'PROJECT',
+      'soNumber': 'SO2505027',
+      'customerOrderNo': 'CN0068',
+      'CustomerName': 'Mindtree Limited',
+      'CustomerCode': '52300001',
+      'GSTIN': '33AABCM8839K1Z4',
+      'PAN': 'AABCM8839K',
+      'BillingAddress':
+          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+      'ShippingAddress':
+          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+      'PlaceOfSupply': '--',
+      'email': 'salim.lab3@gmail.com',
+      'phone': '9836813031',
+      'deliveryDate': '07-03-2025',
+      'postingDate': '07-03-2025',
+      'postingTime': '16:46',
+      'validTill': '23-05-2025 12:25:34',
+      'creditPeriod': '45',
+      'salesPerson': 'Salim',
+      'functionalArea': 'IT',
+      'complianceInvoiceType': 'null',
+      'referenceDocumentLink': 'No Attached File',
+      'soDate': '07-03-2025',
+      'CreatedDate': '09-05-2025 16:47:19',
+      'TotalAmount': '2,400.00000',
+      'CreatedBy': 'Debika',
+      'Type': 'SERVICE',
       'Status': 'Pending',
+      'itemCode': '33000015',
+      'itemName': 'Repairing Service',
+      'HSN': '995419',
+      'QTY': '2.000',
+      'Currency': 'INR',
+      'unitPrice': '1200.00000',
+      'baseAmount': '2400.00000',
+      'Discount': '0.00000',
+      'taxableAmount': '2400.00000',
+      'gst_%': '0.000',
+      'gstAmount': '0.00000',
+      'totalAmount': '2400.00000',
     },
     {
-      'SO_Number': 'SO2505027',
-      'Customer_PO': 'CN0068',
-      'Customer_Name': 'Mindtree Limited',
-      'Customer_Code': '52300001',
-      'Delivery_Date': '07-03-2025',
-      'SO_Date': '07-03-2025',
-      'Created_Date': '09-05-2025 16:47:19',
-      'Total_Amount': '2,400.00000',
-      'Created_By': 'Joy Shil',
+      'soNumber': 'SO2505027',
+      'customerOrderNo': 'CN0068',
+      'CustomerName': 'Mindtree Limited',
+      'CustomerCode': '52300001',
+      'GSTIN': '33AABCM8839K1Z4',
+      'PAN': 'AABCM8839K',
+      'BillingAddress':
+          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+      'ShippingAddress':
+          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+      'PlaceOfSupply': '--',
+      'email': 'salim.lab3@gmail.com',
+      'phone': '9836813031',
+      'deliveryDate': '07-03-2025',
+      'postingDate': '07-03-2025',
+      'postingTime': '16:46',
+      'validTill': '23-05-2025 12:25:34',
+      'creditPeriod': '45',
+      'salesPerson': 'Salim',
+      'functionalArea': 'IT',
+      'complianceInvoiceType': 'null',
+      'referenceDocumentLink': 'No Attached File',
+      'soDate': '07-03-2025',
+      'CreatedDate': '09-05-2025 16:47:19',
+      'TotalAmount': '2,400.00000',
+      'CreatedBy': 'Debika',
       'Type': 'GOODS',
       'Status': 'Pending',
+      'itemCode': '33000015',
+      'itemName': 'Repairing Service',
+      'HSN': '995419',
+      'QTY': '2.000',
+      'Currency': 'INR',
+      'unitPrice': '1200.00000',
+      'baseAmount': '2400.00000',
+      'Discount': '0.00000',
+      'taxableAmount': '2400.00000',
+      'gst_%': '0.000',
+      'gstAmount': '0.00000',
+      'totalAmount': '2400.00000',
     },
     {
-      'SO_Number': 'SO2505027',
-      'Customer_PO': 'CN0068',
-      'Customer_Name': 'Mindtree Limited',
-      'Customer_Code': '52300001',
-      'Delivery_Date': '07-03-2025',
-      'SO_Date': '07-03-2025',
-      'Created_Date': '09-05-2025 16:47:19',
-      'Total_Amount': '2,400.00000',
-      'Created_By': 'Joy Shil',
+      'soNumber': 'SO2505027',
+      'customerOrderNo': 'CN0068',
+      'CustomerName': 'Mindtree Limited',
+      'CustomerCode': '52300001',
+      'GSTIN': '33AABCM8839K1Z4',
+      'PAN': 'AABCM8839K',
+      'BillingAddress':
+          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+      'ShippingAddress':
+          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
+      'PlaceOfSupply': '--',
+      'email': 'salim.lab3@gmail.com',
+      'phone': '9836813031',
+      'deliveryDate': '07-03-2025',
+      'postingDate': '07-03-2025',
+      'postingTime': '16:46',
+      'validTill': '23-05-2025 12:25:34',
+      'creditPeriod': '45',
+      'salesPerson': 'Salim',
+      'functionalArea': 'IT',
+      'complianceInvoiceType': 'null',
+      'referenceDocumentLink': 'No Attached File',
+      'soDate': '07-03-2025',
+      'CreatedDate': '09-05-2025 16:47:19',
+      'TotalAmount': '2,400.00000',
+      'CreatedBy': 'Debika',
       'Type': 'PROJECT',
       'Status': 'Pending',
-    },
-    {
-      'SO_Number': 'SO2505027',
-      'Customer_PO': 'CN0068',
-      'Customer_Name': 'Mindtree Limited',
-      'Customer_Code': '52300001',
-      'Delivery_Date': '07-03-2025',
-      'SO_Date': '07-03-2025',
-      'Created_Date': '09-05-2025 16:47:19',
-      'Total_Amount': '2,400.00000',
-      'Created_By': 'Joy Shil',
-      'Type': 'GOODS',
-      'Status': 'Pending',
+      'itemCode': '33000015',
+      'itemName': 'Repairing Service',
+      'HSN': '995419',
+      'QTY': '2.000',
+      'Currency': 'INR',
+      'unitPrice': '1200.00000',
+      'baseAmount': '2400.00000',
+      'Discount': '0.00000',
+      'taxableAmount': '2400.00000',
+      'gst_%': '0.000',
+      'gstAmount': '0.00000',
+      'totalAmount': '2400.00000',
     },
   ];
 
@@ -97,161 +171,11 @@ class _sd_SO_PendingState extends State<sd_SO_Pending> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SD_SO_Pending_DetailsPage()));
+                              builder: (context) => SO_detailsScreen(items)));
                     },
                     child: Card(
                       elevation: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      items[index]['SO_Number'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index]['Created_Date'],
-                                      maxLines: 2,
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 42,
-                                  width: 90,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(9.0),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 5,
-                                          backgroundColor: Colors.yellow,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          items[index]['Status'],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Customer Name',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Customer_Name']),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Customer Code',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Customer_Code']),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 4),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'SO Date',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['SO_Date']),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Delivery Date',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Delivery_Date']),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Type : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(
-                                  items[index]['Type'],
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color:
-                                        items[index]['Type'] == 'SERVICE'
-                                            ? Colors.green
-                                            : items[index]['Type'] == 'GOODS'
-                                            ? Colors.blueAccent
-                                            : items[index]['Type'] == 'PROEJCT'
-                                            ? Colors.orange
-                                            : Colors.red,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 4),
-                            Row(
-                              children: [
-                                Text(
-                                  'Total Amount : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Total_Amount']),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: _buildCardData(items[index]),
                     ),
                   );
                 },
@@ -273,4 +197,151 @@ class _sd_SO_PendingState extends State<sd_SO_Pending> {
       ),
     );
   }
+}
+
+_buildCardData(Map<String, dynamic> items) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  items['soNumber'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                  ),
+                ),
+                items['validTill'].toString().isEmpty
+                    ? SizedBox()
+                    : Row(
+                        children: [
+                          Icon(
+                            Icons.event,
+                            color: GlobalColor.primaryColor,
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            items['validTill'],
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ],
+                      ),
+              ],
+            ),
+            Container(
+              height: 42,
+              width: 90,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: GlobalColor.OptionsColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(9.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 5,
+                      backgroundColor: items['Status'] == 'Open'
+                          ? Colors.blueAccent
+                          : items['Status'] == 'Pending'
+                              ? Colors.yellow
+                              : Colors.red,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      items['Status'],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.person, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(
+                  items['CustomerName'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Icon(Icons.abc, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(
+                  items['CustomerCode'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 4),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.local_shipping_rounded,
+                    color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(
+                  items['deliveryDate'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(height: 5),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Icon(
+                    items['Type'] == 'SERVICE'
+                        ? Icons.build
+                        : items['Type'] == 'GOODS'
+                            ? Icons.extension
+                            : items['Type'] == 'PROJECT'
+                                ? Icons.file_copy
+                                : null,
+                    color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(
+                  items['Type'],
+                  maxLines: 2,
+                  style: TextStyle(
+                    color: items['Type'] == 'SERVICE'
+                        ? Colors.green
+                        : items['Type'] == 'GOODS'
+                            ? Colors.blueAccent
+                            : items['Type'] == 'PROJECT'
+                                ? Colors.orange
+                                : Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }

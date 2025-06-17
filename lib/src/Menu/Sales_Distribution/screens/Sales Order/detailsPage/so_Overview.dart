@@ -1,66 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:slide_to_act/slide_to_act.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class Overview extends StatefulWidget {
-  const Overview({super.key});
+class SO_Overview extends StatefulWidget {
+  final List<Map<String, dynamic>> itemDetails;
+  const SO_Overview({super.key, required this.itemDetails});
 
   @override
-  State<Overview> createState() => _OverviewState();
+  State<SO_Overview> createState() => _SO_OverviewState();
 }
 
-class _OverviewState extends State<Overview> {
-  List<Map<String, dynamic>> customerDetails = [
-    {
-      'CustomerName': 'Mindtree Limited',
-      'CustomerCode': '52300001',
-      'GSTIN': '33AABCM8839K1Z4',
-      'PAN': 'AABCM8839K',
-      'BillingAddress':
-          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
-      'ShippingAddress':
-          'Hardy block, 5th Floor, Rajiv Gandhi salai, 600113, Taramani, Taramani, Chennai, Tamil Nadu',
-      'PlaceOfSupply': '--',
-    },
-  ];
-  List<Map<String, dynamic>> contactDetails = [
-    {
-      'email': 'salim.lab3@gmail.com',
-      'phone': '9836813031',
-    },
-  ];
-  List<Map<String, dynamic>> otherDetails = [
-    {
-      'customerOrderNo': 'CN0068',
-      'postingDate': '07-03-2025',
-      'postingTime': '16:46',
-      'deliveryDate': '07-03-2025',
-      'validTill': '23-05-2025',
-      'creditPeriod': '45',
-      'salesPerson': 'Salim',
-      'functionalArea': 'IT',
-      'complianceInvoiceType': 'null',
-      'referenceDocumentLink': 'No Attached File',
-    },
-  ];
-  List<Map<String, dynamic>> itemDetails = [
-    {
-      'itemCode': '33000015',
-      'itemName': 'Repairing Service',
-      'HSN': '995419',
-      'QTY': '2.000',
-      'Currency': 'INR',
-      'unitPrice': '1200.00000',
-      'baseAmount': '2400.00000',
-      'Discount': '0.00000',
-      'taxableAmount': '2400.00000',
-      'gst_%': '0.000',
-      'gstAmount': '0.00000',
-      'totalAmount': '2400.00000',
-    },
-  ];
-
-  bool isExpanded = false;
+class _SO_OverviewState extends State<SO_Overview> {
   List<String> option = [
     'None',
     'Create Invoice',
@@ -71,37 +20,32 @@ class _OverviewState extends State<Overview> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> generalDetails =
+        widget.itemDetails.isNotEmpty ? widget.itemDetails[0] : {};
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: ListView(
           children: [
-            // Item Details
             _buildHeader('Items'),
-            SizedBox(height: 10),
-            ...itemDetails.map((item) => _buildItemDetails(item)).toList(),
-            SizedBox(height: 20),
-
-            // Customer info
+            const SizedBox(height: 10),
+            ...widget.itemDetails
+                .map((item) => _buildItemDetails(item))
+                .toList(),
+            const SizedBox(height: 20),
             _buildHeader('Customer Details'),
-            SizedBox(height: 10),
-            _buildCustomerDetails(customerDetails[0]),
-            SizedBox(height: 20),
-
-            // Contact info
+            const SizedBox(height: 10),
+            _buildCustomerDetails(generalDetails),
+            const SizedBox(height: 20),
             _buildHeader('Contact Info'),
-            SizedBox(height: 10),
-            _buildContactInfo(contactDetails[0]),
-            SizedBox(height: 20),
-
-            // Other Details
+            const SizedBox(height: 10),
+            _buildContactInfo(generalDetails),
+            const SizedBox(height: 20),
             _buildHeader('Other Details'),
-            SizedBox(height: 10),
-            _buildOtherDetails(otherDetails[0]),
-            SizedBox(height: 20),
-
-            // Bottom spacing for floating action button
-            SizedBox(height: 60),
+            const SizedBox(height: 10),
+            _buildOtherDetails(generalDetails),
+            const SizedBox(height: 80),
           ],
         ),
       ),
@@ -116,54 +60,54 @@ class _OverviewState extends State<Overview> {
             fontSize: 20));
   }
 
-  Widget _buildDropDownOption() {
-    return DropdownButton<String>(
-      value: dropdownvalue,
-      icon: const Icon(Icons.keyboard_arrow_down),
-      items: option.map((String item) {
-        return DropdownMenuItem<String>(
-          value: item,
-          child: Text(item),
-        );
-      }).toList(),
-      onChanged: (String? newValue) {
-        if (newValue != null) {
-          setState(() {
-            dropdownvalue = newValue;
-          });
-        }
-      },
-    );
-  }
+  // Widget _buildDropDownOption() {
+  //   return DropdownButton<String>(
+  //     value: dropdownvalue,
+  //     icon: const Icon(Icons.keyboard_arrow_down),
+  //     items: option.map((String item) {
+  //       return DropdownMenuItem<String>(
+  //         value: item,
+  //         child: Text(item),
+  //       );
+  //     }).toList(),
+  //     onChanged: (String? newValue) {
+  //       if (newValue != null) {
+  //         setState(() {
+  //           dropdownvalue = newValue;
+  //         });
+  //       }
+  //     },
+  //   );
+  // }
 
-  Widget _buildSlideToAct(String action) {
-    if (action == 'None') return SizedBox();
-    return SlideAction(
-      outerColor: GlobalColor.primaryColor,
-      sliderButtonIconSize: 20,
-      sliderButtonIconPadding: 10,
-      height: 60,
-      textStyle: TextStyle(
-          fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
-      innerColor: Colors.white,
-      text: 'Slide to $action',
-      submittedIcon: Icon(
-        Icons.check,
-        color: Colors.white,
-      ),
-      onSubmit: () {
-        // Handle your action here
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: GlobalColor.primaryColor,
-          content: Text(
-            '$action Action Done',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        ));
-        Navigator.pop(context);
-      },
-    );
-  }
+  // Widget _buildSlideToAct(String action) {
+  //   if (action == 'None') return SizedBox();
+  //   return SlideAction(
+  //     outerColor: GlobalColor.primaryColor,
+  //     sliderButtonIconSize: 20,
+  //     sliderButtonIconPadding: 10,
+  //     height: 60,
+  //     textStyle: TextStyle(
+  //         fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+  //     innerColor: Colors.white,
+  //     text: 'Slide to $action',
+  //     submittedIcon: Icon(
+  //       Icons.check,
+  //       color: Colors.white,
+  //     ),
+  //     onSubmit: () {
+  //       // Handle your action here
+  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //         backgroundColor: GlobalColor.primaryColor,
+  //         content: Text(
+  //           '$action Action Done',
+  //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+  //         ),
+  //       ));
+  //       Navigator.pop(context);
+  //     },
+  //   );
+  // }
 
   _buildCustomerDetails(Map<String, dynamic> customer) {
     return Card(
@@ -188,7 +132,7 @@ class _OverviewState extends State<Overview> {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.code, color: GlobalColor.primaryColor),
+                    Icon(Icons.abc, color: GlobalColor.primaryColor),
                     SizedBox(width: 5),
                     Text(
                       customer['CustomerCode'],
@@ -493,50 +437,53 @@ class _OverviewState extends State<Overview> {
           child: Card(
             elevation: 3,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
                   /// Top Row: Item Code & HSN
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.qr_code, color: GlobalColor.primaryColor),
-                          SizedBox(width: 6),
-                          Text(
-                            item['itemCode'],
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.numbers, color: GlobalColor.primaryColor),
-                          SizedBox(width: 6),
-                          Text(
-                            item['HSN'],
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 15),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Row(
+                  //       children: [
+                  //         Icon(Icons.abc, color: GlobalColor.primaryColor),
+                  //         SizedBox(width: 6),
+                  //         Text(
+                  //           item['itemCode'],
+                  //           style: TextStyle(fontWeight: FontWeight.bold),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     Row(
+                  //       children: [
+                  //         Icon(Icons.receipt_long,
+                  //             color: GlobalColor.primaryColor),
+                  //         SizedBox(width: 6),
+                  //         Text(
+                  //           item['HSN'],
+                  //           style: TextStyle(fontWeight: FontWeight.bold),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(height: 15),
 
                   /// Middle Row: Item Name & Quantity
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: Text(
-                          item['itemName'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            item['itemName'],
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
                       Row(
                         children: [
@@ -546,6 +493,12 @@ class _OverviewState extends State<Overview> {
                           Text(
                             item['QTY'],
                             style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(width: 10),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: GlobalColor.primaryColor,
+                            size: 18,
                           ),
                         ],
                       ),
@@ -603,8 +556,7 @@ class _OverviewState extends State<Overview> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.qr_code,
-                                  color: GlobalColor.primaryColor),
+                              Icon(Icons.abc, color: GlobalColor.primaryColor),
                               SizedBox(width: 6),
                               Text(
                                 itemDetails['itemCode'],
@@ -614,7 +566,7 @@ class _OverviewState extends State<Overview> {
                           ),
                           Row(
                             children: [
-                              Icon(Icons.numbers,
+                              Icon(Icons.receipt_long,
                                   color: GlobalColor.primaryColor),
                               SizedBox(width: 6),
                               Text(
@@ -631,6 +583,7 @@ class _OverviewState extends State<Overview> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          SizedBox(width: 6),
                           Expanded(
                             child: Text(
                               itemDetails['itemName'],
@@ -655,23 +608,21 @@ class _OverviewState extends State<Overview> {
                       SizedBox(height: 10),
                       Divider(),
                       SizedBox(height: 10),
-                      _buildIconRow(Icons.currency_exchange, 'Currency',
-                          itemDetails['Currency']),
-                      _buildIconRow(Icons.price_change, 'Unit Price',
-                          'INR ${itemDetails['unitPrice']}'),
-                      _buildIconRow(Icons.calculate, 'Base Amount',
-                          'INR ${itemDetails['baseAmount']}'),
-                      _buildIconRow(Icons.discount, 'Discount',
-                          'INR ${itemDetails['Discount']}'),
-                      _buildIconRow(Icons.receipt_long, 'Taxable Amount',
-                          'INR ${itemDetails['taxableAmount']}'),
+                      _buildIconRow('Currency', itemDetails['Currency']),
                       _buildIconRow(
-                          Icons.percent, 'GST %', '${itemDetails['gst_%']} %'),
-                      _buildIconRow(Icons.request_quote, 'GST Amount',
-                          'INR ${itemDetails['gstAmount']}'),
+                          'Unit Price', 'INR ${itemDetails['unitPrice']}'),
+                      _buildIconRow(
+                          'Base Amount', 'INR ${itemDetails['baseAmount']}'),
+                      _buildIconRow(
+                          'Discount', 'INR ${itemDetails['Discount']}'),
+                      _buildIconRow('Taxable Amount',
+                          'INR ${itemDetails['taxableAmount']}'),
+                      _buildIconRow('GST %', '${itemDetails['gst_%']} %'),
+                      _buildIconRow(
+                          'GST Amount', 'INR ${itemDetails['gstAmount']}'),
                       Divider(),
-                      _buildIconRow(Icons.attach_money, 'Total Amount',
-                          'INR ${itemDetails['totalAmount']}'),
+                      _buildIconRow(
+                          'Total Amount', 'INR ${itemDetails['totalAmount']}'),
                       SizedBox(height: 5),
                     ],
                   ),
@@ -680,19 +631,13 @@ class _OverviewState extends State<Overview> {
             ])));
   }
 
-  Widget _buildIconRow(IconData icon, String label, String value) {
+  Widget _buildIconRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Icon(icon, color: GlobalColor.primaryColor, size: 20),
-              SizedBox(width: 6),
-              Text(label),
-            ],
-          ),
+          Text(label),
           Text(
             value,
             style: TextStyle(fontWeight: FontWeight.bold),

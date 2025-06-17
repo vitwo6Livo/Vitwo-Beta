@@ -15,53 +15,16 @@ class sd_Quotation_All extends StatefulWidget {
 class _sd_Quotation_AllState extends State<sd_Quotation_All> {
   List<Map<String, dynamic>> items = [
     {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Mamoon',
+      'QuotationNo': 'QUOT050620256886',
+      'CustomerName': 'MY JIO MART',
+      'QuotationValue': '4,248.00000',
+      'PostingDate': '05-06-2025',
+      'CreatedBy': 'Mamoon',
       'Status': 'Approved',
+
+
     },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Sayan Das',
-      'Status': 'Rejected',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Manav Kothari',
-      'Status': 'Pending',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Joy Shil',
-      'Status': 'Accepted',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'Chayan Sharma',
-      'Status': 'Closed',
-    },
-    {
-      'Quotation_No': 'QUOT050620256886',
-      'Customer_Name': 'MY JIO MART',
-      'Quotation_Value': '4,248.00000',
-      'Posting_Date': '05-06-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Expired',
-    },
+
   ];
 
   @override
