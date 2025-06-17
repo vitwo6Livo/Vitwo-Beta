@@ -26,6 +26,18 @@ class GlobalText {
   //////////////////// MM ////////////////////
   static String MM_Title = 'Material Management';
 
+  static String MM_RFQ = 'Request For Quotation';
+  static String MM_MQ = "Manage Quotation";
+  static String MM_VI = 'Vendor Invoice';
+  static String MM_MI = 'My Items';
+  static String MM_IM = 'Item Master';
+  static String MM_PR = 'Purchase Request';
+  static String MM_PO = 'Purchase Order';
+  static String MM_IG = 'Initiate GRN';
+  static String MM_PG = 'Pending GRN';
+  static String MM_PGRN = 'Processed GRN';
+  static String MM_IR = 'Inventory Report';
+
   //////////////////// WM ////////////////////
   static String WM_Title = 'Warehouse Management';
 
