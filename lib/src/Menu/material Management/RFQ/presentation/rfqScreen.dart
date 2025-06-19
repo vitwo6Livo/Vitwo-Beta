@@ -97,88 +97,93 @@ class _RequestForQuotationScreenState extends State<RequestForQuotationScreen> {
               child: ListView.builder(
                 itemCount: items.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 3,
-                    color: Colors.blueGrey.shade100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    items[index]['RFQ_Code'],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: Card(
+                      elevation: 5,
+                      // color: Colors.blueGrey.shade100,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      items[index]['RFQ_Code'],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 19,
+                                      ),
                                     ),
-                                  ),
-                                  // Text(
-                                  //   items[index]['PR_Code'],
-                                  //   maxLines: 2,
-                                  // ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.check_circle),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Reference_Number']),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.date_range),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Expected_Date']),
-                                ],
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.person),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Created_By'], maxLines: 2),
-                                ],
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.last_page),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Closing_Date'],
-                                      maxLines: 2),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.timer),
-                              SizedBox(width: 5),
-                              Text(items[index]['Days_Left'], maxLines: 2),
-                            ],
-                          ),
-                        ],
+                                    // Text(
+                                    //   items[index]['PR_Code'],
+                                    //   maxLines: 2,
+                                    // ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.check_circle),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Reference_Number']),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.date_range),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Expected_Date']),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.person),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Created_By'],
+                                        maxLines: 2),
+                                  ],
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.last_page),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Closing_Date'],
+                                        maxLines: 2),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(Icons.timer),
+                                SizedBox(width: 5),
+                                Text(items[index]['Days_Left'], maxLines: 2),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

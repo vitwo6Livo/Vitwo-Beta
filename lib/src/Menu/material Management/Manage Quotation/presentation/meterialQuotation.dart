@@ -4,58 +4,48 @@ import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
 
-class ItemMaster extends StatelessWidget {
-  const ItemMaster({super.key});
+class MaterialQuotation extends StatelessWidget {
+  const MaterialQuotation({super.key});
 
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> items = [
       {
-        'Item-Code': '22000208',
-        'Item_name': 'Civil Construction Services',
-        'Group_name': 'Technical service',
-        'Created_by': 'Arpan Bera',
-        'price': '360',
-        'Status': 'Active',
+        'RFQ_Number': 'PR2506032/2',
+        'Vendor-Response_Ratio': '0/4',
+        'Deadline_Date': '04-06-2025',
+        'Created_By': 'Arif',
       },
       {
-        'Item-Code': '19000043',
-        'Item_name': 'Hp charger',
-        'Group_name': 'Electrical',
-        'Created_by': 'Nitesh Kumar Verma',
-        'price': '400',
-        'Status': 'Active',
+        'RFQ_Number': 'PR2506032/3',
+        'Vendor-Response_Ratio': '1/4',
+        'Deadline_Date': '05-06-2025',
+        'Created_By': 'Mamoon',
       },
       {
-        'Item-Code': '33000039',
-        'Item_name': 'Consultancy Charges',
-        'Group_name': 'SAAS',
-        'Created_by': 'Sudip Mukherjee',
-        'price': '18600',
-        'Status': 'Active',
+        'RFQ_Number': 'PR2506032/4',
+        'Vendor-Response_Ratio': '2/4',
+        'Deadline_Date': '06-06-2025',
+        'Created_By': 'Pritom',
       },
       {
-        'Item-Code': '22000210',
-        'Item_name': 'Civil Construction Services',
-        'Group_name': 'Technical service',
-        'Created_by': 'Arpan Bera',
-        'price': '1500',
-        'Status': 'Active',
+        'RFQ_Number': 'PR2506032/5',
+        'Vendor-Response_Ratio': '3/4',
+        'Deadline_Date': '07-06-2025',
+        'Created_By': 'Nitesh',
       },
       {
-        'Item-Code': '22000211',
-        'Item_name': 'Civil Construction Services',
-        'Group_name': 'Technical service',
-        'Created_by': 'Arpan Bera',
-        'price': '800',
-        'Status': 'Active',
+        'RFQ_Number': 'PR2506032/6',
+        'Vendor-Response_Ratio': '4/4',
+        'Deadline_Date': '08-06-2025',
+        'Created_By': 'Soni',
       },
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Item Master',
+          'Manage Quotation',
           style: TextStyle(color: GlobalColor.appBarTextColor),
         ),
         backgroundColor: GlobalColor.appBarColor,
@@ -91,25 +81,21 @@ class ItemMaster extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  items[index]['Item-Code'],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 19,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: items[index]['Status'] == 'Active'
-                                        ? Colors.green
-                                        : Colors.red,
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Text(
-                                    items[index]['Status'],
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      items[index]['RFQ_Number'],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 19,
+                                      ),
+                                    ),
+                                    // Text(
+                                    //   items[index]['PR_Code'],
+                                    //   maxLines: 2,
+                                    // ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -119,25 +105,16 @@ class ItemMaster extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Icon(Icons.shopping_bag),
+                                    Icon(Icons.view_stream_outlined),
                                     SizedBox(width: 5),
-                                    Container(
-                                      constraints:
-                                          BoxConstraints(maxWidth: 120),
-                                      child: Text(
-                                        items[index]['Item_name'],
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(),
-                                      ),
-                                    ),
+                                    Text(items[index]['Vendor-Response_Ratio']),
                                   ],
                                 ),
                                 Row(
                                   children: [
-                                    Icon(Icons.category),
+                                    Icon(Icons.hourglass_bottom),
                                     SizedBox(width: 5),
-                                    Text(items[index]['Group_name']),
+                                    Text(items[index]['Deadline_Date']),
                                   ],
                                 )
                               ],
@@ -151,17 +128,8 @@ class ItemMaster extends StatelessWidget {
                                   children: [
                                     Icon(Icons.person),
                                     SizedBox(width: 5),
-                                    Text(items[index]['Created_by'],
+                                    Text(items[index]['Created_By'],
                                         maxLines: 2),
-                                  ],
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Icon(Icons.payments_outlined),
-                                    Text("₹"),
-                                    // SizedBox(width: 5),
-                                    Text(items[index]['price'], maxLines: 2),
                                   ],
                                 ),
                               ],

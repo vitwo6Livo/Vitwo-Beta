@@ -13,7 +13,7 @@ import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/pre
 import 'package:vitwo_beta/src/Menu/material%20Management/Initiate%20GRN/presentation/InitiateGrn.dart';
 import 'package:vitwo_beta/src/Menu/material%20Management/Inventory%20Report/presentation/inventoryReport.dart';
 import 'package:vitwo_beta/src/Menu/material%20Management/Item%20Master/presentation/itemMaster.dart';
-import 'package:vitwo_beta/src/Menu/material%20Management/Meterial%20Quotation/presentation/meterialQuotation.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Manage%20Quotation/presentation/meterialQuotation.dart';
 import 'package:vitwo_beta/src/Menu/material%20Management/My%20Items/presentation/myItems.dart';
 import 'package:vitwo_beta/src/Menu/material%20Management/Pending%20GRN/presentation/PendingGrn.dart';
 import 'package:vitwo_beta/src/Menu/material%20Management/Processed%20GRN/presentation/processedGrn.dart';

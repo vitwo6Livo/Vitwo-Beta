@@ -72,71 +72,75 @@ class VendorInvoice extends StatelessWidget {
               child: ListView.builder(
                 itemCount: items.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 3,
-                    color: Colors.blueGrey.shade100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    items[index]['GRN/SRN_Number'],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: Card(
+                      elevation: 5,
+                      // color: Colors.blueGrey.shade100,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      items[index]['GRN/SRN_Number'],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 19,
+                                      ),
                                     ),
-                                  ),
-                                  // Text(
-                                  //   items[index]['PR_Code'],
-                                  //   maxLines: 2,
-                                  // ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.view_stream_outlined),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['PO-No']),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.hourglass_bottom),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Vendor_Code']),
-                                ],
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.person),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Vendor_Name'],
-                                      maxLines: 2),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
+                                    // Text(
+                                    //   items[index]['PR_Code'],
+                                    //   maxLines: 2,
+                                    // ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.view_stream_outlined),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['PO-No']),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.hourglass_bottom),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Vendor_Code']),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.person),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Vendor_Name'],
+                                        maxLines: 2),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

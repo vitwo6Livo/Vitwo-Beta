@@ -53,6 +53,7 @@ class MyItems extends StatelessWidget {
     ];
 
     return Scaffold(
+      backgroundColor: Colors.blueGrey.shade50,
       appBar: AppBar(
         title: Text(
           'My Items',
@@ -77,82 +78,87 @@ class MyItems extends StatelessWidget {
               child: ListView.builder(
                 itemCount: items.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 3,
-                    color: Colors.blueGrey.shade100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                items[index]['Item-Code'],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 19,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: Card(
+                      elevation: 3,
+                      // color: Colors.blueGrey.shade100,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  items[index]['Item-Code'],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 19,
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: items[index]['Status'] == 'Active'
-                                      ? Colors.green
-                                      : Colors.red,
-                                  borderRadius: BorderRadius.circular(5),
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    color: items[index]['Status'] == 'Active'
+                                        ? Colors.green
+                                        : Colors.red,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Text(
+                                    items[index]['Status'],
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
-                                child: Text(
-                                  items[index]['Status'],
-                                  style: TextStyle(color: Colors.white),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.shopping_bag),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Item_name']),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.shopping_bag),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Item_name']),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.category),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Group_name']),
-                                ],
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.person),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['Created_by'], maxLines: 2),
-                                ],
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.paid_outlined),
-                                  SizedBox(width: 5),
-                                  Text(items[index]['price'], maxLines: 2),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
+                                Row(
+                                  children: [
+                                    Icon(Icons.category),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Group_name']),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.person),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['Created_by'],
+                                        maxLines: 2),
+                                  ],
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.paid_outlined),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['price'], maxLines: 2),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
