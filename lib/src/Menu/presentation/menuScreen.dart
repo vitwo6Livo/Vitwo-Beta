@@ -10,6 +10,17 @@ import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_POS.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/presentation/sd_Quotation.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/RFQ_PI/presentation/sd_RFQ_PI.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/presentation/sd_SO.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Initiate%20GRN/presentation/InitiateGrn.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Inventory%20Report/presentation/inventoryReport.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Item%20Master/presentation/itemMaster.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Manage%20Quotation/presentation/meterialQuotation.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/My%20Items/presentation/myItems.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Pending%20GRN/presentation/PendingGrn.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Processed%20GRN/presentation/processedGrn.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Purchase%20Order/presentation/purchaseOrder.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/RFQ/presentation/rfqScreen.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/Vendor%20Invoice/presentation/vendorInvoice.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/purchase%20Request/presentation/purchaseRequest.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 import 'package:vitwo_beta/src/constants/text.dart';
 
@@ -283,6 +294,172 @@ class _menuScreenState extends State<menuScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => sd_POS(),
+                                  ),
+                                ),
+                          },
+                        ]),
+                      ],
+                    ),
+                  ),
+                ),
+
+              if (expandedIndex == 2 && rowIndex == 1)
+                AnimatedSize(
+                  duration: const Duration(seconds: 15),
+                  curve: Curves.easeInOut,
+                  child: Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 6,
+                    ),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              GlobalText.MM_Title,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: GlobalColor.OptionsColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 15),
+                            Image.asset(
+                              'assets/pictures/menu/MM.png',
+                              height: 100,
+                              width: 100,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        _buildCardOption([
+                          {
+                            'icon': Icons.inventory_2_outlined,
+                            'title': GlobalText.MM_RFQ,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        RequestForQuotationScreen(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.receipt_long,
+                            'title': GlobalText.MM_MQ,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MaterialQuotation(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.receipt,
+                            'title': GlobalText.MM_VI,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => VendorInvoice(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.inventory_2_outlined,
+                            'title': GlobalText.MM_MI,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MyItems(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.inventory_2_outlined,
+                            'title': GlobalText.MM_IM,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ItemMaster(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.request_page,
+                            'title': GlobalText.MM_PR,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PurchaseRequest(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.shopping_cart_checkout,
+                            'title': GlobalText.MM_PO,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PurchaseOrder(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.check_box_outlined,
+                            'title': GlobalText.MM_IG,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => InitiateGRN(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.pending_actions_outlined,
+                            'title': GlobalText.MM_PG,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PendingGRN(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.done_all_outlined,
+                            'title': GlobalText.MM_PGRN,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProcessedGRN(),
+                                  ),
+                                ),
+                          },
+                          {
+                            'icon': Icons.bar_chart_outlined,
+                            'title': GlobalText.MM_IR,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => InventoryReport(),
                                   ),
                                 ),
                           },
