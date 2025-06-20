@@ -31,7 +31,7 @@ class _RequestForQuotationScreenState extends State<RequestForQuotationScreen> {
       'Expected_Date': '10-06-2025',
       'Created_By': 'Arif',
       'Closing_Date': '04-06-2025',
-      'Days_Left': '0',
+      'Days_Left': '2',
     },
     {
       'RFQ_Code': 'PR2506032/2',

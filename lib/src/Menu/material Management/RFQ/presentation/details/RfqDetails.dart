@@ -1,4 +1,6 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:vitwo_beta/src/Menu/material%20Management/RFQ/presentation/details/RfqOverView.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
 class RfqDetailsScreen extends StatelessWidget {
@@ -6,63 +8,60 @@ class RfqDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Details Page',
+            style: TextStyle(color: GlobalColor.appBarTextColor),
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          backgroundColor: GlobalColor.primaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
-        title: const Text(
-          'RFQ Details',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: GlobalColor.appBarColor,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
           children: [
-            Text(
-              'RFQ Code: PR2506032/2',
-              // style: Theme.of(context).textTheme.headline6,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'PR Code: PR2506032',
-              // style: Theme.of(context).textTheme.subtitle1,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'Reference Number: MRP1749538707',
-              // style: Theme.of(context).textTheme.subtitle1,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'Expected Date: 04-06-2025',
-              // style: Theme.of(context).textTheme.subtitle1,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'Created By: Mamoon',
-              // style: Theme.of(context).textTheme.subtitle1,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'Closing Date: 04-06-2025',
-              // style: Theme.of(context).textTheme.subtitle1,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'Days Left: 5',
-              // style: Theme.of(context).textTheme.subtitle1,
+            Expanded(
+              child: TabBarView(
+                children: [
+                  RfqOverview(),
+                  Center(child: Text('Trail')),
+                ],
+              ),
             ),
           ],
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(
+              bottom: 10, right: 90), // To make it "float"
+          child: Container(
+            height: 50,
+            width: 180,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey.shade100,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Center(
+              child: ButtonsTabBar(
+                backgroundColor: Colors.grey.shade600,
+                unselectedBackgroundColor: Colors.grey.shade400,
+                unselectedLabelStyle: TextStyle(
+                  color: Colors.grey.shade800,
+                ),
+                contentPadding: EdgeInsets.only(right: 12, left: 15),
+                borderWidth: 0,
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                tabs: const [
+                  Tab(icon: Icon(Icons.all_inbox)),
+                  Tab(icon: Icon(Icons.track_changes)),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
