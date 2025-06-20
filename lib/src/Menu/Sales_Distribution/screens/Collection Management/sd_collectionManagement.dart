@@ -17,43 +17,33 @@ class sd_Collection_Management extends StatefulWidget {
 class _sd_Collection_ManagementState extends State<sd_Collection_Management> {
   List<Map<String, dynamic>> items = [
     {
-      'Transaction_Id': 'TNX12345',
-      'Party_Code': '52500074',
-      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
-      'Posting_Date': '10-06-2025',
-      'Payment_Type': 'Collect',
-      'Collected_Amount': '5,000.00000',
-      'Created_By': 'S MOSES KAR',
+      'TransactionId': 'TNX12345',
+      'PartyCode': '52500074',
+      'PartyName': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'PostingDate': '10-06-2025',
+      'PaymentType': 'Collect',
+      'CollectedAmount': '5,000.00000',
+      'CreatedBy': 'S MOSES KAR',
       'Status': 'Reverse',
     },
     {
-      'Transaction_Id': 'TXN0588',
-      'Party_Code': '52500074',
-      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
-      'Posting_Date': '10-06-2025',
-      'Payment_Type': 'Collect',
-      'Collected_Amount': '5,400.00000',
-      'Created_By': 'Joy Shil',
-      'Status': 'Collect',
+      'TransactionId': 'TNX12345',
+      'PartyCode': '52500074',
+      'PartyName': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'PostingDate': '10-06-2025',
+      'PaymentType': 'POS-Offline',
+      'CollectedAmount': '5,000.00000',
+      'CreatedBy': 'S MOSES KAR',
+      'Status': 'Collected',
     },
     {
-      'Transaction_Id': 'S82103420',
-      'Party_Code': '52500074',
-      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
-      'Posting_Date': '10-06-2025',
-      'Payment_Type': 'Collect',
-      'Collected_Amount': '5,900.00000',
-      'Created_By': 'Debika',
-      'Status': 'Collect',
-    },
-    {
-      'Transaction_Id': 'TRANSS050601',
-      'Party_Code': '52500074',
-      'Party_Name': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
-      'Posting_Date': '10-06-2025',
-      'Payment_Type': 'Collect',
-      'Collected_Amount': '10000.00000',
-      'Created_By': 'Debika',
+      'TransactionId': 'TNX12345',
+      'PartyCode': '52500074',
+      'PartyName': 'BHIKHARAM CHANDMAL MITHAI NAMKINS PRIVATE LIMITED',
+      'PostingDate': '10-06-2025',
+      'PaymentType': 'POS-Online',
+      'CollectedAmount': '5,000.00000',
+      'CreatedBy': 'S MOSES KAR',
       'Status': 'Reverse',
     },
   ];
@@ -93,128 +83,7 @@ class _sd_Collection_ManagementState extends State<sd_Collection_Management> {
                     onTap: () {},
                     child: Card(
                       elevation: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      items[index]['Transaction_Id'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    Text(
-                                        'Posting Date : ${items[index]['Posting_Date']}'),
-                                  ],
-                                ),
-                                Container(
-                                  height: 42,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.primaryColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(9.0),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 5,
-                                          backgroundColor: items[index]
-                                                      ['Status'] ==
-                                                  'Collect'
-                                              ? Colors.blueAccent
-                                              : Colors.orange,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          items[index]['Status'],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Party Name',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Party_Name'].length > 20
-                                        ? '${items[index]['Party_Name'].substring(0, 24)}...'
-                                        : items[index]['Party_Name']),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Party Code',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Party_Code']),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Payment Type : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Payment_Type']),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Collected Amount : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Collected_Amount']),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Created By : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Created_By']),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: _buildCardData(items[index]),
                     ),
                   );
                 },
@@ -236,4 +105,124 @@ class _sd_Collection_ManagementState extends State<sd_Collection_Management> {
       ),
     );
   }
+}
+
+_buildCardData(Map<String, dynamic> items) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  items['TransactionId'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.event, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
+                    Text(items['PostingDate']),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              height: 42,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: GlobalColor.primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(9.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 5,
+                      backgroundColor: items['Status'] == 'Collected'
+                          ? Colors.blueAccent
+                          : Colors.orange,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      items['Status'],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          children: [
+            Icon(Icons.person, color: GlobalColor.primaryColor),
+            SizedBox(width: 5),
+            Flexible(
+              child: Text(
+                items['PartyName'],
+                softWrap: true,
+                overflow: TextOverflow.fade, // or clip
+              ),
+            )
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.abc, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(items['PartyCode']),
+              ],
+            ),
+            SizedBox(height: 15),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                    items['PaymentType'] == 'Collect'
+                        ? Icons.handshake
+                        : items['PaymentType'] == 'POS-Offline'
+                            ? Icons.point_of_sale
+                            : items['PaymentType'] == 'POS-Online'
+                                ? Icons.phonelink
+                                : Icons.money,
+                    color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(items['PaymentType']),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(Icons.currency_rupee, color: GlobalColor.primaryColor),
+            SizedBox(width: 5),
+            Text(
+              items['CollectedAmount'],
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }

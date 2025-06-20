@@ -281,7 +281,9 @@ _buildCardData(Map<String, dynamic> items) {
                 Icon(Icons.person, color: GlobalColor.primaryColor),
                 SizedBox(width: 5),
                 Text(
-                  items['CustomerName'],
+                  items['CustomerName'].toString().length > 23
+                      ? '${items['CustomerName'].toString().substring(0, 23)}...'
+                      : items['CustomerName'].toString(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],

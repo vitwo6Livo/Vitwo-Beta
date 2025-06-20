@@ -233,17 +233,21 @@ _buildCardData(Map<String, dynamic> items) {
         ),
         SizedBox(height: 15),
         Row(
+          children: [
+            Icon(Icons.person, color: GlobalColor.primaryColor),
+            SizedBox(width: 5),
+            Flexible(
+                child: Text(
+              items['CustomerName'],
+              softWrap: true,
+              overflow: TextOverflow.fade,
+            )),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(Icons.person, color: GlobalColor.primaryColor),
-                SizedBox(width: 5),
-                Text(items['CustomerName'].toString().length > 20
-                    ? '${items['CustomerName'].toString().substring(0, 20)}...'
-                    : items['CustomerName'].toString()),
-              ],
-            ),
             Row(
               children: [
                 Icon(Icons.abc, color: GlobalColor.primaryColor),
@@ -251,17 +255,17 @@ _buildCardData(Map<String, dynamic> items) {
                 Text(items['CustomerCode'].toString()),
               ],
             ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(
-              Icons.shopping_cart_checkout,
-              color: GlobalColor.primaryColor,
+            SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.shopping_cart_checkout,
+                  color: GlobalColor.primaryColor,
+                ),
+                Text(items['RequestType'].toString(), maxLines: 2),
+              ],
             ),
-            Text(items['RequestType'].toString(), maxLines: 2),
           ],
         ),
       ],

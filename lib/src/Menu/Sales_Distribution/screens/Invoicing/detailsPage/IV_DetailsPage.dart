@@ -1,18 +1,17 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/detailsPage/quotation_Overview.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Invoicing/detailsPage/IV_Overview.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class Quotation_detailsScreen extends StatefulWidget {
+class IV_detailsScreen extends StatefulWidget {
   final List<Map<String, dynamic>> items;
-  const Quotation_detailsScreen(this.items, {super.key});
+  const IV_detailsScreen(this.items, {super.key});
 
   @override
-  State<Quotation_detailsScreen> createState() =>
-      _Quotation_detailsScreenState();
+  State<IV_detailsScreen> createState() => _IV_detailsScreenState();
 }
 
-class _Quotation_detailsScreenState extends State<Quotation_detailsScreen> {
+class _IV_detailsScreenState extends State<IV_detailsScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -32,10 +31,10 @@ class _Quotation_detailsScreenState extends State<Quotation_detailsScreen> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Quotation_Overview(
+                  IV_Overview(
                     itemDetails: widget.items,
                   ),
-                  Center(child: Text('Print')),
+                  Center(child: Text('Company(INR)')),
                   Center(child: Text('Trail')),
                 ],
               ),

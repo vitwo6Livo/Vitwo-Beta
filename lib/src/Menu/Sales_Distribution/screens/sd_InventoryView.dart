@@ -25,39 +25,6 @@ class _sd_InventoryViewState extends State<sd_InventoryView> {
       'TotalValue': '412,403.77590',
       'CreatedBy': 'Salim',
     },
-    {
-      'ItemCode': '210045401',
-      'ItemName': 'Carvaan Mini Legends kannada - Sunset Red',
-      'Type': 'FG Trading',
-      'TotalQty': '1,425.574',
-      'UOM': 'PCS',
-      'ValuationClass': 'V',
-      'Price(MW)': '289.29063',
-      'TotalValue': '412,403.77590',
-      'CreatedBy': 'Abhilash Agarwal',
-    },
-    {
-      'ItemCode': '210006541',
-      'ItemName': 'Carvaan Mini Legends kannada - Sunset Red',
-      'Type': 'FG Trading',
-      'TotalQty': '1,425.574',
-      'UOM': 'PCS',
-      'ValuationClass': 'V',
-      'Price(MW)': '289.29063',
-      'TotalValue': '412,403.77590',
-      'CreatedBy': 'Somdutta Sengupta',
-    },
-    {
-      'ItemCode': '44000008',
-      'ItemName': 'Repairing Service',
-      'Type': 'Service Purchase',
-      'TotalQty': '900.000',
-      'UOM': 'hour',
-      'ValuationClass': '0',
-      'Price(MW)': '	300.00000',
-      'TotalValue': '270,000.00000',
-      'CreatedBy': 'Sonie Kushwaha',
-    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -92,96 +59,7 @@ class _sd_InventoryViewState extends State<sd_InventoryView> {
                     onTap: () {},
                     child: Card(
                       elevation: 3,
-                      child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    items[index]['ItemCode'],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text(
-                                    items[index]['Type'],
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic),
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Item Name',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(items[index]['ItemName'].length > 20
-                                          ? '${items[index]['ItemName'].substring(0, 25)}...'
-                                          : items[index]['ItemName']),
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        'Total Qty',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(items[index]['TotalQty']),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Price(MW)',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(items[index]['Price(MW)']),
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        'Total Value',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(items[index]['TotalValue']),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
+                      child: _buildCardData(items[index]),
                     ),
                   );
                 },
@@ -192,4 +70,74 @@ class _sd_InventoryViewState extends State<sd_InventoryView> {
       ),
     );
   }
+}
+
+_buildCardData(Map<String, dynamic> items) {
+  return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                items['ItemCode'],
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              Text(
+                items['Type'],
+                style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+              )
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Icon(Icons.shopping_bag, color: GlobalColor.primaryColor),
+              SizedBox(width: 6),
+              Flexible(
+                child: Text(
+                  items['ItemName'],
+                  softWrap: true,
+                  overflow: TextOverflow.fade,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 15),
+          Row(
+            children: [
+              Icon(Icons.shopping_cart, color: GlobalColor.primaryColor),
+              SizedBox(width: 6),
+              SizedBox(height: 5),
+              Text(items['TotalQty']),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Price(MW)',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 5),
+                  Text(items['Price(MW)']),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.currency_rupee, color: GlobalColor.primaryColor),
+                  SizedBox(width: 6),
+                  Text(items['TotalValue']),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ));
 }

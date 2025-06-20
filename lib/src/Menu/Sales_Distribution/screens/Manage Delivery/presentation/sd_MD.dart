@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Manage%20Delivery/detailsPage/MD_DetailsPage.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 import 'package:vitwo_beta/src/constants/text.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
@@ -15,49 +16,32 @@ class sd_MD extends StatefulWidget {
 class _sd_MDState extends State<sd_MD> {
   List<Map<String, dynamic>> items = [
     {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
+      'DeliveryNumber': 'D1749455352870',
+      'SONumber': 'SO2506021',
+      'DeliveryDate': '09-06-2025',
+      'CustomerName': 'MAC MAYBELLINE INTERNATIONAL SALON',
+      'CustomerCode': '52500041',
+      'TotalAmount': '55,804.00000',
+      'TotalItems': '1.000',
       'Status': 'Open',
-    },
-    {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Reversed',
-    },
-    {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Reversed',
-    },
-    {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Open',
-    },
-    {
-      'Delivery_Number': 'D1749455352870',
-      'SO_Number': 'SO2506021',
-      'Delivery_Date': '09-06-2025',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Total_Amount': '55,804.00000',
-      'Total_Items': '1.000',
-      'Status': 'Open',
+      'GSTIN': '09ABUFM7000P1ZJ',
+      'PAN': 'ABUFM7000P',
+      'BillingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'ShippingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'PlaceOfSupply': '--',
+      'email': 'arana@vitwo.in',
+      'phone': '6290013901',
+      'PostingDate': '09-06-2025',
+      'FunctionalArea': 'Production',
+      'ReferenceDocumentLink': 'No Attached File',
+      'ItemCode': '22000182',
+      'ItemName': 'Spectacle',
+      'QTY': '10.000',
+      'StorageLOC': 'FG WH Reserve',
+      'Warehouse': 'WH-1',
+      'Batch': 'PROD1748437991',
     },
   ];
   @override
@@ -92,7 +76,12 @@ class _sd_MDState extends State<sd_MD> {
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MD_detailsScreen(items)));
+                    },
                     child: Card(
                       elevation: 3,
                       child: Padding(
@@ -107,15 +96,23 @@ class _sd_MDState extends State<sd_MD> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      items[index]['Delivery_Number'],
+                                      items[index]['DeliveryNumber'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 19,
                                       ),
                                     ),
-                                    Text(
-                                      items[index]['Delivery_Date'],
-                                      maxLines: 2,
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.local_shipping,
+                                          color: GlobalColor.primaryColor,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          items[index]['DeliveryDate'],
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -159,53 +156,36 @@ class _sd_MDState extends State<sd_MD> {
                             SizedBox(height: 15),
                             Row(
                               children: [
-                                Text(
-                                  'Customer Name : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
+                                Icon(Icons.person,
+                                    color: GlobalColor.primaryColor),
+                                SizedBox(width: 5),
+                                Flexible(
+                                  child: Text(
+                                    items[index]['CustomerName'],
+                                    softWrap: true,
+                                    overflow: TextOverflow.fade,
+                                  ),
                                 ),
-                                Text(
-                                  items[index]['Customer_Name'].length > 20
-                                      ? '${items[index]['Customer_Name'].substring(0, 24)}...'
-                                      : items[index]['Customer_Name'],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Text(
-                                  'SO Number : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['SO_Number']),
                               ],
                             ),
                             SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Row(
                                   children: [
-                                    Text(
-                                      'Total Items',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Total_Items']),
+                                    Icon(Icons.receipt_long_outlined,
+                                        color: GlobalColor.primaryColor),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['SONumber']),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                Row(
                                   children: [
-                                    Text(
-                                      'Total Amount',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
-                                    Text(items[index]['Total_Amount']),
+                                    Icon(Icons.currency_rupee,
+                                        color: GlobalColor.primaryColor),
+                                    SizedBox(width: 5),
+                                    Text(items[index]['TotalAmount']),
                                   ],
                                 ),
                               ],
