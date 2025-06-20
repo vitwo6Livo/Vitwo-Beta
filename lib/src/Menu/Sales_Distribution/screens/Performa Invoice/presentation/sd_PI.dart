@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Performa%20Invoice/detailsPage/PIV_DetailsPage.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -16,44 +17,42 @@ class sd_PI extends StatefulWidget {
 class _sd_PIState extends State<sd_PI> {
   List<Map<String, dynamic>> items = [
     {
-      'Performa_Invoice_No': '174850471171',
-      'Customer_Name': 'MY JIO MART	',
-      'Invoice_Amount': '59,000.00000',
-      'Created_At': '29-05-2025',
-      'Created_By': 'SUBHASIS SANTRA',
+      'PerformaInvoiceNo': '174850471171',
+      'CustomerName': 'MY JIO MART',
+      'CustomerCode': '52500010',
+      'InvoiceDate': '29-05-2025',
+      'InvoiceAmount': '59,000.00000',
+      'CreatedAt': '29-05-2025',
+      'CreatedBy': 'SUBHASIS SANTRA',
       'Status': 'Active',
-    },
-    {
-      'Performa_Invoice_No': '174850471171',
-      'Customer_Name': 'MY JIO MART	',
-      'Invoice_Amount': '3249.00000',
-      'Created_At': '29-05-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Closed',
-    },
-    {
-      'Performa_Invoice_No': '174850471171',
-      'Customer_Name': 'MY JIO MART	',
-      'Invoice_Amount': '39000.00000',
-      'Created_At': '29-05-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Active',
-    },
-    {
-      'Performa_Invoice_No': '174850471171',
-      'Customer_Name': 'MY JIO MART	',
-      'Invoice_Amount': '8000.00000',
-      'Created_At': '29-05-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Closed',
-    },
-    {
-      'Performa_Invoice_No': '174850471171',
-      'Customer_Name': 'MY JIO MART	',
-      'Invoice_Amount': '59,000.00000',
-      'Created_At': '29-05-2025',
-      'Created_By': 'SUBHASIS SANTRA',
-      'Status': 'Active',
+      'GSTIN': '08ABKFM6420H1Z6',
+      'PAN': 'ABKFM6420H',
+      'BillingAddress':
+          'HOUSE NO.45, SURYA NAGARI, SADBHAWANA NAGAR ROAD, 335001, GANGANAGAR, GANGANAGAR, Sri Ganganagar, Rajasthan',
+      'ShippingAddress':
+          'HOUSE NO.45, SURYA NAGARI, SADBHAWANA NAGAR ROAD, 335001, GANGANAGAR, GANGANAGAR, Sri Ganganagar, Rajasthan',
+      'PlaceOfSupply': '8(Rajasthan)',
+      'email': 'subhasis@vitwo.in',
+      'phone': '7001451025',
+      'InvoiceTime': '13:13',
+      'ValidTill': '05-06-2025',
+      'CreditPeriod': '40',
+      'SalesPerson': 'Joy',
+      'FunctionalArea': 'IT',
+      'ComplianceInvoiceType': 'R',
+      'ReferenceDocumentLink': '',
+      'ItemCode': '33000007',
+      'ItemName': 'CLAIMZ',
+      'HSN': '997331',
+      'QTY': '1.000',
+      'Currency': 'INR',
+      'UnitPrice': '50.00000',
+      'BaseAmount': '50.00000',
+      'Discount': '0.00000',
+      'TaxableAmount': '50000.00000',
+      'GST_%': '18.000',
+      'GSTAmount': '9000.00000',
+      'TotalAmount': '59000.00000',
     },
   ];
 
@@ -170,105 +169,17 @@ class _sd_PIState extends State<sd_PI> {
                   final isSelected = selectedIndices.contains(index);
                   return GestureDetector(
                     onLongPress: () => _onLongPress(index),
-                    onTap: () => _onTap(index),
+                    onTap: () {
+                      _onTap(index);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PIV_detailsScreen(items)));
+                    },
                     child: Card(
                       elevation: 3,
                       color: isSelected ? Colors.blueGrey.shade100 : null,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      items[index]['Performa_Invoice_No'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index]['Created_At'],
-                                      maxLines: 2,
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 42,
-                                  width: 90,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(9.0),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status'] == 'Active'
-                                                  ? Colors.green
-                                                  : Colors.red,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          items[index]['Status'],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Customer Name',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Customer_Name']),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Created By : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(items[index]['Created_By'], maxLines: 2),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Invoice Amount : ',
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                                Text(
-                                  items[index]['Invoice_Amount'],
-                                  maxLines: 2,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: _buildCardData(items[index]),
                     ),
                   );
                 },
@@ -277,7 +188,7 @@ class _sd_PIState extends State<sd_PI> {
           ),
         ],
       ),
-       floatingActionButton: RippleAnimation(
+      floatingActionButton: RippleAnimation(
         color: Colors.blue.shade200,
         ripplesCount: 2,
         duration: Duration(seconds: 3),
@@ -290,4 +201,96 @@ class _sd_PIState extends State<sd_PI> {
       ),
     );
   }
+}
+
+_buildCardData(Map<String, dynamic> items) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  items['PerformaInvoiceNo'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.event, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
+                    Text(
+                      items['ValidTill'],
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              height: 42,
+              width: 90,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: GlobalColor.OptionsColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(9.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 5,
+                      backgroundColor: items['Status'] == 'Active'
+                          ? Colors.green
+                          : Colors.red,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      items['Status'],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          children: [
+            Icon(Icons.person, color: GlobalColor.primaryColor),
+            SizedBox(width: 5),
+            Flexible(
+                child: Text(
+              items['CustomerName'],
+              softWrap: true,
+              overflow: TextOverflow.fade,
+            )),
+          ],
+        ),
+        SizedBox(height: 5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Icon(Icons.currency_rupee, color: GlobalColor.primaryColor),
+            SizedBox(width: 5),
+            Text(
+              items['InvoiceAmount'],
+              maxLines: 2,
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }

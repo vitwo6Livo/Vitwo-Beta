@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Invoicing/detailsPage/IV_DetailsPage.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 import 'package:vitwo_beta/src/constants/text.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
@@ -16,40 +17,112 @@ class sd_IV extends StatefulWidget {
 class _sd_IVState extends State<sd_IV> {
   List<Map<String, dynamic>> items = [
     {
-      'Invoice_No': 'INV-0000000855',
-      'Invoice_Date': '09-06-2025',
+      'InvoiceNo': 'INV-0000000855',
+      'InvoiceDate': '09-06-2025',
       'Status': 'Approved',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.00',
+      'CustomerName': 'MAC MAYBELLINE INTERNATIONAL SALON',
+      'CustomerCode': '52500041',
+      'InvoiceAmount': '54500.00',
       'Due_in_Days': '40',
-      'Created_By': 'Anjali Rana',
+      'CreatedBy': 'Anjali Rana',
+      'GSTIN': '09ABUFM7000P1ZJ',
+      'PAN': 'ABUFM7000P',
+      'BillingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'ShippingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'PlaceOfSupply': '9(Uttar Pradesh)',
+      'email': 'arana@vitwo.in',
+      'phone': '6290013901',
+      'InvoiceTime': '13:25',
+      'CreditPeriod': '40',
+      'SalesPerson': 'Lakshmi Narayn Dutta',
+      'FunctionalArea': 'Production',
+      'ComplianceInvoiceType': 'R',
+      'ItemCode': '22000182',
+      'ItemName': 'Spectacle',
+      'HSN': '9004',
+      'QTY': '10.000',
+      'Currency': 'INR',
+      'Rate': '5000.00000',
+      'BaseAmount': '50000.00000',
+      'Discount': '1250.00000',
+      'TaxableAmount': '48750.00000',
+      'GST_%': '12.000',
+      'GSTAmount': '5850.00000',
+      'TotalAmount': '54600.00000',
     },
     {
-      'Invoice_No': 'INV-0000000856',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.00',
-      'Invoice_Date': '09-06-2025',
+      'InvoiceNo': 'INV-0000000855',
+      'InvoiceDate': '09-06-2025',
+      'Status': 'Approved',
+      'CustomerName': 'MAC MAYBELLINE INTERNATIONAL SALON',
+      'CustomerCode': '52500041',
+      'InvoiceAmount': '54500.00',
+      'Due_in_Days': '5',
+      'CreatedBy': 'Anjali Rana',
+      'GSTIN': '09ABUFM7000P1ZJ',
+      'PAN': 'ABUFM7000P',
+      'BillingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'ShippingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'PlaceOfSupply': '9(Uttar Pradesh)',
+      'email': 'arana@vitwo.in',
+      'phone': '6290013901',
+      'InvoiceTime': '13:25',
+      'CreditPeriod': '40',
+      'SalesPerson': 'Lakshmi Narayn Dutta',
+      'FunctionalArea': 'Production',
+      'ComplianceInvoiceType': 'R',
+      'ItemCode': '22000182',
+      'ItemName': 'Spectacle',
+      'HSN': '9004',
+      'QTY': '10.000',
+      'Currency': 'INR',
+      'Rate': '5000.00000',
+      'BaseAmount': '50000.00000',
+      'Discount': '1250.00000',
+      'TaxableAmount': '48750.00000',
+      'GST_%': '12.000',
+      'GSTAmount': '5850.00000',
+      'TotalAmount': '54600.00000',
+    },
+    {
+      'InvoiceNo': 'INV-0000000855',
+      'InvoiceDate': '09-06-2025',
+      'Status': 'Approved',
+      'CustomerName': 'MAC MAYBELLINE INTERNATIONAL SALON',
+      'CustomerCode': '52500041',
+      'InvoiceAmount': '54500.00',
       'Due_in_Days': 'Received',
-      'Created_By': 'Anjali Rana',
-      'Status': 'Approved',
-    },
-    {
-      'Invoice_No': 'INV-0000000857',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.00',
-      'Invoice_Date': '09-06-2025',
-      'Due_in_Days': '10',
-      'Created_By': 'Anjali Rana',
-      'Status': 'Approved',
-    },
-    {
-      'Invoice_No': 'INV-0000000858',
-      'Customer_Name': 'MAC MAYBELLINE INTERNATIONAL SALON',
-      'Invoice_Amount': '54500.00',
-      'Invoice_Date': '09-06-2025',
-      'Due_in_Days': '',
-      'Created_By': 'Anjali Rana',
-      'Status': 'Reversed',
+      'CreatedBy': 'Anjali Rana',
+      'GSTIN': '09ABUFM7000P1ZJ',
+      'PAN': 'ABUFM7000P',
+      'BillingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'ShippingAddress':
+          'KASGANJ, KUTUBPUR PATTI SORON ROAD NEELAM HOSPITAL KE SAMNE, 207123, Kasganj, Kasganj, Kasganj, Andaman and Nicobar Islands',
+      'PlaceOfSupply': '9(Uttar Pradesh)',
+      'email': 'arana@vitwo.in',
+      'phone': '6290013901',
+      'InvoiceTime': '13:25',
+      'CreditPeriod': '40',
+      'SalesPerson': 'Lakshmi Narayn Dutta',
+      'FunctionalArea': 'Production',
+      'ComplianceInvoiceType': 'R',
+      'ItemCode': '22000182',
+      'ItemName': 'Spectacle',
+      'HSN': '9004',
+      'QTY': '10.000',
+      'Currency': 'INR',
+      'Rate': '5000.00000',
+      'BaseAmount': '50000.00000',
+      'Discount': '1250.00000',
+      'TaxableAmount': '48750.00000',
+      'GST_%': '12.000',
+      'GSTAmount': '5850.00000',
+      'TotalAmount': '54600.00000',
     },
   ];
 
@@ -91,7 +164,7 @@ class _sd_IVState extends State<sd_IV> {
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
             child: Row(
               children: [
-                Expanded(child: SearchBarWidget()),
+                SearchBarWidget(),
                 const SizedBox(width: 8),
                 exportButton(),
                 const SizedBox(width: 8),
@@ -109,98 +182,103 @@ class _sd_IVState extends State<sd_IV> {
                 final dueColor = _getDueInDaysColor(dueText);
                 final dueLabel = _getDueText(dueText);
 
-                return Card(
-                  elevation: 3,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  item['Invoice_No'] ?? '',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                const SizedBox(height: 6),
-                                Text(item['Invoice_Date']),
-                              ],
-                            ),
-                            Container(
-                              height: 40,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 6),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: GlobalColor.OptionsColor,
-                              ),
-                              child: Row(
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => IV_detailsScreen(items)));
+                  },
+                  child: Card(
+                    elevation: 3,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  CircleAvatar(
-                                    radius: 5,
-                                    backgroundColor:
-                                        item['Status'] == 'Approved'
-                                            ? Colors.green
-                                            : item['Status'] == 'Reversed'
-                                                ? Colors.red
-                                                : Colors.grey,
-                                  ),
-                                  const SizedBox(width: 8),
                                   Text(
-                                    item['Status'] ?? '',
+                                    item['InvoiceNo'] ?? '',
                                     style: const TextStyle(
-                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 18,
                                     ),
                                   ),
+                                  const SizedBox(height: 6),
+                                  _buildInfoRow(
+                                      Icons.event, item['InvoiceDate']),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        _buildInfoRow(
-                            'Customer Name : ', item['Customer_Name'] ?? '',
-                            maxLength: 24),
-                        const SizedBox(height: 10),
-                        _buildInfoRow(
-                            'Invoice Amount : ', item['Invoice_Amount'] ?? ''),
-                        const SizedBox(height: 10),
-                        _buildInfoRow(
-                            'Created By : ', item['Created_By'] ?? ''),
-                        items[index]['Due_in_Days'] == ''
-                            ? SizedBox()
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 4,
-                                      horizontal: 8,
+                              Container(
+                                height: 40,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 6),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: GlobalColor.OptionsColor,
+                                ),
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 5,
+                                      backgroundColor:
+                                          item['Status'] == 'Approved'
+                                              ? Colors.green
+                                              : item['Status'] == 'Reversed'
+                                                  ? Colors.red
+                                                  : Colors.grey,
                                     ),
-                                    decoration: BoxDecoration(
-                                      color: dueColor.withOpacity(0.2),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    child: Text(
-                                      dueLabel,
-                                      style: TextStyle(
-                                        color: dueColor,
-                                        fontWeight: FontWeight.w600,
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      item['Status'] ?? '',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                      ],
+                            ],
+                          ),
+                          const SizedBox(height: 15),
+                          _buildInfoRow(Icons.person, item['CustomerName']),
+                          const SizedBox(height: 10),
+                          _buildInfoRow(
+                              Icons.currency_rupee, item['InvoiceAmount']),
+                          const SizedBox(height: 5),
+                          items[index]['Due_in_Days'] == ''
+                              ? SizedBox()
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 4,
+                                        horizontal: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: dueColor.withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        dueLabel,
+                                        style: TextStyle(
+                                          color: dueColor,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -223,15 +301,18 @@ class _sd_IVState extends State<sd_IV> {
     );
   }
 
-  Widget _buildInfoRow(String label, String value, {int? maxLength}) {
-    final displayValue = maxLength != null && value.length > maxLength
-        ? '${value.substring(0, maxLength)}...'
-        : value;
-
+  Widget _buildInfoRow(
+    IconData icon,
+    String value,
+  ) {
     return Row(
       children: [
-        Text(label, style: TextStyle(color: Colors.grey.shade600)),
-        Expanded(child: Text(displayValue)),
+        Icon(
+          icon,
+          color: GlobalColor.primaryColor,
+        ),
+        SizedBox(width: 5),
+        Text(value),
       ],
     );
   }

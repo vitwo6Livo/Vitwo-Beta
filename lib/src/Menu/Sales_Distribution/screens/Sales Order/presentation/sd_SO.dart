@@ -39,7 +39,6 @@ class _sd_SOState extends State<sd_SO> {
               unselectedBackgroundColor: Colors.grey.shade300,
               unselectedLabelStyle: TextStyle(color: Colors.grey),
               labelSpacing: 10,
-
               contentPadding: EdgeInsets.only(right: 12, left: 15),
               borderWidth: 0,
               labelStyle: TextStyle(

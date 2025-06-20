@@ -102,7 +102,15 @@ _buildCardData(Map<String, dynamic> items) {
                     fontSize: 19,
                   ),
                 ),
-                Text(items['SO_Date'], maxLines: 2),
+                Row(
+                  children: [
+                    Icon(Icons.event, color: GlobalColor.primaryColor),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(items['soDate'], maxLines: 2),
+                  ],
+                ),
               ],
             ),
             Container(

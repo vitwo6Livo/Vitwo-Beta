@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class RFQ_Overview extends StatefulWidget {
+class PGI_Overview extends StatefulWidget {
   final List<Map<String, dynamic>> itemDetails;
-  const RFQ_Overview({super.key, required this.itemDetails});
+  const PGI_Overview({super.key, required this.itemDetails});
 
   @override
-  State<RFQ_Overview> createState() => _RFQ_OverviewState();
+  State<PGI_Overview> createState() => _PGI_OverviewState();
 }
 
-class _RFQ_OverviewState extends State<RFQ_Overview> {
+class _PGI_OverviewState extends State<PGI_Overview> {
   List<String> option = [
     'None',
     'Create Invoice',
@@ -41,6 +41,10 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
             _buildHeader('Contact Info'),
             const SizedBox(height: 10),
             _buildContactInfo(generalDetails),
+            const SizedBox(height: 20),
+            _buildHeader('Other Details'),
+            const SizedBox(height: 10),
+            _buildOtherDetails(generalDetails),
             const SizedBox(height: 80),
           ],
         ),
@@ -112,54 +116,69 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            // Customer Name and Code Row
-            Row(
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.person, color: GlobalColor.primaryColor),
-                SizedBox(width: 5),
-                Text(
-                  customer['CustomerName'].toString(),
-                  softWrap: true,
-                  overflow: TextOverflow.fade,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Row(
+                  children: [
+                    Icon(Icons.person, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
+                    Flexible(
+                      child: Text(
+                        customer['CustomerName'],
+                        softWrap: true,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(height: 15),
-            Row(
-              children: [
-                Icon(Icons.abc, color: GlobalColor.primaryColor),
-                SizedBox(width: 5),
-                Text(
-                  customer['CustomerCode'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Icon(Icons.abc, color: GlobalColor.primaryColor),
+                    SizedBox(width: 5),
+                    Text(
+                      customer['CustomerCode'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ],
             ),
             SizedBox(height: 15),
 
-            // GSTIN and PAN Row
+            // Billing Address
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.account_balance, color: GlobalColor.primaryColor),
+                Icon(Icons.home, color: GlobalColor.primaryColor),
                 SizedBox(width: 5),
-                Text(
-                  customer['GSTIN'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Expanded(
+                  child: Text(
+                    customer['BillingAddress'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 15),
+
+            // Shipping Address
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.credit_card, color: GlobalColor.primaryColor),
+                Icon(Icons.local_shipping, color: GlobalColor.primaryColor),
                 SizedBox(width: 5),
-                Text(
-                  customer['PAN'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Expanded(
+                  child: Text(
+                    customer['ShippingAddress'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
+            SizedBox(height: 15),
           ],
         ),
       ),
@@ -198,6 +217,68 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
     );
   }
 
+  _buildOtherDetails(Map<String, dynamic> otherDetails) {
+    return Card(
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Icon(Icons.calendar_today, color: GlobalColor.primaryColor),
+                    Text('PGI Posting Date'),
+                    SizedBox(width: 5),
+                    Text(
+                      otherDetails['PGIPostingDate'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    // Icon(Icons.receipt_long, color: GlobalColor.primaryColor),
+                    Text(
+                      'Profit Center',
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      otherDetails['ProfitCenter'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Customer PO Number',
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      otherDetails['CustomerPO'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   _buildItemDetails(Map<String, dynamic> item) {
     return Column(
       children: [
@@ -209,6 +290,7 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
+                /// Top Row: Item Code & HSN
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -224,11 +306,11 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.receipt_long,
+                        Icon(Icons.format_list_numbered,
                             color: GlobalColor.primaryColor),
                         SizedBox(width: 6),
                         Text(
-                          item['HSN'],
+                          item['BatchNO'],
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -241,16 +323,21 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.shopping_bag, color: GlobalColor.primaryColor),
-                    SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        item['ItemName'],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Row(
+                      children: [
+                        Icon(Icons.shopping_bag,
+                            color: GlobalColor.primaryColor),
+                        SizedBox(width: 6),
+                        Text(
+                          item['ItemName'].toString().length > 23
+                              ? '${item['ItemName'].toString().substring(0, 23)}...'
+                              : item['ItemName'].toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ],
                     ),
+                    SizedBox(height: 15),
                     Row(
                       children: [
                         Icon(Icons.shopping_cart,
@@ -258,6 +345,33 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
                         SizedBox(width: 6),
                         Text(
                           item['QTY'],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.location_on,
+                            color: GlobalColor.primaryColor),
+                        SizedBox(width: 6),
+                        Text(
+                          item['StorageLocation'],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.warehouse, color: GlobalColor.primaryColor),
+                        SizedBox(width: 6),
+                        Text(
+                          item['Warehouse'],
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],

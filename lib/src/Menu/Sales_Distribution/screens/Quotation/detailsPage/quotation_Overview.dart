@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 
-class SO_Overview extends StatefulWidget {
+class Quotation_Overview extends StatefulWidget {
   final List<Map<String, dynamic>> itemDetails;
-  const SO_Overview({super.key, required this.itemDetails});
+  const Quotation_Overview({super.key, required this.itemDetails});
 
   @override
-  State<SO_Overview> createState() => _SO_OverviewState();
+  State<Quotation_Overview> createState() => _Quotation_OverviewState();
 }
 
-class _SO_OverviewState extends State<SO_Overview> {
+class _Quotation_OverviewState extends State<Quotation_Overview> {
   List<String> option = [
     'None',
     'Create Invoice',
@@ -116,24 +116,24 @@ class _SO_OverviewState extends State<SO_Overview> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            // Customer Name and Code Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     Icon(Icons.person, color: GlobalColor.primaryColor),
                     SizedBox(width: 5),
-                    Text(
-                      customer['CustomerName'].toString().length > 20
-                          ? '${customer['CustomerName'].toString().substring(0, 20)}...'
-                          : customer['CustomerName'].toString(),
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Flexible(
+                      child: Text(
+                        customer['CustomerName'],
+                        softWrap: true,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),
+                SizedBox(height: 15),
                 Row(
                   children: [
                     Icon(Icons.abc, color: GlobalColor.primaryColor),
@@ -263,52 +263,17 @@ class _SO_OverviewState extends State<SO_Overview> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            // Row 1
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon(Icons.receipt_long, color: GlobalColor.primaryColor),
-                    Text(
-                      'Customer Order No',
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      otherDetails['customerOrderNo'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     // Icon(Icons.calendar_today, color: GlobalColor.primaryColor),
                     Text('Posting Date'),
                     SizedBox(width: 5),
                     Text(
-                      otherDetails['postingDate'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-
-            // Row 2
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon(Icons.access_time, color: GlobalColor.primaryColor),
-                    Text('Posting Time'),
-                    SizedBox(width: 5),
-                    Text(
-                      otherDetails['postingTime'],
+                      otherDetails['PostingDate'],
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -316,11 +281,13 @@ class _SO_OverviewState extends State<SO_Overview> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    // Icon(Icons.local_shipping, color: GlobalColor.primaryColor),
-                    Text('Delivery Date'),
+                    // Icon(Icons.receipt_long, color: GlobalColor.primaryColor),
+                    Text(
+                      'Valid Till',
+                    ),
                     SizedBox(width: 5),
                     Text(
-                      otherDetails['deliveryDate'],
+                      otherDetails['ValidTill'],
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -328,8 +295,6 @@ class _SO_OverviewState extends State<SO_Overview> {
               ],
             ),
             SizedBox(height: 15),
-
-            // Row 3
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -337,10 +302,10 @@ class _SO_OverviewState extends State<SO_Overview> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Icon(Icons.timer, color: GlobalColor.primaryColor),
-                    Text('Valid Till'),
+                    Text('Currency Rate'),
                     SizedBox(width: 5),
                     Text(
-                      otherDetails['validTill'],
+                      otherDetails['CurrencyRate'],
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -349,10 +314,10 @@ class _SO_OverviewState extends State<SO_Overview> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     // Icon(Icons.date_range, color: GlobalColor.primaryColor),
-                    Text('Credit Period'),
+                    Text('Customer Currency'),
                     SizedBox(width: 5),
                     Text(
-                      otherDetails['creditPeriod'],
+                      otherDetails['CustomerCurrency'],
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -360,41 +325,6 @@ class _SO_OverviewState extends State<SO_Overview> {
               ],
             ),
             SizedBox(height: 15),
-
-            // Row 4
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon(Icons.person, color: GlobalColor.primaryColor),
-                    Text('Sales Person'),
-                    SizedBox(width: 5),
-                    Text(
-                      otherDetails['salesPerson'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    // Icon(Icons.business_center,
-                    //     color: GlobalColor.primaryColor),
-                    Text('Functional Area'),
-                    SizedBox(width: 5),
-                    Text(
-                      otherDetails['functionalArea'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 15),
-
-            // Row 5
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -405,7 +335,7 @@ class _SO_OverviewState extends State<SO_Overview> {
                     Text('Compliance Invoice \nType'),
                     SizedBox(width: 5),
                     Text(
-                      otherDetails['complianceInvoiceType'],
+                      otherDetails['ComplianceInvoiceType'],
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -417,7 +347,38 @@ class _SO_OverviewState extends State<SO_Overview> {
                     Text('Reference Document \nLink'),
                     SizedBox(width: 5),
                     Text(
-                      otherDetails['referenceDocumentLink'],
+                      otherDetails['ReferenceDocumentLink'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Icon(Icons.receipt, color: GlobalColor.primaryColor),
+                    Text('Quotation Type'),
+                    SizedBox(width: 5),
+                    Text(
+                      otherDetails['QuotationType'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    // Icon(Icons.link, color: GlobalColor.primaryColor),
+                    Text('Inco Term'),
+                    SizedBox(width: 5),
+                    Text(
+                      otherDetails['INCOTERM'],
                       style: TextStyle(fontWeight: FontWeight.bold),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -483,9 +444,9 @@ class _SO_OverviewState extends State<SO_Overview> {
                         children: [
                           Icon(Icons.shopping_bag,
                               color: GlobalColor.primaryColor),
-                          SizedBox(width: 5),
+                          SizedBox(width: 6),
                           Text(
-                            item['itemName'],
+                            item['ItemName'],
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                             overflow: TextOverflow.ellipsis,
@@ -566,7 +527,7 @@ class _SO_OverviewState extends State<SO_Overview> {
                               Icon(Icons.abc, color: GlobalColor.primaryColor),
                               SizedBox(width: 6),
                               Text(
-                                itemDetails['itemCode'],
+                                itemDetails['ItemCode'],
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -595,7 +556,7 @@ class _SO_OverviewState extends State<SO_Overview> {
                           SizedBox(width: 6),
                           Expanded(
                             child: Text(
-                              itemDetails['itemName'],
+                              itemDetails['ItemName'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                               overflow: TextOverflow.ellipsis,
@@ -619,19 +580,19 @@ class _SO_OverviewState extends State<SO_Overview> {
                       SizedBox(height: 10),
                       _buildIconRow('Currency', itemDetails['Currency']),
                       _buildIconRow('Unit Price',
-                          '${itemDetails['Currency']} ${itemDetails['unitPrice']}'),
+                          '${itemDetails['Currency']} ${itemDetails['UnitPrice']}'),
                       _buildIconRow('Base Amount',
-                          '${itemDetails['Currency']} ${itemDetails['baseAmount']}'),
+                          '${itemDetails['Currency']} ${itemDetails['BaseAmount']}'),
                       _buildIconRow('Discount',
                           '${itemDetails['Currency']} ${itemDetails['Discount']}'),
                       _buildIconRow('Taxable Amount',
-                          '${itemDetails['Currency']} ${itemDetails['taxableAmount']}'),
-                      _buildIconRow('GST %', '${itemDetails['gst_%']} %'),
+                          '${itemDetails['Currency']} ${itemDetails['TaxableAmount']}'),
+                      _buildIconRow('GST %', '${itemDetails['GST_%']} %'),
                       _buildIconRow('GST Amount',
-                          '${itemDetails['Currency']} ${itemDetails['gstAmount']}'),
+                          '${itemDetails['Currency']} ${itemDetails['GSTAmount(INR)']}'),
                       Divider(),
                       _buildIconRow('Total Amount',
-                          '${itemDetails['Currency']} ${itemDetails['totalAmount']}'),
+                          '${itemDetails['Currency']} ${itemDetails['TotalAmount']}'),
                       SizedBox(height: 5),
                     ],
                   ),
