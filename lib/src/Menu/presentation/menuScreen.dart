@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:vitwo_beta/src/Menu/Production_Planning/Bill_Of_Materials/pp_BOM.dart';
+import 'package:vitwo_beta/src/Menu/Production_Planning/Inventory_Report/pp_InventoryReport.dart';
+import 'package:vitwo_beta/src/Menu/Production_Planning/MRP/pp_MRP.dart';
+import 'package:vitwo_beta/src/Menu/Production_Planning/Production_Declaration/pp_ProductionDeclaration.dart';
+import 'package:vitwo_beta/src/Menu/Production_Planning/Production_Order/pp_ProductionOrder.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Collection%20Management/sd_collectionManagement.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Invoicing/presentation/sd_IV.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Settlement/settlementScreen.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_InventoryView.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/InventoryView/sd_InventoryView.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Manage%20Delivery/presentation/sd_MD.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Post%20Goods%20Issuance/presentation/sd_PGI.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Performa%20Invoice/presentation/sd_PI.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_POS.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/POS/sd_POS.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/presentation/sd_Quotation.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/RFQ_PI/presentation/sd_RFQ_PI.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/presentation/sd_SO.dart';
@@ -134,12 +139,11 @@ class _menuScreenState extends State<menuScreen> {
                   );
                 }),
               ),
-              // if (expandedIndex != null &&
-              //     (expandedIndex! ~/ 2) ==
-              //         rowIndex && ) // expand below the correct row
+
+              // Sales & Distribution
               if (expandedIndex == 1 && rowIndex == 0)
                 AnimatedSize(
-                  duration: const Duration(seconds: 15),
+                  duration: const Duration(milliseconds: 15),
                   curve: Curves.easeInOut,
                   child: Container(
                     width: double.infinity,
@@ -302,10 +306,10 @@ class _menuScreenState extends State<menuScreen> {
                     ),
                   ),
                 ),
-
+              // Material Management
               if (expandedIndex == 2 && rowIndex == 1)
                 AnimatedSize(
-                  duration: const Duration(seconds: 15),
+                  duration: const Duration(milliseconds: 15),
                   curve: Curves.easeInOut,
                   child: Container(
                     width: double.infinity,
@@ -460,6 +464,111 @@ class _menuScreenState extends State<menuScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => InventoryReport(),
+                                  ),
+                                ),
+                          },
+                        ]),
+                      ],
+                    ),
+                  ),
+                ),
+              // Production Planning
+              if (expandedIndex == 4 && rowIndex == 2)
+                AnimatedSize(
+                  duration: const Duration(milliseconds: 15),
+                  curve: Curves.easeInOut,
+                  child: Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 6,
+                    ),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              GlobalText.PP_Title,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: GlobalColor.primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 15),
+                            Image.asset(
+                              'assets/pictures/menu/PP.png',
+                              height: 100,
+                              width: 120,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        _buildCardOption([
+                          {
+                            // BOM
+                            'icon': Icons.assignment,
+                            'title': GlobalText.PP_BOM,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => pp_BOM(),
+                                  ),
+                                ),
+                          },
+                          {
+                            // Production Order
+                            'icon': Icons.factory,
+                            'title': GlobalText.PP_ProductionOrder,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => pp_ProductionOrder(),
+                                  ),
+                                ),
+                          },
+                          {
+                            // MRP
+                            'icon': Icons.auto_graph,
+                            'title': GlobalText.PP_MRP,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => pp_MRP(),
+                                  ),
+                                ),
+                          },
+                          {
+                            // Production Declaration
+                            'icon': Icons.task_alt,
+                            'title': GlobalText.PP_PD,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        pp_ProductionDeclaration(),
+                                  ),
+                                ),
+                          },
+                          {
+                            // Inventory Report
+                            'icon': Icons.warehouse,
+                            'title': GlobalText.PP_InventoryReport,
+                            'navigator': (BuildContext context) =>
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => pp_InventoryReport(),
                                   ),
                                 ),
                           },

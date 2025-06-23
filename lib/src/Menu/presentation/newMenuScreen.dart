@@ -6,8 +6,8 @@ import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Post%20Goods%20Is
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Quotation/presentation/sd_Quotation.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/RFQ_PI/presentation/sd_RFQ_PI.dart';
 import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/presentation/sd_SO.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_InventoryView.dart';
-import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/sd_POS.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/InventoryView/sd_InventoryView.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/POS/sd_POS.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
 import 'package:vitwo_beta/src/constants/text.dart';
 

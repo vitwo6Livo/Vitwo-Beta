@@ -47,6 +47,12 @@ class GlobalText {
   //////////////////// PP ////////////////////
   static String PP_Title = 'Production Planning';
 
+  static String PP_BOM = 'Bill of Material';
+  static String PP_ProductionOrder = 'Production Order';
+  static String PP_MRP = 'MRP';
+  static String PP_PD = 'Production Declaration';
+  static String PP_InventoryReport = 'Inventory Report';
+
   //////////////////// PR_P ////////////////////
   static String PR_P_Title = 'Project Planning';
 

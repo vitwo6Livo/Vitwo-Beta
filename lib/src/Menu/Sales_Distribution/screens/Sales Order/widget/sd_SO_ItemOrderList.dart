@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:vitwo_beta/src/Menu/Sales_Distribution/screens/Sales%20Order/detailsPage/ItemOrderList_DetailsPage.dart';
 import 'package:vitwo_beta/src/global/exportbutton.dart';
 import 'package:vitwo_beta/src/global/filterButton.dart';
 import 'package:vitwo_beta/src/global/searchBar.dart';
@@ -56,7 +57,14 @@ class _sd_SO_ItemOrderListState extends State<sd_SO_ItemOrderList> {
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ItemOrderList_DetailsPage(
+                                    item: items[index],
+                                  )));
+                    },
                     child: Card(
                       elevation: 3,
                       child: _buildCardData(items[index]),
@@ -126,19 +134,19 @@ _buildCardData(Map<String, dynamic> items) {
                   children: [
                     CircleAvatar(
                       radius: 5,
-                      backgroundColor: items['Status'] == 'PGI'
+                      backgroundColor: items['DeliveryStatus'] == 'PGI'
                           ? Colors.green
-                          : items['Status'] == 'Delivery Created'
+                          : items['DeliveryStatus'] == 'Delivery Created'
                               ? Colors.orange
-                              : items['Status'] == 'Open'
+                              : items['DeliveryStatus'] == 'Open'
                                   ? Colors.blueAccent
-                                  : null,
+                                  : Colors.red,
                     ),
                     SizedBox(width: 10),
                     Text(
-                      (items['Status']?.length ?? 0) > 8
-                          ? '${items['Status'].substring(0, 8)}\n${items['Status'].substring(9)}'
-                          : items['Status'] ?? '',
+                      (items['DeliveryStatus']?.length ?? 0) > 8
+                          ? '${items['DeliveryStatus'].substring(0, 8)}\n${items['DeliveryStatus'].substring(9)}'
+                          : items['DeliveryStatus'] ?? '',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -152,36 +160,32 @@ _buildCardData(Map<String, dynamic> items) {
             ),
           ],
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
+                Icon(Icons.person, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
                 Text(
-                  'Customer Name',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                  ),
-                ),
-                Text(
-                  items['CustomerName'].length > 25
-                      ? '${items['CustomerName'].substring(0, 25)}...'
-                      : items['CustomerName'],
+                  items['CustomerName'].toString().length > 23
+                      ? '${items['CustomerName'].toString().substring(0, 23)}...'
+                      : items['CustomerName'].toString(),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            Row(
               children: [
+                Icon(Icons.abc, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
                 Text(
-                  'Customer Code',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                  ),
+                  items['CustomerCode'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  softWrap: true,
+                  overflow: TextOverflow.fade,
                 ),
-                Text(items['CustomerCode']),
               ],
             ),
           ],
@@ -189,21 +193,12 @@ _buildCardData(Map<String, dynamic> items) {
         SizedBox(height: 4),
         Row(
           children: [
+            Icon(Icons.local_shipping, color: GlobalColor.primaryColor),
+            SizedBox(width: 5),
             Text(
-              'Delivery Date : ',
-              style: TextStyle(color: Colors.grey.shade600),
+              items['deliveryDate'],
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Text(items['deliveryDate']),
-          ],
-        ),
-        SizedBox(height: 4),
-        Row(
-          children: [
-            Text(
-              'Created By : ',
-              style: TextStyle(color: Colors.grey.shade600),
-            ),
-            Text(items['CreatedBy']),
           ],
         ),
       ],
