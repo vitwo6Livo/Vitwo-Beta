@@ -49,7 +49,7 @@ class _IV_detailsScreenState extends State<IV_detailsScreen> {
           padding: EdgeInsets.only(
               bottom: 10,
               right: isScreenSmall
-                  ? screenWidth * 0.195
+                  ? screenWidth * 0.22
                   : screenWidth * 0.24), // To make it "float"
           child: Container(
             height: 50,

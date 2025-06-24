@@ -49,7 +49,7 @@ class _PIV_detailsScreenState extends State<PIV_detailsScreen> {
         floatingActionButton: Padding(
           padding: EdgeInsets.only(
               bottom: 10,
-              right: isScreenSmall ? screenWidth * 0.195 : screenWidth * 0.24),
+              right: isScreenSmall ? screenWidth * 0.22 : screenWidth * 0.24),
           child: Container(
             alignment: Alignment.topCenter,
             height: 50,

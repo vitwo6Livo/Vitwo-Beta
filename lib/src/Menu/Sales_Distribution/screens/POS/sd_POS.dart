@@ -95,7 +95,7 @@ class _sd_POSState extends State<sd_POS> {
 
   Widget _buildCustomerInfo() {
     return Card(
-      elevation: 2,
+      elevation: 3,
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -186,6 +186,7 @@ class _sd_POSState extends State<sd_POS> {
 
   Widget _buildItemList() {
     return Card(
+      elevation: 3,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -254,6 +255,8 @@ class _sd_POSState extends State<sd_POS> {
       itemBuilder: (context, index) {
         final product = products[index];
         return Card(
+          elevation: 3,
+          color: Colors.white70,
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
