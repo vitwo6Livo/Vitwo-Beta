@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vitwo_beta/src/constants/colors.dart';
+import 'package:vitwo_beta/src/global/exportbutton.dart';
+import 'package:vitwo_beta/src/global/filterButton.dart';
+import 'package:vitwo_beta/src/global/searchBar.dart';
 
 class InventoryView_StockLog extends StatefulWidget {
   final List<Map<String, dynamic>> stockLog;
@@ -13,13 +16,31 @@ class _InventoryView_StockLogState extends State<InventoryView_StockLog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView(
-          children: [
-            ...widget.stockLog.map((item) => _buildStockLogCard(item)),
-          ],
-        ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ListView(
+                children: [
+                  ...widget.stockLog.map((item) => _buildStockLogCard(item)),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -192,6 +213,4 @@ class _InventoryView_StockLogState extends State<InventoryView_StockLog> {
       ),
     );
   }
-
-
 }

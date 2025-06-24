@@ -57,15 +57,17 @@ class _sd_MDState extends State<sd_MD> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
-
           SizedBox(height: 10),
 
           // List View
@@ -82,118 +84,8 @@ class _sd_MDState extends State<sd_MD> {
                           MaterialPageRoute(
                               builder: (context) => MD_detailsScreen(items)));
                     },
-                    child: Card(
-                      elevation: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      items[index]['DeliveryNumber'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19,
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.local_shipping,
-                                          color: GlobalColor.primaryColor,
-                                        ),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          items[index]['DeliveryDate'],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 42,
-                                  width: items[index]['Status'] == 'Reversed'
-                                      ? 100
-                                      : 80,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: GlobalColor.OptionsColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(9.0),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 5,
-                                          backgroundColor:
-                                              items[index]['Status'] == 'Open'
-                                                  ? Colors.blueAccent
-                                                  : items[index]['Status'] ==
-                                                          'Reversed'
-                                                      ? Colors.red
-                                                      : null,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          items[index]['Status'],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15),
-                            Row(
-                              children: [
-                                Icon(Icons.person,
-                                    color: GlobalColor.primaryColor),
-                                SizedBox(width: 5),
-                                Flexible(
-                                  child: Text(
-                                    items[index]['CustomerName'],
-                                    softWrap: true,
-                                    overflow: TextOverflow.fade,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.receipt_long_outlined,
-                                        color: GlobalColor.primaryColor),
-                                    SizedBox(width: 5),
-                                    Text(items[index]['SONumber']),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(Icons.currency_rupee,
-                                        color: GlobalColor.primaryColor),
-                                    SizedBox(width: 5),
-                                    Text(items[index]['TotalAmount']),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child:
+                        Card(elevation: 3, child: _buildCardData(items[index])),
                   );
                 },
               ),
@@ -203,4 +95,110 @@ class _sd_MDState extends State<sd_MD> {
       ),
     );
   }
+}
+
+_buildCardData(Map<String, dynamic> item) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildRowText(null, item['DeliveryNumber'], 19),
+                _buildRowText(Icons.local_shipping, item['DeliveryDate'], null),
+              ],
+            ),
+            _buildStatusIndicator(item['Status']),
+          ],
+        ),
+        SizedBox(height: 15),
+        _buildRow(Icons.person, item['CustomerName']),
+        SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildRowText(Icons.receipt_long_outlined, item['SONumber'], null),
+            _buildRowText(Icons.currency_rupee, item['TotalAmount'], null),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+_buildStatusIndicator(value) {
+  return Container(
+    height: 42,
+    width: value == 'Reversed' ? 100 : 80,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: GlobalColor.OptionsColor,
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(9.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 5,
+            backgroundColor: value == 'Open'
+                ? Colors.blueAccent
+                : value == 'Reversed'
+                    ? Colors.red
+                    : null,
+          ),
+          SizedBox(width: 10),
+          Text(
+            value,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildRow(IconData icon, String label) {
+  return Row(
+    children: [
+      Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Flexible(
+        child: Text(
+          label,
+          softWrap: true,
+          overflow: TextOverflow.fade,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _buildRowText(IconData? icon, String label, double? size,
+    [Color? colors]) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      if (icon == null) SizedBox(),
+      if (icon != null) Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Text(
+        label,
+        softWrap: true,
+        overflow: TextOverflow.fade,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: colors ?? Colors.black,
+            fontSize: size ?? 14.0),
+      ),
+    ],
+  );
 }

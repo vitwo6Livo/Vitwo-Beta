@@ -42,9 +42,14 @@ class _SO_OverviewState extends State<SO_Overview> {
             const SizedBox(height: 10),
             _buildContactInfo(generalDetails),
             const SizedBox(height: 20),
+            _buildHeader('Other Info'),
+            const SizedBox(height: 10),
+            _buildOtherInfo(generalDetails),
+            const SizedBox(height: 20),
             _buildHeader('Other Details'),
             const SizedBox(height: 10),
             _buildOtherDetails(generalDetails),
+            const SizedBox(height: 20),
             const SizedBox(height: 80),
           ],
         ),
@@ -256,7 +261,7 @@ class _SO_OverviewState extends State<SO_Overview> {
     );
   }
 
-  _buildOtherDetails(Map<String, dynamic> otherDetails) {
+  _buildOtherInfo(Map<String, dynamic> otherDetails) {
     return Card(
       elevation: 3,
       child: Padding(
@@ -654,5 +659,29 @@ class _SO_OverviewState extends State<SO_Overview> {
         ],
       ),
     );
+  }
+
+  _buildOtherDetails(Map<String, dynamic> otherDetail) {
+    return Card(
+        elevation: 3,
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.edit,
+                    color: GlobalColor.primaryColor,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    otherDetail['CreatedBy'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ])));
   }
 }

@@ -41,6 +41,11 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
             _buildHeader('Contact Info'),
             const SizedBox(height: 10),
             _buildContactInfo(generalDetails),
+            const SizedBox(height: 20),
+            _buildHeader('Other Details'),
+            const SizedBox(height: 10),
+            _buildOtherDetails(generalDetails),
+            const SizedBox(height: 10),
             const SizedBox(height: 80),
           ],
         ),
@@ -270,5 +275,29 @@ class _RFQ_OverviewState extends State<RFQ_Overview> {
         ),
       ],
     );
+  }
+
+  _buildOtherDetails(Map<String, dynamic> otherDetail) {
+    return Card(
+        elevation: 3,
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.edit,
+                    color: GlobalColor.primaryColor,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    otherDetail['CreatedBy'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ])));
   }
 }

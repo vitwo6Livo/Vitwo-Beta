@@ -62,13 +62,16 @@ class _sd_Collection_ManagementState extends State<sd_Collection_Management> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
 
           SizedBox(height: 10),
@@ -125,111 +128,117 @@ _buildCardData(Map<String, dynamic> items) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  items['TransactionId'],
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19,
-                  ),
-                ),
+                _buildRowText(null, items['TransactionId'], 19),
+                SizedBox(height: 5),
+                _buildRowText(Icons.event, items['PostingDate'], null),
+              ],
+            ),
+            Column(
+              children: [
+                _buildStatusIndicator(items['Status']),
+                SizedBox(height: 5),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.event, color: GlobalColor.primaryColor),
+                    Icon(
+                        items['PaymentType'] == 'Collect'
+                            ? Icons.handshake
+                            : items['PaymentType'] == 'POS-Offline'
+                                ? Icons.point_of_sale
+                                : items['PaymentType'] == 'POS-Online'
+                                    ? Icons.phonelink
+                                    : Icons.money,
+                        color: GlobalColor.primaryColor),
                     SizedBox(width: 5),
-                    Text(items['PostingDate']),
+                    Text(items['PaymentType']),
                   ],
                 ),
               ],
             ),
-            Container(
-              height: 42,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: GlobalColor.primaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(9.0),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 5,
-                      backgroundColor: items['Status'] == 'Collected'
-                          ? Colors.blueAccent
-                          : Colors.orange,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      items['Status'],
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ],
         ),
-        SizedBox(height: 15),
-        Row(
-          children: [
-            Icon(Icons.person, color: GlobalColor.primaryColor),
-            SizedBox(width: 5),
-            Flexible(
-              child: Text(
-                items['PartyName'],
-                softWrap: true,
-                overflow: TextOverflow.fade, // or clip
-              ),
-            )
-          ],
-        ),
-        SizedBox(height: 15),
+        SizedBox(height: 10),
+        _buildRow(Icons.person, items['PartyName']),
+        SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(Icons.abc, color: GlobalColor.primaryColor),
-                SizedBox(width: 5),
-                Text(items['PartyCode']),
-              ],
-            ),
-            SizedBox(height: 15),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                    items['PaymentType'] == 'Collect'
-                        ? Icons.handshake
-                        : items['PaymentType'] == 'POS-Offline'
-                            ? Icons.point_of_sale
-                            : items['PaymentType'] == 'POS-Online'
-                                ? Icons.phonelink
-                                : Icons.money,
-                    color: GlobalColor.primaryColor),
-                SizedBox(width: 5),
-                Text(items['PaymentType']),
-              ],
-            ),
+            _buildRowText(Icons.abc, items['PartyCode'], null),
+            _buildRowText(Icons.currency_rupee, items['CollectedAmount'], null),
           ],
         ),
-        SizedBox(height: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(Icons.currency_rupee, color: GlobalColor.primaryColor),
-            SizedBox(width: 5),
-            Text(
-              items['CollectedAmount'],
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+        SizedBox(height: 10),
+        _buildRowText(Icons.edit, items['CreatedBy'], null),
       ],
     ),
+  );
+}
+
+_buildStatusIndicator(value) {
+  return Container(
+    height: 42,
+    width: 100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: GlobalColor.primaryColor,
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(9.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 5,
+            backgroundColor:
+                value == 'Collected' ? Colors.blueAccent : Colors.orange,
+          ),
+          SizedBox(width: 10),
+          Text(
+            value,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildRow(IconData icon, String label) {
+  return Row(
+    children: [
+      Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Flexible(
+        child: Text(
+          label,
+          softWrap: true,
+          overflow: TextOverflow.fade,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _buildRowText(IconData? icon, String label, double? size,
+    [Color? colors]) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      if (icon == null) SizedBox(),
+      if (icon != null) Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Text(
+        label,
+        softWrap: true,
+        overflow: TextOverflow.fade,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: colors ?? Colors.black,
+            fontSize: size ?? 14.0),
+      ),
+    ],
   );
 }

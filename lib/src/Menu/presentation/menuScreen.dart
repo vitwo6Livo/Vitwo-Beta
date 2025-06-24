@@ -84,6 +84,10 @@ class _menuScreenState extends State<menuScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    print(screenHeight); // 805.0909090909091
+    print(screenWidth); // 392.72727272727275
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -120,7 +124,8 @@ class _menuScreenState extends State<menuScreen> {
                           padding: const EdgeInsets.all(24),
                           child: Column(
                             children: [
-                              Image.asset(subMenu[index]['img'], height: 90),
+                              Image.asset(subMenu[index]['img'],
+                                  height: screenHeight / 8.945),
                               SizedBox(height: 10),
                               Text(
                                 subMenu[index]['name'],
@@ -160,6 +165,7 @@ class _menuScreenState extends State<menuScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               GlobalText.SD_Title,
@@ -172,13 +178,13 @@ class _menuScreenState extends State<menuScreen> {
                             SizedBox(width: 15),
                             Image.asset(
                               'assets/pictures/menu/SD.png',
-                              height: 100,
-                              width: 120,
+                              height: screenHeight * 0.14,
+                              width: screenWidth * 0.22,
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        _buildCardOption([
+                        SizedBox(height: screenHeight / 80.50),
+                        _buildCardOption(screenHeight, screenWidth, [
                           {
                             'icon': Icons.request_page,
                             'title': GlobalText.SD_RFQ_PI,
@@ -344,7 +350,7 @@ class _menuScreenState extends State<menuScreen> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        _buildCardOption([
+                        _buildCardOption(screenHeight, screenWidth, [
                           {
                             'icon': Icons.inventory_2_outlined,
                             'title': GlobalText.MM_RFQ,
@@ -510,7 +516,7 @@ class _menuScreenState extends State<menuScreen> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        _buildCardOption([
+                        _buildCardOption(screenHeight, screenWidth, [
                           {
                             // BOM
                             'icon': Icons.assignment,
@@ -584,14 +590,15 @@ class _menuScreenState extends State<menuScreen> {
     );
   }
 
-  Widget _buildCardOption(List<Map<String, dynamic>> options) {
+  Widget _buildCardOption(double screenHeight, double screenWidth,
+      List<Map<String, dynamic>> options) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(10),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      // padding: const EdgeInsets.all(4),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
-        crossAxisSpacing: 4,
+        // crossAxisSpacing: 3,
         mainAxisSpacing: 16,
         childAspectRatio: 1,
       ),

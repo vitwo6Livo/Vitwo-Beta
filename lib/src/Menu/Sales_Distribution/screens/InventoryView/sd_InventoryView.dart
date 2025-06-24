@@ -74,13 +74,16 @@ class _sd_InventoryViewState extends State<sd_InventoryView> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
           SizedBox(height: 10),
           // List View

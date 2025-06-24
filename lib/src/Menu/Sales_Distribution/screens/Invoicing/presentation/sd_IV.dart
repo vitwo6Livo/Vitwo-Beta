@@ -161,13 +161,12 @@ class _sd_IVState extends State<sd_IV> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
+            padding: const EdgeInsets.all(5.0),
             child: Row(
               children: [
                 SearchBarWidget(),
-                const SizedBox(width: 8),
                 exportButton(),
-                const SizedBox(width: 8),
+                SizedBox(width: 5),
                 filterButton(),
               ],
             ),
@@ -192,94 +191,7 @@ class _sd_IVState extends State<sd_IV> {
                   child: Card(
                     elevation: 3,
                     margin: const EdgeInsets.symmetric(vertical: 8),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item['InvoiceNo'] ?? '',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  _buildInfoRow(
-                                      Icons.event, item['InvoiceDate']),
-                                ],
-                              ),
-                              Container(
-                                height: 40,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 6),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: GlobalColor.OptionsColor,
-                                ),
-                                child: Row(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 5,
-                                      backgroundColor:
-                                          item['Status'] == 'Approved'
-                                              ? Colors.green
-                                              : item['Status'] == 'Reversed'
-                                                  ? Colors.red
-                                                  : Colors.grey,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      item['Status'] ?? '',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 15),
-                          _buildInfoRow(Icons.person, item['CustomerName']),
-                          const SizedBox(height: 10),
-                          _buildInfoRow(
-                              Icons.currency_rupee, item['InvoiceAmount']),
-                          const SizedBox(height: 5),
-                          items[index]['Due_in_Days'] == ''
-                              ? SizedBox()
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 4,
-                                        horizontal: 8,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: dueColor.withOpacity(0.2),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      child: Text(
-                                        dueLabel,
-                                        style: TextStyle(
-                                          color: dueColor,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                        ],
-                      ),
-                    ),
+                    child: _buildCardData(item, dueColor, dueLabel),
                   ),
                 );
               },
@@ -300,20 +212,129 @@ class _sd_IVState extends State<sd_IV> {
       ),
     );
   }
+}
 
-  Widget _buildInfoRow(
-    IconData icon,
-    String value,
-  ) {
-    return Row(
+_buildCardData(Map<String, dynamic> item, dueColor, dueLabel) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          color: GlobalColor.primaryColor,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildRowText(null, item['InvoiceNo'], 19),
+                const SizedBox(height: 6),
+                _buildRowText(Icons.event, item['InvoiceDate'], null),
+              ],
+            ),
+            _buildStatusIndicator(item['Status']),
+          ],
         ),
-        SizedBox(width: 5),
-        Text(value),
+        const SizedBox(height: 15),
+        _buildRow(Icons.person, item['CustomerName']),
+        const SizedBox(height: 10),
+        _buildRowText(Icons.currency_rupee, item['InvoiceAmount'], null),
+        const SizedBox(height: 5),
+        item['Due_in_Days'] == ''
+            ? SizedBox()
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [_buildDueStatusIndicator(dueColor, dueLabel)],
+              ),
       ],
-    );
-  }
+    ),
+  );
+}
+
+_buildStatusIndicator(value) {
+  return Container(
+    height: 40,
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: GlobalColor.OptionsColor,
+    ),
+    child: Row(
+      children: [
+        CircleAvatar(
+          radius: 5,
+          backgroundColor: value == 'Approved'
+              ? Colors.green
+              : value == 'Reversed'
+                  ? Colors.red
+                  : Colors.grey,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          value ?? '',
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+_buildDueStatusIndicator(dueColor, dueLabel) {
+  return Container(
+    padding: const EdgeInsets.symmetric(
+      vertical: 4,
+      horizontal: 8,
+    ),
+    decoration: BoxDecoration(
+      color: dueColor.withOpacity(0.2),
+      borderRadius: BorderRadius.circular(4),
+    ),
+    child: Text(
+      dueLabel,
+      style: TextStyle(
+        color: dueColor,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
+}
+
+Widget _buildRow(IconData icon, String label) {
+  return Row(
+    children: [
+      Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Flexible(
+        child: Text(
+          label,
+          softWrap: true,
+          overflow: TextOverflow.fade,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _buildRowText(IconData? icon, String label, double? size,
+    [Color? colors]) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      if (icon == null) SizedBox(),
+      if (icon != null) Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Text(
+        label,
+        softWrap: true,
+        overflow: TextOverflow.fade,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: colors ?? Colors.black,
+            fontSize: size ?? 14.0),
+      ),
+    ],
+  );
 }

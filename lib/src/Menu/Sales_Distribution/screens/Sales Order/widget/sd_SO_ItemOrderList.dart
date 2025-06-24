@@ -38,13 +38,16 @@ class _sd_SO_ItemOrderListState extends State<sd_SO_ItemOrderList> {
     return Scaffold(
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
 
           SizedBox(height: 10),

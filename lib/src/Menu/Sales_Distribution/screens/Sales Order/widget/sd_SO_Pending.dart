@@ -148,13 +148,16 @@ class _sd_SO_PendingState extends State<sd_SO_Pending> {
     return Scaffold(
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
 
           SizedBox(height: 10),

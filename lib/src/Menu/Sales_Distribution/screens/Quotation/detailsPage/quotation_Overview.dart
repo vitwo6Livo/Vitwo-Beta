@@ -42,6 +42,10 @@ class _Quotation_OverviewState extends State<Quotation_Overview> {
             const SizedBox(height: 10),
             _buildContactInfo(generalDetails),
             const SizedBox(height: 20),
+            _buildHeader('Other Info'),
+            const SizedBox(height: 10),
+            _buildOtherInfo(generalDetails),
+            const SizedBox(height: 20),
             _buildHeader('Other Details'),
             const SizedBox(height: 10),
             _buildOtherDetails(generalDetails),
@@ -256,7 +260,7 @@ class _Quotation_OverviewState extends State<Quotation_Overview> {
     );
   }
 
-  _buildOtherDetails(Map<String, dynamic> otherDetails) {
+  _buildOtherInfo(Map<String, dynamic> otherDetails) {
     return Card(
       elevation: 3,
       child: Padding(
@@ -407,36 +411,7 @@ class _Quotation_OverviewState extends State<Quotation_Overview> {
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
-                  /// Top Row: Item Code & HSN
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Row(
-                  //       children: [
-                  //         Icon(Icons.abc, color: GlobalColor.primaryColor),
-                  //         SizedBox(width: 6),
-                  //         Text(
-                  //           item['itemCode'],
-                  //           style: TextStyle(fontWeight: FontWeight.bold),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     Row(
-                  //       children: [
-                  //         Icon(Icons.receipt_long,
-                  //             color: GlobalColor.primaryColor),
-                  //         SizedBox(width: 6),
-                  //         Text(
-                  //           item['HSN'],
-                  //           style: TextStyle(fontWeight: FontWeight.bold),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
-                  // SizedBox(height: 15),
-
-                  /// Middle Row: Item Name & Quantity
+                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -615,5 +590,29 @@ class _Quotation_OverviewState extends State<Quotation_Overview> {
         ],
       ),
     );
+  }
+
+  _buildOtherDetails(Map<String, dynamic> otherDetail) {
+    return Card(
+        elevation: 3,
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.edit,
+                    color: GlobalColor.primaryColor,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    otherDetail['CreatedBy'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ])));
   }
 }

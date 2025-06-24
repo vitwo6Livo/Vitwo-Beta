@@ -53,13 +53,16 @@ class _sd_PGIState extends State<sd_PGI> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+        Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
 
           SizedBox(height: 10),
@@ -105,96 +108,98 @@ _buildCardData(Map<String, dynamic> items) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  items['PGINO'],
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.event, color: GlobalColor.primaryColor),
-                    SizedBox(width: 5),
-                    Text(
-                      items['DeliveryDate'],
-                      maxLines: 2,
-                    ),
-                  ],
-                ),
+                _buildRowText(null, items['PGINO'], 19),
+                SizedBox(height: 5),
+                _buildRowText(
+                    Icons.local_shipping, items['DeliveryDate'], null),
               ],
             ),
-            Container(
-              height: 42,
-              width: items['Status'] == 'Invoice' ? 90 : 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: GlobalColor.OptionsColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(9.0),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 5,
-                      backgroundColor: items['Status'] == 'Open'
-                          ? Colors.blueAccent
-                          : items['Status'] == 'Invoice'
-                              ? Colors.green
-                              : null,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      items['Status'],
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            _buildStatusIndicator(items['Status']),
           ],
         ),
-        SizedBox(height: 15),
-        Row(
-          children: [
-            Icon(
-              Icons.person,
-              color: GlobalColor.primaryColor,
-            ),
-            SizedBox(width: 5),
-            Flexible(
-              child: Text(
-                items['CustomerName'],
-                softWrap: true,
-                overflow: TextOverflow.fade,
-              ),
-            ),
-          ],
-        ),
+        SizedBox(height: 10),
+        _buildRow(Icons.person, items['CustomerName']),
         SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(Icons.description, color: GlobalColor.primaryColor),
-                SizedBox(width: 6),
-                Text(items['CustomerPO']),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(Icons.shopping_cart, color: GlobalColor.primaryColor),
-                SizedBox(width: 6),
-                Text(items['TotalItems']),
-              ],
-            ),
+            _buildRowText(Icons.description, items['CustomerPO'], null),
+            _buildRowText(Icons.shopping_cart, items['TotalItems'], null),
           ],
         ),
       ],
     ),
+  );
+}
+
+_buildStatusIndicator(value) {
+  return Container(
+    height: 42,
+    width: value == 'Invoice' ? 90 : 80,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: GlobalColor.OptionsColor,
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(9.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 5,
+            backgroundColor: value == 'Open'
+                ? Colors.blueAccent
+                : value == 'Invoice'
+                    ? Colors.green
+                    : null,
+          ),
+          SizedBox(width: 10),
+          Text(
+            value,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildRow(IconData icon, String label) {
+  return Row(
+    children: [
+      Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Flexible(
+        child: Text(
+          label,
+          softWrap: true,
+          overflow: TextOverflow.fade,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _buildRowText(IconData? icon, String label, double? size,
+    [Color? colors]) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      if (icon == null) SizedBox(),
+      if (icon != null) Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Text(
+        label,
+        softWrap: true,
+        overflow: TextOverflow.fade,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: colors ?? Colors.black,
+            fontSize: size ?? 14.0),
+      ),
+    ],
   );
 }

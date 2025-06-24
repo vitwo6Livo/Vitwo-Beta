@@ -174,13 +174,16 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
                       //     child: TextField(
                       //       decoration: InputDecoration(
                       //         hintText: 'Search Customer...',
-                      //         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      //         border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                      //         contentPadding: EdgeInsets.symmetric(
+                      //             vertical: 10, horizontal: 15),
+                      //         border: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.circular(14)),
                       //       ),
                       //     ),
                       //   ),
-                      //   searchMatchFn: (item, searchValue) =>
-                      //       item.value!.toLowerCase().contains(searchValue.toLowerCase()),
+                      //   searchMatchFn: (item, searchValue) => item.value!
+                      //       .toLowerCase()
+                      //       .contains(searchValue.toLowerCase()),
                       // ),
                     ),
                   ),
@@ -206,86 +209,77 @@ class _sd_SettlementScreenState extends State<sd_SettlementScreen> {
                   final item = transactionList[index];
                   return Card(
                     elevation: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(item['InvoiceNo'],
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18)),
-                                      Row(children: [
-                                        Icon(Icons.event,
-                                            color: GlobalColor.primaryColor),
-                                        SizedBox(width: 5),
-                                        Text(item['Due_Dates'],
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.red.shade600)),
-                                      ]),
-                                    ]),
-                                Container(
-                                  height: 42,
-                                  width: item['Status'] == 'SENT' ? 90 : 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: item['Status'] == 'SENT'
-                                        ? Colors.redAccent.shade100
-                                        : Colors.yellow.shade300,
-                                  ),
-                                  child: Center(
-                                    child: Text(item['Status'],
-                                        style: TextStyle(
-                                          color: item['Status'] == 'SENT'
-                                              ? Colors.red.shade800
-                                              : Colors.yellow.shade800,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        )),
-                                  ),
-                                ),
-                              ]),
-                          SizedBox(height: 20),
-                          _buildDetailRow(
-                              'Invoice Amount : ', item['Invoice_Amount']),
-                          SizedBox(height: 10),
-                          _buildDetailRow('Due Amount : ', item['Due_Amount']),
-                          SizedBox(height: 10),
-                          _buildDetailRow('Due % : ', item['Due_%']),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () => showBottomModelView(),
-                                  child: Container(
-                                    height: 40,
-                                    width: 80,
-                                    decoration: BoxDecoration(
-                                        color: GlobalColor.primaryColor,
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: Icon(Icons.handshake,
-                                        color: Colors.white, size: 30),
-                                  ),
-                                )
-                              ])
-                        ],
-                      ),
-                    ),
+                    child: _buildCardData(item),
                   );
                 },
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+
+  _buildCardData(Map<String, dynamic> item) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(item['InvoiceNo'],
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              Row(children: [
+                Icon(Icons.event, color: GlobalColor.primaryColor),
+                SizedBox(width: 5),
+                Text(item['Due_Dates'],
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red.shade600)),
+              ]),
+            ]),
+            Container(
+              height: 42,
+              width: item['Status'] == 'SENT' ? 90 : 150,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: item['Status'] == 'SENT'
+                    ? Colors.redAccent.shade100
+                    : Colors.yellow.shade300,
+              ),
+              child: Center(
+                child: Text(item['Status'],
+                    style: TextStyle(
+                      color: item['Status'] == 'SENT'
+                          ? Colors.red.shade800
+                          : Colors.yellow.shade800,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    )),
+              ),
+            ),
+          ]),
+          SizedBox(height: 20),
+          _buildDetailRow('Invoice Amount : ', item['Invoice_Amount']),
+          SizedBox(height: 10),
+          _buildDetailRow('Due Amount : ', item['Due_Amount']),
+          SizedBox(height: 10),
+          _buildDetailRow('Due % : ', item['Due_%']),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            GestureDetector(
+              onTap: () => showBottomModelView(),
+              child: Container(
+                height: 40,
+                width: 80,
+                decoration: BoxDecoration(
+                    color: GlobalColor.primaryColor,
+                    borderRadius: BorderRadius.circular(12)),
+                child: Icon(Icons.handshake, color: Colors.white, size: 30),
+              ),
+            )
+          ])
+        ],
       ),
     );
   }

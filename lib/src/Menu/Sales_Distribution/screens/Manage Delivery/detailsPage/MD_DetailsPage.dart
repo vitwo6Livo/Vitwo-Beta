@@ -14,6 +14,8 @@ class MD_detailsScreen extends StatefulWidget {
 class _MD_detailsScreenState extends State<MD_detailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final bool isScreenSmall = screenWidth < 400 ? true : false;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -44,8 +46,11 @@ class _MD_detailsScreenState extends State<MD_detailsScreen> {
           ],
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(
-              bottom: 10, right: 90), // To make it "float"
+          padding: EdgeInsets.only(
+              bottom: 10,
+              right: isScreenSmall
+                  ? screenWidth * 0.195
+                  : screenWidth * 0.24), // To make it "float"
           child: Container(
             height: 50,
             width: 180,

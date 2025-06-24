@@ -60,55 +60,6 @@ class _MD_OverviewState extends State<MD_Overview> {
             fontSize: 20));
   }
 
-  // Widget _buildDropDownOption() {
-  //   return DropdownButton<String>(
-  //     value: dropdownvalue,
-  //     icon: const Icon(Icons.keyboard_arrow_down),
-  //     items: option.map((String item) {
-  //       return DropdownMenuItem<String>(
-  //         value: item,
-  //         child: Text(item),
-  //       );
-  //     }).toList(),
-  //     onChanged: (String? newValue) {
-  //       if (newValue != null) {
-  //         setState(() {
-  //           dropdownvalue = newValue;
-  //         });
-  //       }
-  //     },
-  //   );
-  // }
-
-  // Widget _buildSlideToAct(String action) {
-  //   if (action == 'None') return SizedBox();
-  //   return SlideAction(
-  //     outerColor: GlobalColor.primaryColor,
-  //     sliderButtonIconSize: 20,
-  //     sliderButtonIconPadding: 10,
-  //     height: 60,
-  //     textStyle: TextStyle(
-  //         fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
-  //     innerColor: Colors.white,
-  //     text: 'Slide to $action',
-  //     submittedIcon: Icon(
-  //       Icons.check,
-  //       color: Colors.white,
-  //     ),
-  //     onSubmit: () {
-  //       // Handle your action here
-  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //         backgroundColor: GlobalColor.primaryColor,
-  //         content: Text(
-  //           '$action Action Done',
-  //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-  //         ),
-  //       ));
-  //       Navigator.pop(context);
-  //     },
-  //   );
-  // }
-
   _buildCustomerDetails(Map<String, dynamic> customer) {
     return Card(
       elevation: 3,

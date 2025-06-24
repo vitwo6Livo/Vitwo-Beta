@@ -126,13 +126,16 @@ class _sd_RFQ_PIState extends State<sd_RFQ_PI> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              SearchBarWidget(),
-              exportButton(),
-              SizedBox(width: 10),
-              filterButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                SearchBarWidget(),
+                exportButton(),
+                SizedBox(width: 5),
+                filterButton(),
+              ],
+            ),
           ),
 
           SizedBox(height: 10),
@@ -182,93 +185,95 @@ _buildCardData(Map<String, dynamic> items) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  items['RFQNumber'].toString(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.event, color: GlobalColor.primaryColor),
-                    SizedBox(width: 5),
-                    Text(
-                      items['CreatedAt'].toString(),
-                      maxLines: 2,
-                    ),
-                  ],
-                ),
+                _buildRowText(null, items['RFQNumber'], 19),
+                SizedBox(height: 5),
+                _buildRowText(Icons.event, items['CreatedAt'], null),
               ],
             ),
-            Container(
-              height: 42,
-              width: items['Status'] ? 80 : 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: GlobalColor.primaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(9.0),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 5,
-                      backgroundColor:
-                          items['Status'] ? Colors.green : Colors.red,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      items['Status'] ? 'Active' : 'In Active',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            _buildStatusIndicator(items['Status'])
           ],
         ),
         SizedBox(height: 15),
-        Row(
-          children: [
-            Icon(Icons.person, color: GlobalColor.primaryColor),
-            SizedBox(width: 5),
-            Flexible(
-                child: Text(
-              items['CustomerName'],
-              softWrap: true,
-              overflow: TextOverflow.fade,
-            )),
-          ],
-        ),
+        _buildRow(Icons.person, items['CustomerName']),
         SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(Icons.abc, color: GlobalColor.primaryColor),
-                SizedBox(width: 5),
-                Text(items['CustomerCode'].toString()),
-              ],
-            ),
+            _buildRowText(Icons.abc, items['CustomerCode'], null),
             SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.shopping_cart_checkout,
-                  color: GlobalColor.primaryColor,
-                ),
-                Text(items['RequestType'].toString(), maxLines: 2),
-              ],
-            ),
+            _buildRowText(
+                Icons.shopping_cart_checkout, items['RequestType'], null),
           ],
         ),
       ],
     ),
+  );
+}
+
+_buildStatusIndicator(value) {
+  return Container(
+    height: 42,
+    width: value ? 80 : 100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: GlobalColor.primaryColor,
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(9.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 5,
+            backgroundColor: value ? Colors.green : Colors.red,
+          ),
+          SizedBox(width: 10),
+          Text(
+            value ? 'Active' : 'In Active',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildRow(IconData icon, String label) {
+  return Row(
+    children: [
+      Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Flexible(
+        child: Text(
+          label,
+          softWrap: true,
+          overflow: TextOverflow.fade,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _buildRowText(IconData? icon, String label, double? size,
+    [Color? colors]) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      if (icon == null) SizedBox(),
+      if (icon != null) Icon(icon, color: GlobalColor.primaryColor),
+      SizedBox(width: 5),
+      Text(
+        label,
+        softWrap: true,
+        overflow: TextOverflow.fade,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: colors ?? Colors.black,
+            fontSize: size ?? 14.0),
+      ),
+    ],
   );
 }
